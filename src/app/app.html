@@ -1,0 +1,30 @@
+<ion-menu [content]="mycontent" side="right">
+  <ion-header>
+      <ion-toolbar color="secondary">
+          <ion-title>MENU</ion-title>
+          <ion-buttons end>
+            <button ion-button icon-only color="royal" menuClose>
+              <ion-icon name="md-close"></ion-icon>
+            </button>
+          </ion-buttons>
+      </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+      <ion-list>
+
+          <ion-item menuClose (click)="gotoPage()">
+              ลงชื่อออก
+              <ion-icon name="md-log-out" item-right></ion-icon>
+          </ion-item>
+
+          <ion-item menuClose (click)="exitApp()">
+            ออกจากแอฟ
+            <ion-icon name="md-log-out" item-right></ion-icon>
+        </ion-item>
+
+      </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-nav #mycontent [root]="rootPage"></ion-nav>

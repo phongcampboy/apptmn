@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>ใบแจ้งชำระบริการ</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  
+  <div class="box">
+   
+      <p></p>
+      <div align="center"><img src="https://chawtaichonburi.com/appdata/img/tiger.png" width="100" height="63"></div>
+      <ion-grid>
+        <div align="center"><B class="ion-1x ion-social-pinterest"> <u> บ.ซุปเปอร์ไฮสปีด อินเทอร์เน็ต จำกัด</u> <br>(สำนักงานใหญ่)</B> </div>
+        <ion-row>
+          
+          <b class="ion-2x ion-social-pinterest">  
+            เลขที่ 46/20 หมู่ 4 ต.ห้วยใหญ่
+            อ.บางละมุง
+            จ.ชลบุรี 20150
+            โทร.038-249734 , 038-072556-8
+            โทรสาร.038-072563
+           </b>            
+        </ion-row>
+      </ion-grid>
+          <ion-item *ngFor="let item of dataitem"> 
+            <b class="ion-2x ion-social-pinterest">
+              ID: {{item.MemberID}}<br>
+              ชื่อ: {{item.FirstName}}  {{item.LastName}}<br>
+              ที่อยู่:  เลขที่ {{item.StreetNo}}  หมู่ {{item.Moo}} {{item.Mooban}} <br>
+              เบอร์โทร: {{item.Tel1}}<br>
+              ประเภทบริการ: {{item.DescriptionRate}}<br>
+              ราคา: {{item.Total}} 
+          </b>
+          </ion-item>
+        <ion-col col-12>
+          <div align="center"><img *ngIf="qrcode" [src]="qrcode"></div>
+          
+          <ion-card-content *ngIf="createdCode">
+            <b class="ion-2x ion-social-pinterest">
+              <div align="center">{{createdCode}}<br>
+                ลูกค้าชำระค่าบริการได้ที่ศูนย์บริการ TMN<br>
+                หรือ ชำระที่เคาน์เตอร์เซอร์วิส 7-Eleven<br>
+                ชำระค่าบริการผ่าน เคเบิล ไทยบิลลิ่ง<br>
+              * โปรดตรวจสอบความถูกต้องของเอกสาร *
+              </div><br>
+              
+           </b>       
+          </ion-card-content>                      
+        </ion-col>
+    </div>
+ 
+</ion-content>

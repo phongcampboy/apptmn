@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>register</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="reg" (ngSubmit)="Chk_password()">
+    <ion-list>
+
+      <ion-item>
+        <ion-label floating>รหัสสมาชิก</ion-label>
+        <ion-input type="text" formControlName="MemID" [(ngModel)]="postdata.MemberID"></ion-input>
+      </ion-item>
+ 
+      <ion-item>
+        <ion-label floating>Username (4-10 ตัวอักษร)</ion-label>
+        <ion-input type="text" formControlName="Username" maxlength="10" [(ngModel)]="postdata.User_app"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>หมายเลขบัตรประชาชน/พาสปอร์ต</ion-label>
+        <ion-input type="text" formControlName="ID_card" [(ngModel)]="postdata.ID_card"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Password (4-10 ตัวอักษร)</ion-label>
+        <ion-input type="password" formControlName="Password" maxlength="10" [(ngModel)]="postdata.Pass_app"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Confirm Password</ion-label>
+        <ion-input type="password" formControlName="Con_password" [(ngModel)]="Chk_pass"></ion-input>
+      </ion-item>
+
+    </ion-list>
+    <div>
+      <button type="submit" [disabled]="!reg.valid" block ion-button color="secondary">Sign Up</button>
+    </div>
+  </form>
+  </ion-content>
+

@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>LOGIN</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+
+    <ion-item>
+      <h5>หน้าล็อกอิน</h5>
+      <ion-label floating>Username</ion-label>
+      <ion-input type="text" [(ngModel)]="logindata.user"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label floating>Password</ion-label>
+      <ion-input type="password" [(ngModel)]="logindata.pass"></ion-input>
+    </ion-item>
+  
+  </ion-list>
+  <button ion-button full color="secondary" (click)="clicklogin()">Login</button>
+  <button ion-button outline small color="secondary" (click)="register()">REGISTER</button>
+</ion-content>

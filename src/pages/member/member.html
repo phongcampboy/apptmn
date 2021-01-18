@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-buttons start>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon>
+        </button>
+      </ion-buttons>
+    <ion-title>MEMBER</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <div class="boxmember" *ngFor="let item of dataitem">
+        <p></p>
+        <b>ID: {{item.MemberID}}</b><br>
+        <b>ชื่อ:  {{item.FirstName}}  {{item.LastName}}</b><br>
+        <b class="ion-2x ion-social-pinterest"> ที่อยู่:  เลขที่ {{item.StreetNo}}  <br> หมู่ {{item.Moo}}{{item.Mooban}}</b><br>
+        <b class="ion-2x ion-social-pinterest">เบอร์โทร: {{item.Tel1}}</b><br>
+        <b class="ion-2x ion-social-pinterest">ประเภทบริการ: {{item.DescriptionRate}}</b>
+        <p></p>
+  </div>
+  <p> <button *ngIf="Pay==0" ion-button full color="danger" (click)="BillPage()">!!คุณมียอดค่าบริการค้างชำระ</button></p>
+  <ion-card (click)="sendaddbil()">
+    <img src="https://chawtaichonburi.com/app_img/pay.jpg"/>
+  </ion-card>
+  <ion-card (click)="listpay()">
+    <img src="https://chawtaichonburi.com/app_img/payhis.jpg"/>
+  </ion-card>
+  <ion-card>
+    <img src="https://chawtaichonburi.com/app_img/pass.jpg" (click)="changpass()">
+  </ion-card>
+</ion-content>

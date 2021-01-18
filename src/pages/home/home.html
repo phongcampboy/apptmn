@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>HOME</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="tutorial-page" scroll="false">
+  <div class="div1">
+    <ion-slides pager="true"loop="true" (ionSlideDidChange)="slideChanged()">
+      <ion-slide>
+        <img src="https://chawtaichonburi.com/appdata/slide/Slide01.jpg"/>
+      </ion-slide>
+      <ion-slide>
+        <img src="https://chawtaichonburi.com/appdata/slide/Slide2.jpg"/>
+      </ion-slide>
+      <ion-slide>
+        <img src="https://chawtaichonburi.com/appdata/slide/Slide3.jpg"/>
+      </ion-slide>
+    </ion-slides>
+  
+  </div>
+  
+  <ion-grid>
+ <!--    <ion-row>
+      <ion-col col><img src="https://chawtaichonburi.com/appdata/img/cabletmn.jpg"/></ion-col>
+    </ion-row>
+ -->
+    <ion-row>
+      <ion-col col><a href="https://line.me/ti/p/5T4UEUpv__"><img src="https://chawtaichonburi.com/appdata/img/it.jpg" width="100%"/></a></ion-col>
+      <ion-col col><a href="https://line.me/R/ti/p/%40tmn.pattaya"><img src="https://chawtaichonburi.com/appdata/img/contact.jpg" width="100%"/></a> </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col><img src="https://chawtaichonburi.com/appdata/img/paytmn.jpg" (click)="srevice()" width="100%"/></ion-col>
+    </ion-row>
+  </ion-grid>
+<!--   <div #map id="map" style="width: 100%; height: 40%;"></div> -->
+
+<ion-card>
+
+  <ion-row>
+    <ion-col col><img src="https://chawtaichonburi.com/appdata/img/map.jpg" width="100%"/></ion-col>
+  </ion-row>
+ 
+    <button ion-button icon-start clear item-end (click)="mymap()">
+      <ion-icon name="navigate"></ion-icon>
+      คลิกดู ศูนย์บริการของเรา
+    </button>
+    <ion-fab right button>
+      <button ion-fab (click)="mymap()">
+        <ion-icon name="pin"></ion-icon>
+      </button>
+    </ion-fab>
+    
+</ion-card>
+
+</ion-content>

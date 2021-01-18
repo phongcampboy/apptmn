@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>เพิ่มรหัสสมาชิก</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list>
+    <ion-item *ngFor="let item of items">
+      <button ion-button item-end (click)="loadIsPay(item.id_save)">จ่ายบิล</button>
+      <h2>รหัส:{{item.id_save}} </h2>
+      <h5>ชื่อ:{{item.F_name}} {{item.L_name}}</h5>
+      <button ion-button icon-star color="danger"(click)="deletmember(item.id_save)">
+        <ion-icon name="ios-trash"></ion-icon>
+        ลบ
+      </button>
+      <button ion-button outline (click)="listpay(item.id_save)">ประวัติการชำระ</button>
+    </ion-item>
+  </ion-list>
+
+  <button ion-fab color="secondary" mini (click)="addmember()"><ion-icon name="add"></ion-icon></button>
+  <div *ngIf="this.add">
+  <ion-item >
+    <ion-label floating>เพิ่มรหัสสมาชิก</ion-label>
+    <ion-input type="text"[(ngModel)]="postdata.id_save"></ion-input>
+  </ion-item>
+     <button ion-button full color="secondary" (click)="addbill()">ยืนยัน</button>
+  </div>
+</ion-content>
+

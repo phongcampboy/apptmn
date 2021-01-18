@@ -1,0 +1,33 @@
+
+.box {
+    width:100%;
+    //height:100%;
+    padding-left: 8px;
+    margin-top: 8px;
+    /* ส่วนของ การแสดงเส้น  */
+    border-color:rgb(250, 250, 250);
+    border-style:solid;
+    /* จบส่วนของ การแสดงเส้น  */
+    /* ส่วนของ gradient */
+    background: rgb(254,255,255); /* Old browsers */
+    background: -moz-linear-gradient(top,  rgba(254,255,255,1) 0%, rgba(210,235,249,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(254,255,255,1)), color-stop(100%,rgba(210,235,249,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(254,255,255,1) 0%,rgba(210,235,249,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(254,255,255,1) 0%,rgba(210,235,249,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(254,255,255,1) 0%,rgba(210,235,249,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgb(95, 145, 238) 0%,rgba(210,235,249,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feffff', endColorstr='#d2ebf9',GradientType=0 ); /* IE6-9 */
+    /* จบ ส่วนของ gradient */
+    /* ส่วนการแสดง ผล radius*/
+    -webkit-border-radius: 5px;
+    border-radius: 5px; 
+    //margin-top :5px;
+   /*สบ ส่วนการแสดง ผล radius*/
+    /*ส่วนของ shadow */
+    -webkit-box-shadow: 0px 0px 5px 5px rgba(200, 197, 200, 1);
+    box-shadow: 0px 0px 5px 5px rgba(200, 197, 200, 1); 
+     /* จบ ส่วนของ shadow */
+}
+.ion-1x { font-size: 13px !important;}
+.ion-2x { font-size: 12px !important;}
+.ion-3x { font-size: 11px !important;}
