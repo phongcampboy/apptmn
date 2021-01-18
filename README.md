@@ -1,2 +1,2 @@
-# tim-service-app
-tim-service-app
+# tmn-service-app
+tmn-service-app
