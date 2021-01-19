@@ -1,8 +1,6 @@
 {
-  "name": "Myapp",
+  "name": "TMN Services",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
   "private": true,
   "scripts": {
     "start": "ionic-app-scripts serve",
@@ -43,7 +41,6 @@
     "@ionic/app-scripts": "3.2.4",
     "com-sarriaroman-photoviewer": "^1.2.5",
     "cordova-android": "^9.0.0",
-    "cordova-ios": "^6.1.1",
     "cordova-plugin-advanced-http": "^3.1.0",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-file": "^6.0.2",
