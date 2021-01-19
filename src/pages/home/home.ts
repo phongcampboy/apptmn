@@ -15,6 +15,11 @@ export class HomePage {
     public loadingCtrl: LoadingController
   ) {}
   srevice() {
+    const loader = this.loadingCtrl.create({
+      content: "Please wait...",
+      duration: 1000
+    });
+    loader.present();
     this.navCtrl.push(ServicePage);
   }
 

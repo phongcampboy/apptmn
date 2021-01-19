@@ -9,7 +9,6 @@ import { IonicPage, NavController } from "ionic-angular";
 })
 export class MapPage {
 
-
   constructor(
     public navCtrl: NavController
   ) {}
