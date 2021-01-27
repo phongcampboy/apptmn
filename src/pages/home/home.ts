@@ -39,7 +39,7 @@ export class HomePage {
     this.slides.speed = 700;
     const loader = this.loadingCtrl.create({
       content: "Please wait...",
-      duration: 1000
+      duration: 1200
     });
     loader.present()
 

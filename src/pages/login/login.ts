@@ -30,9 +30,9 @@ export class LoginPage {
     private storage: Storage,
     public navParams: NavParams
   ) {
-    this.logindata.user = "";
-    this.logindata.pass = "";
-    //this.logined();
+    //this.logindata.user = "";
+    //this.logindata.pass = "";
+    this.logined();
   }
 
   logined() {
