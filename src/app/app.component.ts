@@ -29,8 +29,8 @@ export class MyApp {
             nav.pop();
           } else {
             const alert = this.alertCtrl.create({
-              title: '!ออกจากแอปพลิเคชัน',
-              message: 'คุณต้องการออกจาก แอปพลิเคชัน นี้หรือไม่?',
+              title: '!ออกจากแอป',
+              message: 'คุณต้องการออกจากแอปนี้หรือไม่?',
               buttons: [{
                 text: 'ยกเลิก',
                 role: 'cancel',
@@ -75,8 +75,8 @@ export class MyApp {
       nav.pop();
     } else {
       const alert = this.alertCtrl.create({
-        title: '!ออกจากแอปพลิเคชัน',
-        message: 'คุณต้องการออกจาก แอปพลิเคชัน นี้หรือไม่?',
+        title: '!ออกจากแอป',
+        message: 'คุณต้องการออกจากแอปนี้หรือไม่?',
         buttons: [{
           text: 'ยกเลิก',
           role: 'cancel',

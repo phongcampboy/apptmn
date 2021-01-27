@@ -17,8 +17,9 @@ export class TabsPage {
   tab4Root = LoginPage;
   tab5Root = CablePage;
 
-  constructor() {
+  constructor( ) {
     
   }
+
 
 }
