@@ -40,7 +40,8 @@ export class ListpayPage {
       memberID: this.memberId,
     });
 
-    let url = "https://chawtaichonburi.com/appdata/listpay.php";
+    //let url = "https://chawtaichonburi.com/appdata/listpay.php";
+    let url = "http://10.100.100.221/tmn/appdata/listpay.php";
 
     this.http
       .post(url, postData)

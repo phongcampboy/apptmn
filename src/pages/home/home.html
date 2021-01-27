@@ -4,38 +4,64 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content class="tutorial-page" scroll="false">
+<ion-content class="tutorial-page" scroll="false" fullscreen>
+
   <div class="div1">
-    <ion-slides pager="true"loop="true" (ionSlideDidChange)="slideChanged()">
-      <ion-slide>
-        <img src="https://chawtaichonburi.com/appdata/slide/Slide01.jpg"/>
-      </ion-slide>
-      <ion-slide>
-        <img src="https://chawtaichonburi.com/appdata/slide/Slide2.jpg"/>
-      </ion-slide>
-      <ion-slide>
-        <img src="https://chawtaichonburi.com/appdata/slide/Slide3.jpg"/>
-      </ion-slide>
-    </ion-slides>
+  <ion-slides pager="true" (ionSlideDidChange)="slideChanged()">
+      
+    <ion-slide *ngFor="let image of imageContainer">
+      <img src="{{ image.url }}">
+    </ion-slide>
+
+  </ion-slides>
   
   </div>
-  
+
   <ion-grid>
- <!--    <ion-row>
-      <ion-col col><img src="https://chawtaichonburi.com/appdata/img/cabletmn.jpg"/></ion-col>
-    </ion-row>
- -->
     <ion-row>
-      <ion-col col><a href="https://line.me/ti/p/5T4UEUpv__"><img src="https://chawtaichonburi.com/appdata/img/it.jpg" width="100%"/></a></ion-col>
-      <ion-col col><a href="https://line.me/R/ti/p/%40tmn.pattaya"><img src="https://chawtaichonburi.com/appdata/img/contact.jpg" width="100%"/></a> </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col><img src="https://chawtaichonburi.com/appdata/img/paytmn.jpg" (click)="srevice()" width="100%"/></ion-col>
+
+        <ion-col>
+          <div>
+            <img src="https://chawtaichonburi.com/appdata/img/logo/logo1.png"(click)="cabletv()" width="100%" height="100%"/>
+          </div>
+        </ion-col>
+        <ion-col>
+          <div>    
+            <img src="https://chawtaichonburi.com/appdata/img/logo/logo2.png"(click)="internet()" width="100%" height="100%"/>
+          </div>
+        </ion-col>
+        <ion-col>
+          <div>
+            <img src="https://chawtaichonburi.com/appdata/img/logo/logo3.png"(click)="cctv()" width="100%" height="100%"/>
+          </div>
+        </ion-col>
+        <ion-col>
+          <div>
+            <img src="https://chawtaichonburi.com/appdata/img/logo/logo4.png"(click)="member()" width="100%" height="100%"/>
+          </div>
+        </ion-col>
     </ion-row>
   </ion-grid>
-<!--   <div #map id="map" style="width: 100%; height: 40%;"></div> -->
 
-<ion-card>
+  <div class="dox1">
+    <ion-row>
+      <ion-icon col><img src="https://chawtaichonburi.com/appdata/img/news.jpg" width="100%"/></ion-icon>
+    </ion-row>
+  </div>
+  <div class="dox1">
+    <ion-row>
+      <ion-icon col><a href="https://line.me/ti/p/5T4UEUpv__"><img src="https://chawtaichonburi.com/appdata/img/it.jpg" width="100%"/></a></ion-icon>
+      <ion-icon col><a href="https://line.me/R/ti/p/%40tmn.pattaya"><img src="https://chawtaichonburi.com/appdata/img/contact.jpg" width="100%"/></a> </ion-icon>
+    </ion-row>
+
+    <ion-row>
+      <ion-icon col><img src="https://chawtaichonburi.com/appdata/img/paytmn.jpg" (click)="srevice()" width="100%"/></ion-icon>
+    </ion-row>
+   <!--  <ion-row>
+      <ion-col col><a href="http://www.tmncabletv.com/%E0%B8%95%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B9%88%E0%B8%AD%E0%B9%80%E0%B8%A3%E0%B8%B2"><img src="https://chawtaichonburi.com/appdata/img/map.jpg" width="100%"/></a></ion-col>
+    </ion-row> -->
+  </div>
+<!-- <ion-card>
 
   <ion-row>
     <ion-col col><img src="https://chawtaichonburi.com/appdata/img/map.jpg" width="100%" (click)="mymap()"/></ion-col>
@@ -52,5 +78,6 @@
     </ion-fab>
     
 </ion-card>
-
+ -->
+ 
 </ion-content>

@@ -68,6 +68,8 @@ export class LoginPage {
       console.log("Pass :", this.logindata.pass);
 
       let url: string = "https://chawtaichonburi.com/appdata/tmn_login.php";
+      //let url: string = "//10.100.100.221/tmn/appdata/tmn_login.php";
+
       let datapost = new FormData();
 
       datapost.append("user", this.logindata.user);
@@ -83,10 +85,13 @@ export class LoginPage {
           return this.storage.set("user", this.user).then(() => {
             this.storage.set("MemberID", this.memberId);
             this.user = user;
-            setTimeout(() => {
+            //this.navCtrl.push(MemberPage, { memID: this.memberId });
+
+           setTimeout(() => {
               this.navCtrl.setRoot(MemberPage, { memID: this.memberId });
             }, 1000);
           });
+          
         } else {
           const alert = this.alertCtrl.create({
             title: "แจ้งเตือน!",

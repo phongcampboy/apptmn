@@ -1,11 +1,46 @@
 .div1 {
   top:0px;
   width: auto;  //ความกว้าง
-  margin: 0px;   //ระยะขอบอัตโนมัติ
+  //margin: 0px;   //ระยะขอบอัตโนมัติ
   //border: 3px solid rgb(4, 4, 4);  //ขนาดเส้นขอบ รูปแบบ สีเส้นขอบ
   height: auto;
-  padding: 0px;
+  //padding: 0px;
 }
+
+.box1{
+  background: #F4F4F4;
+  //border: #CCC solid 1px;
+  background-repeat:repeat-x;
+  width:49%; height:70px;
+  border-radius:5px;
+  -moz-border-radius:0px;
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-box-shadow: 1 0 15px #fff;
+  }
+  .box2{
+  display:block;
+  //text-indent:5px;
+  float:left;
+  background: #F4F4F4;
+  //border: #CCC solid 1px;
+  background-repeat:repeat-x;
+  width:49%; height:70px;
+  border-radius:5px;
+  -moz-border-radius:0px;
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-box-shadow: 1 0 15px #fff;
+  }
+  
+  ion-col{
+    position: absolute;
+      //@debug: #f7f7f7;
+    border: solid 1px rgb(247, 246, 246);
+    text-align: center;
+    margin: auto;
+  }
+  
 
 
 

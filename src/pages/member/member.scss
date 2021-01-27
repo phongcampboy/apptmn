@@ -4,17 +4,18 @@
 }
 
 img {
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 5px;
+    //border: 0px solid #ddd;
+    border-radius: 5px;
+    padding: 0px;
+
 }
 
 
 .boxmember {
     width:100%;
     height:140px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
     /* ส่วนของ การแสดงเส้น  */
     border-color:rgb(250, 250, 250);
     border-style:solid;
@@ -44,3 +45,29 @@ img {
     background-color: #a6c3f5;
 
   } */
+
+  .box1{
+    background: #F4F4F4;
+    border: #CCC solid 1px;
+    background-repeat:repeat-x;
+    width:49%; height:70px;
+    border-radius:5px;
+    -moz-border-radius:0px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    -moz-box-shadow: 1 0 15px #fff;
+    }
+    .box2{
+    display:block;
+    text-indent:5px;
+    float:left;
+    background: #F4F4F4;
+    border: #CCC solid 1px;
+    background-repeat:repeat-x;
+    width:49%; height:70px;
+    border-radius:5px;
+    -moz-border-radius:0px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    -moz-box-shadow: 1 0 15px #fff;
+    }
