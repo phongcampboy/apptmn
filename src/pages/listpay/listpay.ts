@@ -41,7 +41,7 @@ export class ListpayPage {
     });
 
     //let url = "https://chawtaichonburi.com/appdata/listpay.php";
-    let url = "http://10.100.100.221/tmn/appdata/listpay.php";
+    let url = "http://tmnoffice.dyndns.tv:8000/tmn/appdata/listpay.php";
 
     this.http
       .post(url, postData)

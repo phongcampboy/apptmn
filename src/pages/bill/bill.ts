@@ -13,7 +13,10 @@ export class BillPage {
   createdCode: number;
   memberId: any;
   url = 'http://chart.apis.google.com/chart?cht=qr&chs=100x100&chld=H|0&chl=';
-  qrcode: any;
+  qrcode: any ="";
+  fadeOut:boolean;
+  logobill:any ="https://chawtaichonburi.com/appdata/img//member/logobill.png";
+
   constructor(public navCtrl: NavController,
     public loadingCtrl: LoadingController,
     public http: HttpClient,
@@ -28,19 +31,24 @@ export class BillPage {
   }
 
   loaddata(data) {
-    
-    let loading = this.loadingCtrl.create({
-      content: 'Loading...',
-      spinner: 'circles'
+    const loader = this.loadingCtrl.create({
+      content: "Please wait....",
+      duration: 1000
     });
-    loading.present();
+    loader.present()
+   
       this.dataitem = data;
-      this.memberId = data[0].MemberID;
-      this.billcode = data[0].BillingCode;
-      this.createdCode = this.billcode;
-      this.qrcode = this.url+this.createdCode;
-      loading.dismiss();
-    console.log("Qrcode=", this.qrcode);
+
+      if(this.dataitem !=""){
+
+          this.memberId = data[0].MemberID;
+          this.billcode = data[0].BillingCode;
+          this.createdCode = this.billcode;
+          this.qrcode = this.url+this.createdCode;
+          console.log("Qrcode=", this.qrcode);
+       
+      }
+    
   }
 
 }

@@ -4,26 +4,35 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-card>
-    <img src="https://chawtaichonburi.com/appdata/img/cable.jpg"/>
-  </ion-card>
-  <B>เคเบิลทีวีท้องถิ่น</B><br>
-  ส่งตรงความบันเทิงและสาระด้วยรายการทีวีน่าสนใจจากทั่วทุกมุมโลกทั้งรูปแบบ ANALOG และ DIGITAL คมชัด บริการรวดเร็วฉับไว
+<ion-content  fullscreen="true" class="">
+
+      <ion-card>
+        <img *ngIf="img_cable" [src]="img_cable1" width="100%">
+      </ion-card>
+ 
+    <ion-card padding>
+        <b>เคเบิลทีวีท้องถิ่น</b>
+       ส่งตรงความบันเทิงและสาระด้วยรายการทีวีน่าสนใจจากทั่วทุกมุมโลกทั้งรูปแบบ ANALOG และ DIGITAL คมชัด บริการรวดเร็วฉับไว
+    </ion-card>
+
+
+
     <ion-card>
-    <img src="https://chawtaichonburi.com/appdata/img/tmn-1.jpg"/>
-  </ion-card>
+        <img *ngIf="img_cable" [src]="img_tmn1">
+    </ion-card>
+  
+    <ion-card>
+      <img *ngIf="img_cable" [src]="img_tmn2">
+    </ion-card>
+  
+    <ion-card>
+      <img *ngIf="img_cable" [src]="img_tmn3">
+    </ion-card>
+  
+    <ion-card>
+      <img *ngIf="img_cable" [src]="img_tmn4">
+    </ion-card>
 
-  <ion-card>
-    <img src="https://chawtaichonburi.com/appdata/img/tmn-2.jpg"/>
-  </ion-card>
 
-  <ion-card>
-    <img src="https://chawtaichonburi.com/appdata/img/tmn-3.jpg"/>
-  </ion-card>
-
-  <ion-card>
-    <img src="https://chawtaichonburi.com/appdata/img/tmn-4.jpg"/>
-  </ion-card>
 </ion-content>
 

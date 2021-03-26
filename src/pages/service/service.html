@@ -6,41 +6,26 @@
 
 <ion-content  class="card-background-page">
   <ion-card>
-    <img src="https://chawtaichonburi.com/appdata/img/paytmn-1.jpg"/>
+    <img *ngIf="img_service" [src]="img_paytmn1">
   </ion-card>
 
   <ion-card>
-    <img src="https://chawtaichonburi.com/appdata/img/pay1.jpg"/>
+    <img *ngIf="img_service" [src]="img_pay1">
   </ion-card>
 
   <ion-card>
-    <img src="https://chawtaichonburi.com/appdata/img/pay2.jpg"/>
+    <img *ngIf="img_service" [src]="img_pay2">
   </ion-card>
 
   <ion-card>
-    <img src="https://chawtaichonburi.com/appdata/img/pay3.jpg"/>
+    <img *ngIf="img_service" [src]="img_pay3">
   </ion-card>
 
   <ion-card>
-    <img src="https://chawtaichonburi.com/appdata/img/pay4.jpg"/>
+    <img *ngIf="img_service" [src]="img_pay4">
   </ion-card>
-
   <ion-card>
-    <img src="https://chawtaichonburi.com/appdata/img/bgpay.jpg"/>
-    <div class="card-title">โอนเงินค่าบริการเคเบิลทีวี</div>
-    <div class="card-subtitle">เลขบัญชี 642-3-01504-6 <BR>
-      ชื่อบัญชี บริษัท ทิพย์มณี มีเดีย เน็ตเวิร์ค จำกัด<BR>
-      ธนาคาร ไทยพาณิชย์ สาขานาเกลือ<BR>
-      The Siam Commercial Bank</div>
-  </ion-card>
-
-  <ion-card>
-    <img src="https://chawtaichonburi.com/appdata/img/bgpay.jpg"/>
-    <div class="card-title">โอนเงินค่าอินเทอร์เน็ต</div>
-    <div class="card-subtitle">เลขบัญชี 969-3-00059-4<BR>
-      ชื่อบัญชี บริษัท ซุปเปอร์ ไฮสปีด อินเทอร์เน็ต จำกัด<BR>
-        ธนาคาร ไทยพาณิชย์ สาขาย่อยโลตัส (พัทยา)<BR>
-          The Siam Commercial Bank</div>
+    <img *ngIf="img_service" [src]="img_pay">
   </ion-card>
 
 </ion-content>

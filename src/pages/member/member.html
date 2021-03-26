@@ -1,34 +1,41 @@
 <ion-header>
   <ion-navbar color="secondary">
     <ion-buttons start>
-      <button ion-button icon-only menuToggle>
+      <button ion-button icon-only menuToggle="right">
         <ion-icon name="menu"></ion-icon>
         </button>
       </ion-buttons>
     <ion-title>MEMBER</ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content padding>
+<ion-content padding fullscreen="true" class="">
+  
   <div class="boxmember" *ngFor="let item of dataitem">
+    <p></p><div class="dox1" *ngIf="Pay==0"><button *ngIf="msg_status==01" ion-button full color="secondary">สถานะปกติ</button></div> <p></p>
+    <p></p><div class="dox1" *ngIf="Pay==-1"><button *ngIf="msg_status==01" ion-button full color="secondary">สถานะปกติ</button></div> <p></p>
+    <p></p><div class="dox1" *ngIf="Pay==0"><button *ngIf="msg_status==10" ion-button full color="pink">สถานะบล็อกสัญญาณชั่วคราว</button></div> <p></p>
+    <p></p><div class="dox1" *ngIf="Pay==0"><button *ngIf="msg_status==02" ion-button full color="danger">สถานะตัดสาย</button></div> <p></p>
         <p></p>
         <b>ID: {{item.MemberID}}</b><br>
         <b>ชื่อ:  {{item.FirstName}}  {{item.LastName}}</b><br>
         <b class="ion-2x ion-social-pinterest"> ที่อยู่:  เลขที่ {{item.StreetNo}}  <br> หมู่ {{item.Moo}}{{item.Mooban}}</b><br>
         <b class="ion-2x ion-social-pinterest">เบอร์โทร: {{item.Tel1}}</b><br>
         <b class="ion-2x ion-social-pinterest">ประเภทบริการ: {{item.DescriptionRate}}</b>
-        <p></p>
   </div>
-  <div class="dox1"><button *ngIf="Pay==0" ion-button full color="danger" (click)="BillPage()">!!คุณมียอดค่าบริการค้างชำระ คลิ๊กดูบิล</button></div> 
-<p></p>
+  
+  <p></p><div class="dox1"*ngIf="Pay==0"><button *ngIf="msg_status==01" ion-button full color="danger" (click)="BillPage()">!!คุณมียอดค่าบริการค้างชำระ คลิ๊กดูบิล</button></div> <p></p>
+  <p></p><div class="dox1" ><button *ngIf="msg_status==02" ion-button full color="danger">!!กรุณาติดต่อเจ้าหน้าที่</button></div> <p></p>
+  <p></p><div class="dox1" ><button *ngIf="msg_status==10" ion-button full color="danger" (click)="BillPage()">!!คุณมียอดค่าบริการค้างชำระ คลิ๊กดูบิล</button></div> <p></p>
+
   <div class="dox1">
-  <ion-icon (click)="sendaddbil()">
-    <img src="https://chawtaichonburi.com/app_img/pay.jpg"/>
+  <ion-icon (click)="sendaddbil()" *ngIf="dataitem">
+    <img *ngIf="img_member" [src]="img_pay">
   </ion-icon>
-  <ion-icon (click)="listpay()">
-    <img src="https://chawtaichonburi.com/app_img/payhis.jpg"/>
+  <ion-icon (click)="listpay()" *ngIf="dataitem">
+    <img *ngIf="img_member" [src]="img_payhis">
   </ion-icon>
-  <ion-icon>
-    <img src="https://chawtaichonburi.com/app_img/pass.jpg" (click)="changpass()">
+  <ion-icon *ngIf="dataitem">
+    <img *ngIf="img_member" [src]="img_pass" (click)="changpass()">
   </ion-icon>
   </div>
 </ion-content>

@@ -19,31 +19,38 @@ export class PayaddbillPage {
   Pay: number;
   url = "http://chart.apis.google.com/chart?cht=qr&chs=100x100&chld=H|0&chl=";
   qrcode: any;
+  logobill:any ="https://chawtaichonburi.com/appdata/img//member/logobill.png";
+
   constructor(
     public navCtrl: NavController,
     public loadingCtrl: LoadingController,
     public http: HttpClient,
     public navParams: NavParams
-  ) {}
+  )
+   {
+ 
+  }
 
   ionViewDidLoad() {
     console.log("ionViewDidLoad PayaddbillPage");
+    this.logobill;
     let idpay = this.navParams.get("memID");
     this.loaddata(idpay);
   }
 
   loaddata(id: string) {
-    let loading = this.loadingCtrl.create({
-      content: "Loading...",
-      spinner: "circles",
+    const loader = this.loadingCtrl.create({
+      content: "Please wait....",
+      duration: 1000
     });
-    loading.present();
+    loader.present()
 
     let postData = JSON.stringify({
       memberID: id,
     });
 
-    let url = "https://chawtaichonburi.com/appdata/tmn_bill.php";
+  
+    let url: string ="http://tmnoffice.dyndns.tv:8000/tmn/appdata/load_member.php";
 
     this.http
       .post(url, postData)
@@ -59,7 +66,7 @@ export class PayaddbillPage {
             console.log("Loaddata:", this.dataitem);
             console.log("IsPay=", this.Pay);
             console.log("BillingCode=", this.billcode);
-            loading.dismiss();
+
           }
         },
         (error) => {

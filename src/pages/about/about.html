@@ -6,31 +6,32 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-content class="card-background-page">
-    <h4>	Fiber Optic อินเตอร์เน็ต ความเร็วสูง</h4>
-    บริการอินเตอร์เน็ตความเร็วสูง ด้วยการเชื่อมต่อผ่านสายสัญญาณไฟเบอร์ ออฟติก ที่รองรับเทคโนโลยีแห่งอนาคต ตอบสนองได้ทุกความต้องการ <br>วันนี้เราพร้อมแล้ว สำหรับการให้บริการที่ครอบคลุมทั่วทุกพื้นที่ของพัทยา และพื้นที่ใกล้เคียง ติดตั้งรวดเร็ว ด้วยทีมช่างที่ชำนาญ เชิญสัมผัสกับบริการในระดับพรีเมี่ยมได้แล้ววันนี้.
-
-    <br>*ราคายังไม่รวมภาษีมูลค่าเพิ่ม (Vat 7%)*
-    <ion-card>
-      <a href="https://line.me/R/ti/p/%40tmn.pattaya"><img src="https://chawtaichonburi.com/app/net/net.jpg"/></a> 
-    </ion-card>
+<ion-content  fullscreen="true" class="">    
 
     <ion-card>
-      <a href="https://line.me/R/ti/p/%40tmn.pattaya"><img src="https://chawtaichonburi.com/app/net/S001.jpg"/></a> 
+      <img *ngIf="img_net" [src]="img_net_tmn">
+    </ion-card>
+    <ion-card padding>
+      <b>Fiber Optic อินเตอร์เน็ต ความเร็วสูง</b><br>
+      บริการอินเตอร์เน็ตความเร็วสูง ด้วยการเชื่อมต่อผ่านสายสัญญาณไฟเบอร์ ออฟติก ที่รองรับเทคโนโลยีแห่งอนาคต ตอบสนองได้ทุกความต้องการ 
+      <br>วันนี้เราพร้อมแล้ว สำหรับการให้บริการที่ครอบคลุมทั่วทุกพื้นที่ของพัทยา และพื้นที่ใกล้เคียง ติดตั้งรวดเร็ว ด้วยทีมช่างที่ชำนาญ เชิญสัมผัสกับบริการในระดับพรีเมี่ยมได้แล้ววันนี้.
+      <br>*ราคายังไม่รวมภาษีมูลค่าเพิ่ม (Vat 7%)*
+    </ion-card>
+
+    <ion-card>
+      <img *ngIf="img_net" [src]="img_s01" (click)='OpenUrl()'/>
     </ion-card>
   
     <ion-card>
-      <a href="https://line.me/R/ti/p/%40tmn.pattaya"><img src="https://chawtaichonburi.com/app/net/S02.jpg"/></a> 
+      <img *ngIf="img_net" [src]="img_s02" (click)='OpenUrl()'/>
     </ion-card>
   
     <ion-card>
-      <a href="https://line.me/R/ti/p/%40tmn.pattaya"><img src="https://chawtaichonburi.com/app/net/S03.jpg"/></a> 
+      <img *ngIf="img_net" [src]="img_s03" (click)='OpenUrl()'/>
     </ion-card>
-  
+
     <ion-card>
-      <a href="https://line.me/R/ti/p/%40tmn.pattaya"><img src="https://chawtaichonburi.com/app/net/S04.jpg"/></a> 
+      <img *ngIf="img_net" [src]="img_s04" (click)='OpenUrl()'/>
     </ion-card>
-  
-  </ion-content>
+
 </ion-content>

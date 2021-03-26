@@ -1,11 +1,8 @@
 import { Component } from "@angular/core";
-import {
-  IonicPage,
-  NavController,
-  NavParams,
-  LoadingController,
-} from "ionic-angular";
+import {IonicPage,NavController, NavParams,LoadingController} from "ionic-angular";
 import { HttpClient } from "@angular/common/http";
+import { ToastController } from 'ionic-angular';
+
 
 @IonicPage()
 @Component({
@@ -15,19 +12,22 @@ import { HttpClient } from "@angular/common/http";
 export class PayOtherPage {
   memberId: any;
   datapay: any;
-  //dataitem: any;
+  dataid:any;
 
   constructor(
     public navCtrl: NavController,
     public loadingCtrl: LoadingController,
     public http: HttpClient,
+    public toastCtrl: ToastController,
     public navParams: NavParams
   ) {
-    let idget = this.navParams.get("memID");
-    console.log("Data=", idget);
+    this.dataid = this.navParams.get("memID");
+    console.log("ID ที่ส่งมา=", this.dataid);
 
-    if (idget != null) {
-      this.loaddata(idget);
+    if (this.dataid != null) {
+      this.loaddata(this.dataid);
+    }else{
+      console.log("No ID");
     }
   }
 
@@ -40,7 +40,8 @@ export class PayOtherPage {
       memberID: id,
     });
 
-    let url = "https://chawtaichonburi.com/appdata/listpay.php";
+
+    let url: string ="http://tmnoffice.dyndns.tv:8000/tmn/appdata/listpay.php";
 
     this.http
       .post(url, postData)
@@ -55,9 +56,23 @@ export class PayOtherPage {
             loading.present();
             this.datapay = data;
 
-            console.log("Loaddata:", this.datapay);
+            console.log("ข้อมูลที่เคยชำระ:", this.datapay);
 
             loading.dismiss();
+          }else{
+            this.datapay = data;
+            console.log("ข้อมูลที่เคยชำระ",this.datapay);
+            let toast = this.toastCtrl.create({
+              message: 'ยินดีด้วย คุณไม่มีบิลค้างชำระ',
+              duration: 3500,
+              position: 'top',
+              showCloseButton: true,
+            });
+            toast.present(toast);
+   /*          if(this.datapay==null){
+              console.log("Mem",this.dataid);
+              this.navCtrl.push(AddbillPage, { memID: this.dataid });
+            } */
           }
         },
         (error) => {

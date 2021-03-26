@@ -8,7 +8,7 @@
   
   <div class="box">
     <p></p>
-    <div align="center"><img src="https://chawtaichonburi.com/appdata/img/tiger.png" width="100" height="63"></div>
+    <div align="center"><img *ngIf="logobill" [src]="logobill" width="100" height="63"></div>
     <ion-grid>
       <div align="center"><B class="ion-1x ion-social-pinterest"> <u> บ.ซุปเปอร์ไฮสปีด อินเทอร์เน็ต จำกัด</u> <br>(สำนักงานใหญ่)</B> </div>
       <ion-row>
@@ -34,7 +34,7 @@
         </ion-item>
       <ion-col col-12>
       
-        <div align="center"><img [src]="qrcode"></div>
+        <div align="center"><img *ngIf="qrcode" [src]="qrcode"></div>
         
         <ion-card-content *ngIf="createdCode">
           <b class="ion-2x ion-social-pinterest">

@@ -8,9 +8,8 @@ import {
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
 import { Storage } from "@ionic/storage";
-import { MemberPage } from "../member/member";
 import { RegisterPage } from "../register/register";
-
+import { HomePage } from '../home/home';
 @IonicPage()
 @Component({
   selector: "page-login",
@@ -21,7 +20,8 @@ export class LoginPage {
   memberId: any = null;
   isLoggedIn: Boolean = false;
   user: any = null;
-  //userlogout: any;
+  name: any;
+  lastname:any;
 
   constructor(
     public navCtrl: NavController,
@@ -29,9 +29,10 @@ export class LoginPage {
     public alertCtrl: AlertController,
     private storage: Storage,
     public navParams: NavParams
-  ) {
-    //this.logindata.user = "";
-    //this.logindata.pass = "";
+  ) 
+  {
+    this.logindata.user ="";
+    this.logindata.pass ="";
     this.logined();
   }
 
@@ -47,7 +48,7 @@ export class LoginPage {
 
       if (user) {
         this.isLoggedIn = true;
-        this.navCtrl.setRoot(MemberPage, { memID: this.memberId });
+        this.navCtrl.push(HomePage, { memID: this.memberId });
         console.log("Load Login=", this.isLoggedIn);
       } else {
         this.isLoggedIn = false;
@@ -66,9 +67,8 @@ export class LoginPage {
     if (this.logindata.user != "" && this.logindata.pass != "") {
       console.log("User:", this.logindata.user);
       console.log("Pass :", this.logindata.pass);
-
-      let url: string = "https://chawtaichonburi.com/appdata/tmn_login.php";
-      //let url: string = "//10.100.100.221/tmn/appdata/tmn_login.php";
+      
+      let url = "http://tmnoffice.dyndns.tv:8000/tmn/appdata/tmn_login.php";
 
       let datapost = new FormData();
 
@@ -76,20 +76,23 @@ export class LoginPage {
       datapost.append("pass", this.logindata.pass);
 
       let data: Observable<any> = this.http.post(url, datapost);
+      
       data.subscribe(async (datasend) => {
-        //console.log(datasend);
+        console.log(datasend);
+  
         if (datasend != null) {
           this.memberId = datasend[0].MemberID;
           this.user = datasend[0].User_app;
+          this.name = datasend[0].FirstName;
+          this.lastname = datasend[0].LastName;
 
           return this.storage.set("user", this.user).then(() => {
             this.storage.set("MemberID", this.memberId);
+            this.storage.set("Name", this.name);
+            this.storage.set("LastName", this.lastname);
             this.user = user;
-            //this.navCtrl.push(MemberPage, { memID: this.memberId });
-
-           setTimeout(() => {
-              this.navCtrl.setRoot(MemberPage, { memID: this.memberId });
-            }, 1000);
+            this.navCtrl.setRoot(HomePage, { memID: this.memberId });
+   
           });
           
         } else {
@@ -105,7 +108,7 @@ export class LoginPage {
     } else {
       const alert = this.alertCtrl.create({
         title: "แจ้งเตือน!",
-        subTitle: "กรุณากรอกข้อมูลให้ครบ!",
+        subTitle: "กรุณากรอกข้อมูลให้ครบทุกช่อง!",
         buttons: ["OK"],
       });
       alert.present();

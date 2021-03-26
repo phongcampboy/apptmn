@@ -8,9 +8,10 @@ import {
 } from "ionic-angular";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
-import { LoginPage } from "../login/login";
+//import { LoginPage } from "../login/login";
 import { Validators, FormBuilder, FormGroup } from "@angular/forms";
-
+import { UtubePage } from '../utube/utube';
+import { HomePage } from '../home/home';
 @IonicPage()
 @Component({
   selector: "page-register",
@@ -18,9 +19,12 @@ import { Validators, FormBuilder, FormGroup } from "@angular/forms";
 })
 export class RegisterPage {
   postdata: any = {};
-  page_login = LoginPage;
+  //page_login = LoginPage;
   Chk_pass: any;
   public reg: FormGroup;
+  user_log:any = "root";
+  pass_log:any = "wsx96300";
+  memberId: any = null;
 
   constructor(
     public navCtrl: NavController,
@@ -89,8 +93,20 @@ export class RegisterPage {
   save() {
     console.log("value", this.reg.value);
     console.log(this.reg.valid);
+    let chk_conn: string ="http://tmnoffice.dyndns.tv:8000/tmn/appdata/tmn_conn.php";
+      let datapost = new FormData();
+  
+      datapost.append("user_log", this.user_log);
+      datapost.append("pass_log", this.pass_log);
+      
+      let data: Observable<any> = this.http.post(chk_conn, datapost);
+      data.subscribe((call) => {
+        console.log(call);
+  
+    if (call.status == 200) {
+          //alert(call.msg);
 
-    let url = "https://chawtaichonburi.com/appdata/tmn_reg.php";
+    let url: string = "http://tmnoffice.dyndns.tv:8000/tmn/appdata/tmn_reg.php";
 
     let postdataset = new FormData();
 
@@ -110,7 +126,7 @@ export class RegisterPage {
       console.log(call);
       if (call.status == 200) {
         alert(call.msg);
-        this.navCtrl.setRoot(this.page_login);
+        this.navCtrl.setRoot(HomePage);
       }
 
       if (call.status == 404) {
@@ -119,6 +135,23 @@ export class RegisterPage {
       if (call.status == 405) {
         alert(call.msg);
       }
+      if (call.status == 406) {
+        alert(call.msg);
+      }
     });
+  
+        }
+  
+        if (call.status == 405) {
+          //alert(call.msg);   
+          const loader = this.loadingCtrl.create({
+            content: "Please wait...",
+            duration: 2000
+          });
+          loader.present();
+          this.navCtrl.setRoot(UtubePage); 
+        }
+      });
+    
   }
 }

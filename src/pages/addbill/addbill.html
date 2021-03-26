@@ -7,18 +7,47 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
+  <ion-list *ngIf="data_me !==null">
+    <ion-item *ngFor="let item of data_me">
+      <h2>รหัส: {{item.MemberID}}</h2>
+      <h5>ชื่อ:  {{item.FirstName}}  {{item.LastName}}</h5>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <div><button ion-button small color="secondary" (click)="loadIsPay(item.MemberID)">ใบแจ้งชำระ</button></div>
+        </ion-col>
+        <ion-col>
+          <div><button ion-button small (click)="pay(item.MemberID)">ประวัติการชำระ</button></div>
+        </ion-col>
+        <ion-col>
 
-  <ion-list>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    </ion-item>
+  </ion-list>
+  <ion-list *ngIf="items !==null">
     <ion-item *ngFor="let item of items">
-      <button ion-button item-end (click)="loadIsPay(item.id_save)">จ่ายบิล</button>
       <h2>รหัส:{{item.id_save}} </h2>
       <h5>ชื่อ:{{item.F_name}} {{item.L_name}}</h5>
-      <button ion-button icon-star color="danger"(click)="deletmember(item.id_save)">
-        <ion-icon name="ios-trash"></ion-icon>
-        ลบ
-      </button>
-      <button ion-button outline (click)="listpay(item.id_save)">ประวัติการชำระ</button>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <div><button ion-button small color="secondary" (click)="loadIsPay(item.id_save)">ใบแจ้งชำระ</button></div>
+        </ion-col>
+        <ion-col >
+          <div><button ion-button small (click)="listpay(item.id_save)">ประวัติการชำระ</button></div>
+        </ion-col>
+        <ion-col>
+          <div>  <button ion-button icon-star small color="danger"(click)="deletmember(item.id_save)">
+            <ion-icon name="ios-trash"></ion-icon>ลบ
+          </button></div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
     </ion-item>
   </ion-list>
 

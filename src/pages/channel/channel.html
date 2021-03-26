@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>List Of Channel</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <img *ngIf="img_channel" [src]="img_Analog" (click)="OpenUrl1()">
+  </ion-card>
+  <div align="center"><B>คลิกรูปเพื่อขยาย Analog TV</B></div>
+
+  <ion-card>
+    <img *ngIf="img_channel" [src]="img_Digita" (click)="OpenUrl2()">
+  </ion-card>
+  <div align="center"><B>คลิกรูปเพื่อขยาย Digital TV</B></div>
+  <p></p>
+</ion-content>

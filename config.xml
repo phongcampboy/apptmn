@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="3" id="com.tmncabletv.tmnapp" ios-CFBundleIdentifier="com.tmncabletv.tmnapp-service" ios-CFBundleVersion="3" version="0.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget android-versionCode="8" id="com.tmncabletv.tmnapp" ios-CFBundleIdentifier="com.tmncabletv.tmnapp-service" ios-CFBundleVersion="1" version="1.0.0.7" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>TMN</name>
     <description>TMN</description>
     <author>TMN Services</author>
@@ -108,4 +108,8 @@
     <plugin name="cordova-plugin-ionic-webview" spec="^4.0.0" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
     <preference name="Orientation" value="portrait" />
+    <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application" xmlns:android="http://schemas.android.com/apk/res/android">
+        <application android:usesCleartextTraffic="true" />
+    </edit-config>
+    <allow-navigation href="*" />
 </widget>

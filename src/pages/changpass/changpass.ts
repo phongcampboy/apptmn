@@ -93,7 +93,8 @@ export class ChangpassPage {
     console.log("value", this.reg.value);
     console.log(this.reg.valid);
 
-    let url = "https://chawtaichonburi.com/appdata/tmn_chang_pass.php";
+    //let url = "https://chawtaichonburi.com/appdata/tmn_chang_pass.php";
+    let url = "http://tmnoffice.dyndns.tv:8000/tmn/appdata/tmn_chang_pass.php";
 
     let postdataset = new FormData();
 

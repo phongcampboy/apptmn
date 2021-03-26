@@ -8,36 +8,36 @@
   },
   "installed_plugins": {
     "com-sarriaroman-photoviewer": {
-      "PACKAGE_NAME": "com.tmncabletv.tmnapp"
+      "PACKAGE_NAME": "com.tmncabletv.tmnapp-service"
     },
     "cordova-plugin-advanced-http": {
-      "PACKAGE_NAME": "com.tmncabletv.tmnapp"
+      "PACKAGE_NAME": "com.tmncabletv.tmnapp-service"
     },
     "cordova-plugin-device": {
-      "PACKAGE_NAME": "com.tmncabletv.tmnapp"
+      "PACKAGE_NAME": "com.tmncabletv.tmnapp-service"
     },
     "cordova-plugin-ionic-keyboard": {
-      "PACKAGE_NAME": "com.tmncabletv.tmnapp"
+      "PACKAGE_NAME": "com.tmncabletv.tmnapp-service"
     },
     "cordova-plugin-ionic-webview": {
-      "PACKAGE_NAME": "com.tmncabletv.tmnapp"
+      "PACKAGE_NAME": "com.tmncabletv.tmnapp-service"
     },
     "cordova-plugin-splashscreen": {
-      "PACKAGE_NAME": "com.tmncabletv.tmnapp"
+      "PACKAGE_NAME": "com.tmncabletv.tmnapp-service"
     },
     "cordova-plugin-statusbar": {
-      "PACKAGE_NAME": "com.tmncabletv.tmnapp"
+      "PACKAGE_NAME": "com.tmncabletv.tmnapp-service"
     },
     "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "com.tmncabletv.tmnapp"
+      "PACKAGE_NAME": "com.tmncabletv.tmnapp-service"
     },
     "phonegap-plugin-barcodescanner": {
-      "PACKAGE_NAME": "com.tmncabletv.tmnapp"
+      "PACKAGE_NAME": "com.tmncabletv.tmnapp-service"
     }
   },
   "dependent_plugins": {
     "cordova-plugin-file": {
-      "PACKAGE_NAME": "com.tmncabletv.tmnapp"
+      "PACKAGE_NAME": "com.tmncabletv.tmnapp-service"
     }
   }
 }
