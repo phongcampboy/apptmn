@@ -33,6 +33,7 @@ export class HomePage {
 
   img_home :boolean = false;
   img_member:any;
+  LogMember:any;
   img_log:any;
   img_login:any;
   img_cabletv:any;
@@ -79,6 +80,7 @@ export class HomePage {
       this.img_log = "https://chawtaichonburi.com/appdata/img/home/log.png";
       this.img_login = "https://chawtaichonburi.com/appdata/img/home/login.png";
       this.img_member = "https://chawtaichonburi.com/appdata/img/home/member.png";
+      this.LogMember = "https://chawtaichonburi.com/appdata/img/home/LogMember.png"
       this.img_cabletv = "https://chawtaichonburi.com/appdata/img/home/cabletv.png";
       this.img_net = "https://chawtaichonburi.com/appdata/img/home/net.png";
       this.img_cctv = "https://chawtaichonburi.com/appdata/img/home/cctv.png";

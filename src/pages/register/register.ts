@@ -8,10 +8,9 @@ import {
 } from "ionic-angular";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
-//import { LoginPage } from "../login/login";
 import { Validators, FormBuilder, FormGroup } from "@angular/forms";
 import { UtubePage } from '../utube/utube';
-import { HomePage } from '../home/home';
+import { LoginPage } from '../login/login';
 @IonicPage()
 @Component({
   selector: "page-register",
@@ -19,7 +18,6 @@ import { HomePage } from '../home/home';
 })
 export class RegisterPage {
   postdata: any = {};
-  //page_login = LoginPage;
   Chk_pass: any;
   public reg: FormGroup;
   user_log:any = "root";
@@ -36,7 +34,7 @@ export class RegisterPage {
   ) {
     this.postdata.MemberId = "";
     this.postdata.User_app = "";
-    this.postdata.ID_cade = "";
+    //this.postdata.ID_cade = "";
     this.postdata.Pass_app = "";
     this.postdata.Con_Pass_app = "";
 
@@ -53,7 +51,7 @@ export class RegisterPage {
         ],
       ],
 
-      ID_card: ["", Validators.required],
+      //ID_card: ["", Validators.required],
 
       //Password: ['',Validators.required],
       Password: [
@@ -113,12 +111,12 @@ export class RegisterPage {
     postdataset.append("MemberID", this.postdata.MemberID);
     postdataset.append("User_app", this.postdata.User_app);
     postdataset.append("Pass_app", this.postdata.Pass_app);
-    postdataset.append("ID_card", this.postdata.ID_card);
+    //postdataset.append("ID_card", this.postdata.ID_card);
 
     console.log("MemberId:", this.postdata.MemberID);
     console.log("User_app:", this.postdata.User_app);
     console.log("Pass_app:", this.postdata.Pass_app);
-    console.log("ID_card", this.postdata.ID_card);
+    //console.log("ID_card", this.postdata.ID_card);
 
     let callback: Observable<any> = this.http.post(url, postdataset);
 
@@ -126,7 +124,7 @@ export class RegisterPage {
       console.log(call);
       if (call.status == 200) {
         alert(call.msg);
-        this.navCtrl.setRoot(HomePage);
+        this.navCtrl.setRoot(LoginPage);
       }
 
       if (call.status == 404) {

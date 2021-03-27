@@ -29,9 +29,12 @@
 
     <ion-row>
       <ion-col>
-        <div class="div1">
+        <div class="div1"*ngIf="!memberId">
          <img *ngIf="img_home" [src]="img_member"width="100%" (click)="member()">
         </div>
+        <div class="div1" *ngIf="memberId">
+          <img *ngIf="img_home" [src]="LogMember"width="100%" (click)="member()">
+         </div>
       </ion-col>
       <ion-col>
         <div class="div1">

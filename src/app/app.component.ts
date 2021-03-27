@@ -13,6 +13,8 @@ export class MyApp {
   user: any = null;
   MemberID:any = null;
   memberId: any= null;
+  Name:any=null;
+  LastName:any=null;
   lastBack:any;
   constructor(
     public platform: Platform, 
@@ -60,9 +62,13 @@ export class MyApp {
 
     await this.storage.remove('user');
     await this.storage.remove('MemberID');
+    await this.storage.remove('Name');
+    await this.storage.remove('LastName');
     this.isLoggedIn = false;
     this.user = null;
     this.MemberID = null;
+    this.Name = null;
+    this.LastName = null;
     this.nav.setRoot(TabsPage);
     loading.dismiss();
   }
