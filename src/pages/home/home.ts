@@ -97,7 +97,7 @@ export class HomePage {
 
     const loader = this.loadingCtrl.create({
       content: "Please wait....",
-      duration: 4000
+      duration: 3000
     });
     loader.present()
     

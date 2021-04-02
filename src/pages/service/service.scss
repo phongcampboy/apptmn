@@ -23,6 +23,16 @@
       width: 100%;
       color: rgb(10, 10, 10);
     }
-  
+    .box1{
+      background: #faf6f6;
+      border: #CCC solid 1px;
+      background-repeat:repeat-x;
+      width:49%; height:70px;
+      border-radius:5px;
+      -moz-border-radius:5px;
+      -moz-border-radius-topleft: 5px;
+      -moz-border-radius-topright: 5px;
+      -moz-box-shadow: 1 0 15px #fff;
+      }
   }
   

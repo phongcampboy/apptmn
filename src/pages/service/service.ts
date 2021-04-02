@@ -22,6 +22,7 @@ export class ServicePage {
   img_pay3 : any;
   img_pay4: any;
   img_pay: any;
+  img_QrPay:any;
 
   constructor(public navCtrl: NavController) {
   }
@@ -39,6 +40,7 @@ export class ServicePage {
       this.img_pay3 = "https://chawtaichonburi.com/appdata/img/pay3.jpg";
       this.img_pay4 = "https://chawtaichonburi.com/appdata/img/pay4.jpg";
       this.img_pay = "https://chawtaichonburi.com/appdata/img/pay.jpg";
+      this.img_QrPay = "https://chawtaichonburi.com/appdata/img/QR Hi speed.jpg";
 
     }
   }
