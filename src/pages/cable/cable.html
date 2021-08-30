@@ -32,6 +32,16 @@
     <ion-card>
       <img *ngIf="img_cable" [src]="img_tmn4">
     </ion-card>
+    <br>
+    <ion-card>
+     <img *ngIf="img_cable" [src]="img_Digita" (click)="Digital()">
+    </ion-card>
+    <div align="center"><B>คลิกรูปเพื่อขยาย Digital TV</B></div>
+    <br>
+    <ion-card>
+     <img *ngIf="img_cable" [src]="img_Analog" (click)="Analog()">
+    </ion-card>
+    <div align="center"><B>คลิกรูปเพื่อขยาย Analog TV</B></div>
 
 
 </ion-content>

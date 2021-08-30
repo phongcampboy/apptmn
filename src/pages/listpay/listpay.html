@@ -19,8 +19,11 @@
         <b>InvoiceID: {{item.InvoiceID}}</b> <br>
         <b>ราคา: {{item.Total}}</b><br>
         <b>รอบใช้บริการ: {{item.LastPay}} <br>ถึง {{item.NextPay}}</b><br>
-        <b class="text_red">ชำระเงินเรียบร้อยแล้ว</b>
+        <b class="text_red">ชำระเงินเรียบร้อยแล้ว</b><br>
+        <button ion-button outline (click)="Open(item.InvoiceID)">Open</button>
       </ion-item>
 </ion-card-content>
+
+
 </ion-content>
   

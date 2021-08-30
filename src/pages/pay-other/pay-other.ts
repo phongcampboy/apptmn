@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import {IonicPage,NavController, NavParams,LoadingController} from "ionic-angular";
 import { HttpClient } from "@angular/common/http";
 import { ToastController } from 'ionic-angular';
-
+import { ReceiptPage } from '../receipt/receipt';
 
 @IonicPage()
 @Component({
@@ -13,7 +13,7 @@ export class PayOtherPage {
   memberId: any;
   datapay: any;
   dataid:any;
-
+  idvoice:any;
   constructor(
     public navCtrl: NavController,
     public loadingCtrl: LoadingController,
@@ -33,6 +33,14 @@ export class PayOtherPage {
 
   ionViewDidLoad() {
     console.log("ionViewDidLoad PayOtherPage");
+  }
+
+  Open(idvoice){
+
+    this.idvoice = idvoice;
+    console.log("Voice =",this.idvoice);
+    this.navCtrl.push(ReceiptPage, { idvoiceID: this.idvoice });
+
   }
 
   loaddata(id: string) {
@@ -80,4 +88,5 @@ export class PayOtherPage {
         }
       );
   }
+
 }

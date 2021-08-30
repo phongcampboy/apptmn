@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content  class="card-background-page">
-  <ion-card>
+  <ion-card (click)="Mail()">
     <img *ngIf="img_service" [src]="img_paytmn1">
   </ion-card>
 
@@ -30,12 +30,19 @@
   <ion-card>
     <img *ngIf="img_service" [src]="img_QrPay">
   </ion-card>
+<br>
 
-  <ion-card>
+<ion-card>
+  <img *ngIf="img_service" [src]="receipt_pay" (click)="paybill()">
+</ion-card>
+
+<ion-card>
     <ion-card-header>
       <ion-card-subtitle>
 
-          <B>หมายเหตุ : กรุณาส่งหลักฐานการชำระเงิน <BR> พร้อมชื่อ-ที่อยู่ เบอร์โทรติดต่อมาที่ <BR>
+          <B>หมายเหตุ :<BR>
+          กรุณาส่งหลักฐานการชำระเงิน<BR>
+          พร้อมชื่อ-ที่อยู่ เบอร์โทรติดต่อมาที่ <BR>
               LINE : @tmn.pattaya <BR>
               Email : tmncable@hotmail.com <BR>
           </B>

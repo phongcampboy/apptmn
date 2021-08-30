@@ -1,0 +1,63 @@
+{
+  "_from": "cordova-plugin-streaming-media",
+  "_id": "cordova-plugin-streaming-media@2.3.0",
+  "_inBundle": false,
+  "_integrity": "sha512-og7UmXbaWoSrOmo/mZu/c7vKDdUMu2eVrdRMvIJY6qqZ6Fv2BrJvOXm8prVt0xjWqWOMJpQs3DAajX8+N39Cqw==",
+  "_location": "/cordova-plugin-streaming-media",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "cordova-plugin-streaming-media",
+    "name": "cordova-plugin-streaming-media",
+    "escapedName": "cordova-plugin-streaming-media",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#DEV:/",
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-streaming-media/-/cordova-plugin-streaming-media-2.3.0.tgz",
+  "_shasum": "a905a6e1048fd533415476b348ff91d36a979226",
+  "_spec": "cordova-plugin-streaming-media",
+  "_where": "E:\\ionic_project\\Github\\tmn-service-app",
+  "author": {
+    "name": "Nicholas Hutchind"
+  },
+  "bugs": {
+    "url": "https://github.com/nchutchind/Streaming-Media-Cordova-Plugin/issues"
+  },
+  "bundleDependencies": false,
+  "contributors": [
+    {
+      "name": "Timothy Shamilov"
+    },
+    {
+      "name": "Michael Robinson"
+    }
+  ],
+  "deprecated": false,
+  "description": "This plugin allows you to stream audio and video in a fullscreen, native player on iOS and Android.",
+  "homepage": "https://github.com/nchutchind/Streaming-Media-Cordova-Plugin#readme",
+  "keywords": [
+    "media",
+    "streaming",
+    "ecosystem:cordova",
+    "cordova-ios",
+    "cordova-android",
+    "cordova-fireos"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "cordova-plugin-streaming-media",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nchutchind/Streaming-Media-Cordova-Plugin.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "2.3.0"
+}

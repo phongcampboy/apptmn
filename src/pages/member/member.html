@@ -23,9 +23,9 @@
         <b class="ion-2x ion-social-pinterest">ประเภทบริการ: {{item.DescriptionRate}}</b>
   </div>
   
-  <p></p><div class="dox1"*ngIf="Pay==0"><button *ngIf="msg_status==01" ion-button full color="danger" (click)="BillPage()">!!คุณมียอดค่าบริการค้างชำระ คลิ๊กดูบิล</button></div> <p></p>
+  <p></p><div class="dox1"*ngIf="Pay==0"><button *ngIf="msg_status==01" ion-button full color="danger" (click)="BillPage()">!!คุณมียอดค่าบริการค้างชำระ คลิกดูบิล</button></div> <p></p>
   <p></p><div class="dox1" ><button *ngIf="msg_status==02" ion-button full color="danger">!!กรุณาติดต่อเจ้าหน้าที่</button></div> <p></p>
-  <p></p><div class="dox1" ><button *ngIf="msg_status==10" ion-button full color="danger" (click)="BillPage()">!!คุณมียอดค่าบริการค้างชำระ คลิ๊กดูบิล</button></div> <p></p>
+  <p></p><div class="dox1" ><button *ngIf="msg_status==10" ion-button full color="danger" (click)="BillPage()">!!คุณมียอดค่าบริการค้างชำระ คลิกดูบิล</button></div> <p></p>
 
   <div class="dox1">
   <ion-icon (click)="sendaddbil()" *ngIf="dataitem">
@@ -35,7 +35,13 @@
     <img *ngIf="img_member" [src]="img_payhis">
   </ion-icon>
   <ion-icon *ngIf="dataitem">
+    <img *ngIf="img_member" [src]="img_service" (click)="service()">
+  </ion-icon>
+  <ion-icon *ngIf="dataitem">
     <img *ngIf="img_member" [src]="img_pass" (click)="changpass()">
+  </ion-icon>
+  <ion-icon *ngIf="dataitem">
+    <img *ngIf="img_member" [src]="img_sanamkaw" (click)="Sanankaw()">
   </ion-icon>
   </div>
 </ion-content>

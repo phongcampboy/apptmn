@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>ใบเสร็จรับเงิน</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="receip">
+    <br>
+    <div align="center"><img *ngIf="logobill" [src]="logobill" width="100" height="63">
+
+    </div>
+    <ion-grid>
+   
+      <div align="center" class="ion-1x ion-social-pinterest">บริษัท ซุปเปอร์ไฮสปีด อินเทอร์เน็ต จำกัด<br>
+46/20 ม.4 ต.ห้วยใหญ่ อ.บางละมุง จ.ชลบุรี 20150
+        <br>
+        เลขประจำตัวผู้เสียภาษี 0205551001740
+      </div>
+    </ion-grid>
+  </div>
+<ion-item *ngFor="let item of datapay"> 
+
+      <div align="center"><h2>ใบกำกับภาษีอย่างย่อ/ใบเสร็จรับเงิน</h2></div>
+      
+    <div class="ion-2x ion-social-pinterest">
+    <b>
+               <br>
+                รหัส ID: {{item.InvoiceID}}<br>
+                เลขที่พาสปอร์ต: {{item.CityzenID}}<br>
+                ชื่อ: {{item.FirstName}}  {{item.LastName}}<br><br>
+                
+                ชื่อโครงการ:{{item.Mooban}} <br>
+                ที่อยู่: {{item.StreetNo}} หมู่ {{item.Moo}}<br>
+                ซอย {{item.Soi}} ต.{{item.Kwaeng}}  <br>
+                อ.{{item.Kaet}} จ.{{item.Province}}<br>
+                รหัสไปรษณีย์: {{item.ZipCode}}<br>
+                เบอร์โทร: {{item.Tel1}}<br><br>
+                
+                วันที่ชำระ: {{reversedDate(day)}}<br>
+                ประเภทบริการ: {{item.DescriptionRate}}<br>
+                รอบบริการ:{{reversedDate(item.LastPay)}}ถึง{{reversedDate(item.NextPay)}}<br>
+                รวมยอดชำระ: {{FormatNumber(item.Total)}}<br>
+                ({{ArabicNumberToText(item.Total)}})
+    </b>
+  </div>
+
+</ion-item>
+</ion-content>

@@ -20,13 +20,25 @@ import { ServicePage } from '../pages/service/service';
 import { ChangpassPage } from '../pages/changpass/changpass';
 import { PayOtherPage } from '../pages/pay-other/pay-other';
 import { UtubePage } from '../pages/utube/utube';
+import { StreamPage } from '../pages/stream/stream';
+import { AppversionPage } from '../pages/appversion/appversion';
+import { SendlinePage } from '../pages/sendline/sendline';
+import { NewsPage } from '../pages/news/news';
+import { ShownewsPage } from "../pages/shownews/shownews";
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import{ HttpClientModule} from '@angular/common/http';
+import{  HttpClientModule} from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { ChannelPage } from '../pages/channel/channel';
-
+import { SendmailPage } from '../pages/sendmail/sendmail';
+import { ReceiptPage } from '../pages/receipt/receipt';
+import { EmailComposer } from '@ionic-native/email-composer';
+import { Camera } from '@ionic-native/camera';
+import { SocialSharing } from '@ionic-native/social-sharing';
+import { StreamingMedia } from '@ionic-native/streaming-media';
+import { AppVersion } from '@ionic-native/app-version';
 
 @NgModule({
   declarations: [
@@ -48,6 +60,13 @@ import { ChannelPage } from '../pages/channel/channel';
     PayOtherPage,
     UtubePage,
     ChannelPage,
+    SendmailPage,
+    ReceiptPage,
+    StreamPage,
+    AppversionPage,
+    SendlinePage,
+    NewsPage,
+    ShownewsPage,
     TabsPage
   ],
   imports: [
@@ -77,13 +96,23 @@ import { ChannelPage } from '../pages/channel/channel';
     PayOtherPage,
     UtubePage,
     ChannelPage,
+    SendmailPage,
+    ReceiptPage,
+    StreamPage,
+    AppversionPage,
+    SendlinePage,
+    NewsPage,
+    ShownewsPage,
     TabsPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
+   
+  
+        
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    InAppBrowser,
+    InAppBrowser,EmailComposer,Camera,SocialSharing,StreamingMedia,AppVersion
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

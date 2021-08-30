@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>แจ้งชำระค่าบริการ</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item>
+    <ion-label floating>ชื่อ-สกุล</ion-label>
+    <ion-input type="text" [(ngModel)]="subject"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>เบอร์โทร</ion-label>
+    <ion-input type="text" [(ngModel)]="body"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>รายละเอียด-ที่อยู่</ion-label>
+    <ion-input type="text" [(ngModel)]="detail"></ion-input>
+  </ion-item>
+
+  <p></p>
+
+<div><button ion-button full (click)="takephoto()">Take Photo</button></div>
+<br>
+
+<div><button ion-button full (click)="getImage()">OpenGallery</button></div>
+<br>
+<div><button ion-button full color="secondary" (click)="SendEmail()">Send</button></div>
+
+
+  <div align="center"><img [src]="base64Img" *ngIf="base64Img"/></div>
+  
+</ion-content>

@@ -13,7 +13,21 @@
     "cordova-plugin-advanced-http": {
       "PACKAGE_NAME": "com.tmncabletv.tmnapp"
     },
+    "cordova-plugin-androidx-adapter": {
+      "PACKAGE_NAME": "com.tmncabletv.tmnapp"
+    },
+    "cordova-plugin-app-version": {
+      "PACKAGE_NAME": "com.tmncabletv.tmnapp"
+    },
+    "cordova-plugin-camera": {
+      "ANDROID_SUPPORT_V4_VERSION": "27.+",
+      "PACKAGE_NAME": "com.tmncabletv.tmnapp"
+    },
     "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.tmncabletv.tmnapp"
+    },
+    "cordova-plugin-email-composer": {
+      "ANDROID_SUPPORT_V4_VERSION": "27.+",
       "PACKAGE_NAME": "com.tmncabletv.tmnapp"
     },
     "cordova-plugin-inappbrowser": {
@@ -32,7 +46,16 @@
     "cordova-plugin-statusbar": {
       "PACKAGE_NAME": "com.tmncabletv.tmnapp"
     },
+    "cordova-plugin-streaming-media": {
+      "PACKAGE_NAME": "com.tmncabletv.tmnapp"
+    },
     "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.tmncabletv.tmnapp"
+    },
+    "cordova-plugin-x-socialsharing": {
+      "PACKAGE_NAME": "com.tmncabletv.tmnapp"
+    },
+    "onesignal-cordova-plugin": {
       "PACKAGE_NAME": "com.tmncabletv.tmnapp"
     },
     "phonegap-plugin-barcodescanner": {
@@ -42,6 +65,9 @@
   },
   "dependent_plugins": {
     "cordova-plugin-file": {
+      "PACKAGE_NAME": "com.tmncabletv.tmnapp"
+    },
+    "es6-promise-plugin": {
       "PACKAGE_NAME": "com.tmncabletv.tmnapp"
     }
   }

@@ -15,20 +15,19 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 })
 export class ChannelPage {
 
-  img_channel :boolean = false;
+  img_channel :boolean = true;
   img_Analog : any;
   img_Digita : any;
   img_Dload: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private iab: InAppBrowser) {
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ChannelPage');
 
-    this.img_channel = true;
-    //console.log("รูป",this.img_cable);
-    if(this.img_channel == true){
+    if(this.img_channel){
 
       this.img_Analog = "https://chawtaichonburi.com/appdata/img/cable/Analog.jpg";
       this.img_Digita = "https://chawtaichonburi.com/appdata/img/cable/Digital.jpg";

@@ -16,11 +16,11 @@
 <ion-content class="tutorial-page" scroll="false" fullscreen>
 
   <div class="div1">
- <!-- <ion-slides pager="true" (ionSlideDidChange)="slideChanged()"> -->
+
  <ion-slides pager="true" autoplay="3000" loop="true" speed="1000" spaceBetween="0">
       
     <ion-slide *ngFor="let image of imageContainer">
-      <img src="{{ image.url }}">
+      <img src="{{image.url}}">
     </ion-slide>
 
   </ion-slides>
@@ -28,7 +28,7 @@
   </div>
 
     <ion-row>
-      <ion-col>
+        <ion-col>
         <div class="div1"*ngIf="!memberId">
          <img *ngIf="img_home" [src]="img_member"width="100%" (click)="member()">
         </div>
@@ -59,9 +59,22 @@
 
   <div class="dox1">
     <ion-row>
-      <ion-icon col><img *ngIf="img_home" [src]="img_news"width="100%" (click)="OpenUrl1()"></ion-icon>
+      <ion-icon col><img *ngIf="img_home" [src]="img_news"width="100%" (click)="fackbook()"></ion-icon>
     </ion-row>
   </div>
+
+  <ion-row>
+    <ion-col>
+      <div class="div1">
+        <img *ngIf="img_home" [src]="News_tmn"width="100%" (click)="News()">
+      </div>
+    </ion-col>
+    <ion-col>
+      <div class="div1">
+        <img *ngIf="img_home" [src]="rerun_news"width="100%" (click)="OpenUrl1()">
+      </div>
+    </ion-col>
+  </ion-row>
 
   <div class="block-3">
     <ion-card>
@@ -84,16 +97,17 @@
   <div class="dox1">
     <ion-row>
       <ion-icon col>
-        <img *ngIf="img_home" [src]="img_it"width="100%" (click)="OpenUrl2()">
+       <a href="https://line.me/ti/p/5T4UEUpv__" target="_blank"><img *ngIf="img_home" [src]="img_it"width="100%"></a> 
      </ion-icon>
      <ion-icon col>
-      <img *ngIf="img_home" [src]="img_contact"width="100%" (click)="OpenUrl3()">
+      <a href="https://page.line.me/tmn.pattaya?openQrModal=true" target="_blank"><img *ngIf="img_home" [src]="img_contact"width="100%"></a>
    </ion-icon>
     </ion-row>
     
-
     <ion-row>
       <ion-icon col><img *ngIf="img_home" [src]="img_paytmn"width="100%" (click)="srevice()"/></ion-icon>
     </ion-row>
+ 
   </div>
+
 </ion-content>

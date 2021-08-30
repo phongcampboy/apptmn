@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>TMN ประชาสัมพันธ์</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+ <ion-card  *ngFor="let item of dataitem">
+  
+    <ion-item>
+      <p></p>
+      <h2>{{item.head}}</h2>
+      <p>{{item.day}}</p>
+    </ion-item>
+  
+    <img src="{{item.pic}}">
+  
+    <ion-card-content>
+      <p>{{item.label}}</p>
+    </ion-card-content>
+
+  </ion-card>
+</ion-content>

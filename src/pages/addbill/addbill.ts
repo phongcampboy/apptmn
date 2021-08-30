@@ -5,6 +5,7 @@ import { HttpClient } from "@angular/common/http";
 import { PayOtherPage } from "../pay-other/pay-other";
 import { ToastController } from 'ionic-angular';
 import { PayaddbillPage } from "../payaddbill/payaddbill";
+import { ListpayPage } from "../listpay/listpay";
 
 @IonicPage()
 @Component({
@@ -26,6 +27,14 @@ export class AddbillPage {
   add: Boolean = false;
   data_me: any;
   id_me:any;
+  id_pay:any;
+  itemsend:any;
+  id_Pay_member:number;
+  status:any;
+  msg_status:any;
+  check_pay: boolean = true;
+  chk_pay: boolean = true;
+  idpay: any = [];
 
   constructor(
     public navCtrl: NavController,
@@ -40,7 +49,7 @@ export class AddbillPage {
     this.ispay = null;
   }
 
-  ionViewDidLoad() {
+  ionViewDidLoad() {//รับข้อมูลเจ้าของเครื่องที่ส่งมาจากหน้า member
     
     console.log("ionViewDidLoad AddbillPage");
     this.add = false;
@@ -54,7 +63,7 @@ export class AddbillPage {
     });
  
     let url: string =
-      "http://tmnoffice.dyndns.tv:8000/tmn/appdata/load_me.php";
+      "http://tmnoffice.dyndns.tv:8000/tmn/appdata/load_member.php";
 
     this.http
       .post(url, postData)
@@ -65,12 +74,58 @@ export class AddbillPage {
             if (datame != null) {
               console.log("ข้อมูลตัวเอง:", datame);
               this.data_me = datame;
+              this.status = datame[0].MemberStatusID;
+              this.ispay = datame[0].IsPay;
+            
+              console.log('Pay=',this.ispay);
+              console.log('status',this.status);
+    
+              if(this.status == "00001"){
+
+                this.msg_status = "01";
+                //this.msg_status = "สถานะปกติ";
+
+              }
+              else if(this.status == "00002"){
+
+                this.msg_status = "02";
+                //this.msg_status = "สถานะตัดสาย";
+
+              }
+
+              else if(this.status == "00010"){
+
+                this.msg_status = "10";
+                //this.msg_status = "สถานะบล็อกสัญญาณชั่วคราว";
+
+              }else{
+
+                let toast = this.toastCtrl.create({
+                  message: '!!กรุณาติดต่อเจ้าหน้าที่',
+                  duration: 3000,
+                  position: 'top',
+                  showCloseButton: true,
+                });
+    
+                toast.present(toast);
+                //this.navCtrl.setRoot(HomePage);
+
+              }
+
               const loader = this.loadingCtrl.create({
                 content: "Please wait....",
                 duration: 1500
               });
               loader.present()
               this.loaddata();
+            }
+            if(this.ispay!=0){
+              this.check_pay = false;
+              return false;
+            }
+            else {
+              this.check_pay = true;
+              return true;
             }
     
         },
@@ -81,37 +136,43 @@ export class AddbillPage {
      
   }
   
-  loaddata() {
+  loaddata() { //โหลดข้อมูล ที่เพิ่มรหัสอื่นเข้ามา
     this.postdata.id_save = "";
     let id = this.navParams.get("memID");
     this.IDmem = id[0].MemberID;
 
-    let memberID = this.IDmem;
-    console.log("รหัสที่ส่งมา:", memberID);
+    //let memberID = this.IDmem;
+    console.log("รหัสที่ส่งมา:", this.IDmem);
 
     let DataPost = JSON.stringify({
       memberID: this.IDmem,
     });
 
-    
-    let url: string ="http://tmnoffice.dyndns.tv:8000/tmn/appdata/tmn_load_addbill.php";
+
+    let url: string =
+    "http://tmnoffice.dyndns.tv:8000/tmn/appdata/tmn_receipt.php"; 
 
     this.http
       .post(url, DataPost)
 
       .subscribe(
-        (data) => {
-          //console.log("Loaddata:", data);
+        (datamember) => {
+          console.log("Loaddata:", datamember);
 
-          if (data != null) {
+          if (datamember != null) {
            
             const loading = this.loadingCtrl.create({
               content: "Please wait....",
               duration: 1000
             });
             loading.present()
-            this.items = data;
-            this.id_member = data[0].id_member;
+            this.items = datamember;
+            console.log('Items=',this.items);
+            this.id_member = datamember[0].id_member;
+            this.id_pay = datamember[0].id_save;
+            this.ispay = datamember[0].IsPay;
+            console.log('id_pay=',this.id_pay);
+            
 
           }else{
             
@@ -121,19 +182,18 @@ export class AddbillPage {
               duration: 1000
             });
             loading.present()
-            this.items = data;
+            this.items = datamember;
             console.log("NO:DATA");
             
           }
         },
         (error) => {
-          console.log("Load Fail.");
+          console.log("เพิ่มรหัสโหลด Fail.");
         }
       );
-
   }
 
-  loadIsPay(id) {
+  loadIsPay(id) { // คลิกจ่ายบิลที่เพิ่มเข้ามา
     this.ispay = id;
     let DataPost = JSON.stringify({
       memberID: this.ispay,
@@ -201,7 +261,7 @@ export class AddbillPage {
       );
   }
 
-  addbill() {
+  addbill() { // เพิ่มรหัสมาชิกอื่นๆ
   
     let url: string ="http://tmnoffice.dyndns.tv:8000/tmn/appdata/tmn_addbill.php";
     
@@ -238,7 +298,7 @@ export class AddbillPage {
     });
   } //addbill
 
-  deletmember(id) {
+  deletmember(id) { //ลบข้อมลูที่เพิ่มเข้ามา
     const confirm = this.alertCtrl.create({
       title: "กรุณากดยืนยัน",
       message: "ถ้าต้องการลบข้อมูลสมาชิกออกจากลิสนี้",
@@ -299,10 +359,65 @@ export class AddbillPage {
     this.navCtrl.push(PayOtherPage, { memID: this.id_save });
   }
 
-  pay(id_pay) {
-    this.dataitem = id_pay;
-    console.log("DataItem",this.dataitem);
-    this.navCtrl.push(PayOtherPage, { memID: this.dataitem });
+  pay(data) {
+    this.dataitem = data;
+    console.log("Data-",this.dataitem);
+    this.navCtrl.push(ListpayPage, { memID: this.dataitem });
+  }
+  billPay(id){
+    //this.dataitem = id;
+    //console.log("DataItem",this.dataitem);
+
+    let postData = JSON.stringify({
+      memberID : id,
+    });
+ 
+    //console.log('Pos=',postData);
+    let url: string ="http://tmnoffice.dyndns.tv:8000/tmn/appdata/load_member.php";
+
+    this.http
+      .post(url, postData)
+
+      .subscribe(
+        (data) => {
+          
+          if (data != null) {
+            let loading = this.loadingCtrl.create({
+              content: "Loading...",
+              spinner: "circles",
+            });
+            loading.present();
+            
+            this.dataitem = data[0].MemberID;
+            this.ispay = data[0].IsPay;
+            console.log('PAY=',this.ispay);
+
+            loading.dismiss();
+
+            if (this.ispay == 0) {
+
+              this.navCtrl.push(PayaddbillPage, { memID: this.dataitem });
+            
+            }else{
+              
+              let toast = this.toastCtrl.create({
+                message: 'รหัส ' +this.dataitem+ ' ไม่มีค่าบริการค้างชำระ',
+                duration: 5000,
+                position: 'top',
+                showCloseButton: true,
+              });
+  
+              toast.present(toast);
+
+            }
+          
+          }
+        },
+        (error) => {
+          console.log("Load Fail.");
+        }
+      );
+
   }
 
 }

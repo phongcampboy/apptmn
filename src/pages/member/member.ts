@@ -9,6 +9,8 @@ import { ToastController } from "ionic-angular";
 import { UtubePage } from '../utube/utube';
 import { Observable } from "rxjs/Observable";
 import { HomePage } from '../home/home';
+import { SendlinePage } from '../sendline/sendline';
+import { InAppBrowser } from "@ionic-native/in-app-browser";
 
 @IonicPage()
 @Component({
@@ -26,7 +28,8 @@ export class MemberPage {
   img_pay : any;
   img_payhis : any;
   img_pass : any;
-
+  img_service :any;
+  img_sanamkaw:any;
   status:any;
   msg_status:any;
 
@@ -37,10 +40,11 @@ export class MemberPage {
     public loadingCtrl: LoadingController,
     private platform: Platform,
     public toastCtrl: ToastController,
+    private iab: InAppBrowser,
     public navParams: NavParams
   ) 
   {
-   
+    this.img_member = true;
   }
 
   ionViewDidLoad() {
@@ -48,14 +52,13 @@ export class MemberPage {
     this.Pay = 1;
     this.dataitem = "";
 
-    this.img_member = true;
-    //console.log("รูป",this.img_cable);
-
-    if(this.img_member == true){
+    if(this.img_member){
 
       this.img_pay = "https://chawtaichonburi.com/appdata/img/member/pay.png";
       this.img_payhis = "https://chawtaichonburi.com/appdata/img/member/payhis.png";
       this.img_pass = "https://chawtaichonburi.com/appdata/img/member/pass.png";
+      this.img_service = "https://chawtaichonburi.com/appdata/img/member/service.png";
+      this.img_sanamkaw = "https://chawtaichonburi.com/appdata/img/member/sanamkaw.png";
     }
 
     let idget = this.navParams.get("memID");
@@ -192,4 +195,11 @@ export class MemberPage {
   changpass() {
     this.navCtrl.push(ChangpassPage, { memID: this.dataitem });
   }
+  service(){
+    this.navCtrl.push(SendlinePage, { memID: this.dataitem });
+  }
+    Sanankaw() {
+    this.iab.create("https://www.facebook.com/tmnnewscabletv/videos/?ref=page_internal", "_blank");
+  } 
+ 
 }

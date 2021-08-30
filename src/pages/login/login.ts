@@ -1,15 +1,11 @@
 import { Component } from "@angular/core";
-import {
-  IonicPage,
-  NavController,
-  NavParams,
-  AlertController,
-} from "ionic-angular";
+import {IonicPage,NavController,NavParams,AlertController,} from "ionic-angular";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
 import { Storage } from "@ionic/storage";
 import { RegisterPage } from "../register/register";
 import { HomePage } from '../home/home';
+import { MemberPage } from "../member/member";
 @IonicPage()
 @Component({
   selector: "page-login",
@@ -33,7 +29,7 @@ export class LoginPage {
   {
     this.logindata.user ="";
     this.logindata.pass ="";
-    this.logined();
+    //this.logined();
   }
 
   logined() {
@@ -91,7 +87,7 @@ export class LoginPage {
             this.storage.set("Name", this.name);
             this.storage.set("LastName", this.lastname);
             this.user = user;
-            this.navCtrl.setRoot(HomePage, { memID: this.memberId });
+            this.navCtrl.setRoot(MemberPage, { memID: this.memberId });
    
           });
           

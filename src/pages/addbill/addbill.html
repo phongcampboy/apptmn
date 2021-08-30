@@ -7,57 +7,96 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-  <ion-list *ngIf="data_me !==null">
-    <ion-item *ngFor="let item of data_me">
-      <h2>รหัส: {{item.MemberID}}</h2>
-      <h5>ชื่อ:  {{item.FirstName}}  {{item.LastName}}</h5>
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-          <div><button ion-button small color="secondary" (click)="loadIsPay(item.MemberID)">ใบแจ้งชำระ</button></div>
-        </ion-col>
-        <ion-col>
-          <div><button ion-button small (click)="pay(item.MemberID)">ประวัติการชำระ</button></div>
-        </ion-col>
-        <ion-col>
+<ion-content class="bg">
+  <ion-card *ngIf="data_me !==null">
+<!--     <ion-card-header>
+      <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+      <ion-card-title>Card Title</ion-card-title>
+    </ion-card-header> -->
+  
+    <ion-card-content>
+      <ion-item *ngFor="let item of data_me">
+        <h2>รหัส {{item.MemberID}}</h2>
+        <h5>ชื่อ  {{item.FirstName}}  {{item.LastName}}</h5>
+        <div *ngIf="msg_status==01"><h6>สถานะ <button ion-button small outline>ปกติ</button></h6></div>
+        <div *ngIf="msg_status==02"><h6>สถานะ <button ion-button small outline color="danger">ตัดสาย</button></h6></div>
+        <div *ngIf="msg_status==10"><h6>สถานะ <button ion-button small outline color="danger">บล็อกสัญญาณชั่วคราว</button></h6></div>
+  
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <div>
+              <button ion-button small color="danger" *ngIf="item.IsPay==0" (click)="loadIsPay(item.MemberID)">ค้างชำระ</button>
+              <button ion-button small color="" *ngIf="item.IsPay!=0">ไม่ค้างชำระ</button>
+            </div>
+          </ion-col>
+          <ion-col>
+            <div><button ion-button small (click)="pay(data_me)">ประวัติการชำระ</button></div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
 
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-    </ion-item>
-  </ion-list>
+
   <ion-list *ngIf="items !==null">
-    <ion-item *ngFor="let item of items">
-      <h2>รหัส:{{item.id_save}} </h2>
-      <h5>ชื่อ:{{item.F_name}} {{item.L_name}}</h5>
 
+    <h5 align="center"><u>รหัสสมาชิกที่เพิ่มเข้ามา</u></h5>
+  
+    <ion-item *ngFor="let item of items">
+      <h2>รหัส {{item.id_save}} </h2>
+      <h5>ชื่อ {{item.FirstName}} {{item.LastName}}</h5>
+      <div *ngIf="item.MemberStatusID==0001"><H6>สถานะ <button ion-button small outline>ปกติ</button></H6></div>
+      <div *ngIf="item.MemberStatusID==0002"><H6>สถานะ <button ion-button small outline color="danger">ตัดสาย</button></H6></div>
+      <div *ngIf="item.MemberStatusID==0010"><H6>สถานะ <button ion-button small outline color="danger">บล็อกสัญญาณชั่วคราว</button></H6></div>
+ 
     <ion-grid>
+
       <ion-row>
-        <ion-col>
-          <div><button ion-button small color="secondary" (click)="loadIsPay(item.id_save)">ใบแจ้งชำระ</button></div>
+
+        <ion-col class="ion-align-self-start">
+          <div>
+            <button ion-button small color="danger" *ngIf="item.Pay==0" (click)="billPay(item.id_save)">ค้างชำระ</button>
+            <button ion-button small color="" *ngIf="item.Pay!=0">ไม่ค้างชำระ</button>
+          </div>
         </ion-col>
-        <ion-col >
+        
+        <ion-col class="ion-align-self-start">
           <div><button ion-button small (click)="listpay(item.id_save)">ประวัติการชำระ</button></div>
         </ion-col>
-        <ion-col>
-          <div>  <button ion-button icon-star small color="danger"(click)="deletmember(item.id_save)">
+
+        <ion-col class="ion-align-self-start">
+          <div>  
+            <button ion-button icon-star small color="danger"(click)="deletmember(item.id_save)">
             <ion-icon name="ios-trash"></ion-icon>ลบ
-          </button></div>
+          </button>
+        </div>
         </ion-col>
+
       </ion-row>
+
     </ion-grid>
 
     </ion-item>
   </ion-list>
 
+  <ion-grid>
+  <ion-row>
   <button ion-fab color="secondary" mini (click)="addmember()"><ion-icon name="add"></ion-icon></button>
   <div *ngIf="this.add">
-  <ion-item >
-    <ion-label floating>เพิ่มรหัสสมาชิก</ion-label>
+  <ion-item>
+    <ion-label floating>กรอกรหัสสมาชิก</ion-label>
     <ion-input type="text"[(ngModel)]="postdata.id_save"></ion-input>
   </ion-item>
-     <button ion-button full color="secondary" (click)="addbill()">ยืนยัน</button>
+    <!--  <button ion-button small (click)="addbill()">ยืนยัน</button> -->
+     <button ion-button small outline item-end icon-start (click)="addbill()">
+      <ion-icon name="md-person-add"></ion-icon>
+      ยืนยัน
+    </button>
   </div>
+</ion-row>
+</ion-grid>
+
 </ion-content>
 

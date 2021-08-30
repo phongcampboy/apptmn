@@ -13,7 +13,22 @@
     "cordova-plugin-advanced-http": {
       "PACKAGE_NAME": "com.tmncabletv.tmnapp-service"
     },
+    "cordova-plugin-androidx": {
+      "PACKAGE_NAME": "com.tmncabletv.tmnapp-service"
+    },
+    "cordova-plugin-androidx-adapter": {
+      "PACKAGE_NAME": "com.tmncabletv.tmnapp-service"
+    },
+    "cordova-plugin-camera": {
+      "PACKAGE_NAME": "com.tmncabletv.tmnapp-service"
+    },
     "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.tmncabletv.tmnapp-service"
+    },
+    "cordova-plugin-email-composer": {
+      "PACKAGE_NAME": "com.tmncabletv.tmnapp-service"
+    },
+    "cordova-plugin-inappbrowser": {
       "PACKAGE_NAME": "com.tmncabletv.tmnapp-service"
     },
     "cordova-plugin-ionic-keyboard": {
@@ -28,15 +43,26 @@
     "cordova-plugin-statusbar": {
       "PACKAGE_NAME": "com.tmncabletv.tmnapp-service"
     },
+    "cordova-plugin-streaming-media": {
+      "PACKAGE_NAME": "com.tmncabletv.tmnapp-service"
+    },
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "com.tmncabletv.tmnapp-service"
     },
-    "phonegap-plugin-barcodescanner": {
+    "cordova-plugin-x-socialsharing": {
+      "PHOTO_LIBRARY_ADD_USAGE_DESCRIPTION": "This app requires photo library access to function properly.",
+      "PHOTO_LIBRARY_USAGE_DESCRIPTION": "This app requires photo library access to function properly.",
+      "PACKAGE_NAME": "com.tmncabletv.tmnapp-service"
+    },
+    "cordova-plugin-app-version": {
       "PACKAGE_NAME": "com.tmncabletv.tmnapp-service"
     }
   },
   "dependent_plugins": {
     "cordova-plugin-file": {
+      "PACKAGE_NAME": "com.tmncabletv.tmnapp-service"
+    },
+    "es6-promise-plugin": {
       "PACKAGE_NAME": "com.tmncabletv.tmnapp-service"
     }
   }

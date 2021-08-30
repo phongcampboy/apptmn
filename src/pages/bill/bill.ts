@@ -45,7 +45,7 @@ export class BillPage {
           this.billcode = data[0].BillingCode;
           this.createdCode = this.billcode;
           this.qrcode = this.url+this.createdCode;
-          console.log("Qrcode=", this.qrcode);
+          //console.log("Qrcode=", this.qrcode);
        
       }
     

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
-
+import { SendmailPage } from '../sendmail/sendmail';
 /**
  * Generated class for the ServicePage page.
  *
@@ -23,6 +23,7 @@ export class ServicePage {
   img_pay4: any;
   img_pay: any;
   img_QrPay:any;
+  receipt_pay:any;
 
   constructor(public navCtrl: NavController) {
   }
@@ -32,7 +33,7 @@ export class ServicePage {
     this.img_service = true;
     //console.log("รูป",this.img_cable);
 
-    if(this.img_service == true){
+    if(this.img_service){
 
       this.img_paytmn1 = "https://chawtaichonburi.com/appdata/img/paytmn-1.jpg";
       this.img_pay1 = "https://chawtaichonburi.com/appdata/img/pay1.jpg";
@@ -41,8 +42,13 @@ export class ServicePage {
       this.img_pay4 = "https://chawtaichonburi.com/appdata/img/pay4.jpg";
       this.img_pay = "https://chawtaichonburi.com/appdata/img/pay.jpg";
       this.img_QrPay = "https://chawtaichonburi.com/appdata/img/QR Hi speed.jpg";
+      this.receipt_pay = "https://chawtaichonburi.com/appdata/img/1receipt_pay.png"
 
     }
+  }
+
+  paybill(){
+      this.navCtrl.push(SendmailPage);
   }
 
 }

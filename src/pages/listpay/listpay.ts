@@ -3,9 +3,12 @@ import {
   IonicPage,
   NavController,
   NavParams,
-  LoadingController,
+  LoadingController
+
 } from "ionic-angular";
 import { HttpClient } from "@angular/common/http";
+import { ReceiptPage } from '../receipt/receipt';
+//import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 @IonicPage()
 @Component({
@@ -16,6 +19,7 @@ export class ListpayPage {
   dataitem: any;
   memberId: any;
   datapay: any;
+  getmemID:any;
 
   constructor(
     public navCtrl: NavController,
@@ -33,6 +37,15 @@ export class ListpayPage {
 
   ionViewDidLoad() {
     console.log("ionViewDidLoad ListpayPage");
+  }
+  Open(id){
+
+    this.getmemID = id;
+  
+    console.log("Voice =",this.getmemID);
+    //this.iab.create('http://tmnoffice.dyndns.tv:8000/tmn/appdata/A4.php', '_blank');
+    this.navCtrl.push(ReceiptPage, { idvoiceID :this.getmemID });
+
   }
 
   loaddata() {

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController,LoadingController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
-import { InAppBrowser } from '@ionic-native/in-app-browser';
+
 @Component({
   selector: 'page-about',
   templateUrl: 'about.html'
@@ -17,7 +17,6 @@ export class AboutPage {
 
   constructor(public navCtrl: NavController,
     public http: HttpClient,
-    private iab: InAppBrowser,
     public loadingCtrl: LoadingController
     ) 
     {
@@ -43,12 +42,5 @@ export class AboutPage {
 
     }
   }
-
-  OpenUrl()
-  {
-  this.iab.create('http://www.tmncabletv.com/%E0%B8%95%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B9%88%E0%B8%AD%E0%B9%80%E0%B8%A3%E0%B8%B2', '_blank');
-
-  }
-
 
 }
