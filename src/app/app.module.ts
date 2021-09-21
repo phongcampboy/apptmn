@@ -39,7 +39,7 @@ import { Camera } from '@ionic-native/camera';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { StreamingMedia } from '@ionic-native/streaming-media';
 import { AppVersion } from '@ionic-native/app-version';
-
+import { Market } from '@ionic-native/market';
 @NgModule({
   declarations: [
     MyApp,
@@ -112,7 +112,7 @@ import { AppVersion } from '@ionic-native/app-version';
   
         
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    InAppBrowser,EmailComposer,Camera,SocialSharing,StreamingMedia,AppVersion
+    InAppBrowser,EmailComposer,Camera,SocialSharing,StreamingMedia,AppVersion,Market
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

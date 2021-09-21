@@ -56,12 +56,13 @@ export class PayOtherPage {
 
       .subscribe(
         (data) => {
+          let loading = this.loadingCtrl.create({
+            content: "Loading...",
+            spinner: "circles",
+          });
+          loading.present();
           if (data != null) {
-            let loading = this.loadingCtrl.create({
-              content: "Loading...",
-              spinner: "circles",
-            });
-            loading.present();
+     
             this.datapay = data;
 
             console.log("ข้อมูลที่เคยชำระ:", this.datapay);

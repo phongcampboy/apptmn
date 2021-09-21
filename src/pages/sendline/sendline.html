@@ -29,4 +29,15 @@
       <button type="submit" [disabled]="!msg.valid" block ion-button color="secondary">ส่งข้อความ</button>
     </div>
   </form>
+
+  <ion-card *ngFor="let item of data_line">
+    <ion-card-header>
+      ชื่อ: {{item.Name_member}}
+    </ion-card-header>
+    <ion-card-content>
+      <p>{{item.Detail}}</p>
+      <ion-note>{{item.Daytime}}</ion-note>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController,LoadingController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from "rxjs/Observable";
 
 @Component({
   selector: 'page-about',
@@ -8,7 +9,6 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AboutPage {
 
-  img_net :boolean = false;
   img_net_tmn : any;
   img_s01 : any;
   img_s02 : any;
@@ -23,24 +23,36 @@ export class AboutPage {
 
     }
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CablePage');
-    const loader = this.loadingCtrl.create({
-      content: "Please wait...",
-      duration: 2500
-    });
-    loader.present()
-    this.img_net = true;
+
     //console.log("รูป",this.img_cable);
 
-    if(this.img_net == true){
+    let url: string ="http://tmnoffice.dyndns.tv:8000/tmn/appdata/img_net.php";
+      
+    let postdataset = new FormData();
 
-      this.img_net_tmn = "https://chawtaichonburi.com/appdata/img/net/net-tmn.png";
-      this.img_s01 = "https://chawtaichonburi.com/appdata/img/net/S01.png";
-      this.img_s02 = "https://chawtaichonburi.com/appdata/img/net/S02.png";
-      this.img_s03 = "https://chawtaichonburi.com/appdata/img/net/S03.png";
-      this.img_s04 = "https://chawtaichonburi.com/appdata/img/net/S04.png";
+    postdataset.append("Page","Net");
 
-    }
+    let callback: Observable<any> = this.http.post(url, postdataset);
+
+    callback.subscribe((call) => {
+     
+      if (call.status == 'Net') {
+
+        this.img_net_tmn = call.net_tmn;
+        this.img_s01 = call.s01;
+        this.img_s02 = call.s02;
+        this.img_s03 = call.s03;
+        this.img_s04= call.s04;
+   
+        console.log("Call", call);
+       
+      }
+      if(call.status==400){
+
+        console.log("Call=Null");
+      }
+      
+    });
   }
 
 }

@@ -43,7 +43,6 @@ export class ListpayPage {
     this.getmemID = id;
   
     console.log("Voice =",this.getmemID);
-    //this.iab.create('http://tmnoffice.dyndns.tv:8000/tmn/appdata/A4.php', '_blank');
     this.navCtrl.push(ReceiptPage, { idvoiceID :this.getmemID });
 
   }
@@ -53,7 +52,6 @@ export class ListpayPage {
       memberID: this.memberId,
     });
 
-    //let url = "https://chawtaichonburi.com/appdata/listpay.php";
     let url = "http://tmnoffice.dyndns.tv:8000/tmn/appdata/listpay.php";
 
     this.http
@@ -61,17 +59,17 @@ export class ListpayPage {
 
       .subscribe(
         (data) => {
+          let loading = this.loadingCtrl.create({
+            content: "Loading...",
+            spinner: "circles",
+          });
+          loading.present();
           if (data != null) {
-            let loading = this.loadingCtrl.create({
-              content: "Loading...",
-              spinner: "circles",
-            });
-            loading.present();
-            this.datapay = data;
-
-            console.log("Loaddata:", this.datapay);
 
             loading.dismiss();
+            this.datapay = data;
+            console.log("Loaddata:", this.datapay);
+
           }
         },
         (error) => {

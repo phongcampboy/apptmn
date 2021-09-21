@@ -7,38 +7,51 @@
 <!--  <ion-icon name="notifications" color="danger" *ngIf="Pay==0"></ion-icon> -->
       </button>
     </ion-buttons>
-    <div class="block-1"*ngIf="memberId==null"><img *ngIf="img_home" src="{{img_log}}"width="120px" height="46px" (click)="member()"/></div>
-		<div class="block-2"*ngIf="memberId!=null"><img *ngIf="img_home" src="{{img_login}}" width="30px" height="30px" (click)="member()"/><B>สวัสดี {{name}} {{lastname}}</B></div>
+    <div class="block-1"*ngIf="memberId==null"><img *ngIf="imageContainer" src="{{img_log}}"width="120px" height="46px" (click)="member()"/></div>
+		<div class="block-2"*ngIf="memberId!=null"><img *ngIf="imageContainer" src="{{img_login}}" width="30px" height="30px" (click)="member()"/><B>สวัสดี {{name}} {{lastname}}</B></div>
 
   </ion-navbar>
 </ion-header>
 
-<ion-content class="tutorial-page" scroll="false" fullscreen>
+<ion-content class="tutorial-page" scroll="true" fullscreen>
 
-  <div class="div1">
+ <div class="div1">
+<ion-slides pager="true" autoplay="3000" loop="true" speed="1000" *ngIf="imageContainer">
 
- <ion-slides pager="true" autoplay="3000" loop="true" speed="1000" spaceBetween="0">
-      
-    <ion-slide *ngFor="let image of imageContainer">
-      <img src="{{image.url}}">
-    </ion-slide>
 
-  </ion-slides>
-  
-  </div>
+<!-- <ion-slide *ngFor="let image of imageContainer">
+    <img src="{{ image.url }}">
+</ion-slide> -->
 
+ <ion-slide>
+  <img *ngIf="imageContainer" [src]="Slide1">
+  <BR>
+</ion-slide>
+<ion-slide>
+  <img *ngIf="imageContainer" [src]="Slide2">
+  <BR>
+</ion-slide>
+<ion-slide>
+  <img *ngIf="imageContainer" [src]="Slide3">
+  <BR>
+</ion-slide>
+
+
+ </ion-slides> 
+</div>  
+ 
     <ion-row>
         <ion-col>
         <div class="div1"*ngIf="!memberId">
-         <img *ngIf="img_home" [src]="img_member"width="100%" (click)="member()">
+         <img *ngIf="imageContainer" [src]="img_member"width="100%" (click)="member()">
         </div>
         <div class="div1" *ngIf="memberId">
-          <img *ngIf="img_home" [src]="LogMember"width="100%" (click)="member()">
+          <img *ngIf="imageContainer" [src]="LogMember"width="100%" (click)="member()">
          </div>
       </ion-col>
       <ion-col>
         <div class="div1">
-          <img *ngIf="img_home" [src]="img_cabletv"width="100%" (click)="cabletv()">
+           <img *ngIf="imageContainer" [src]="img_cabletv"width="100%" (click)="cabletv()"> 
         </div>
       </ion-col>
     </ion-row>
@@ -46,12 +59,12 @@
     <ion-row>
       <ion-col>
         <div class="div1">
-          <img *ngIf="img_home" [src]="img_net"width="100%" (click)="internet()">
+          <img *ngIf="imageContainer" [src]="img_net"width="100%" (click)="internet()">
         </div>
       </ion-col>
       <ion-col>
         <div class="div1">
-          <img *ngIf="img_home" [src]="img_cctv"width="100%" (click)="cctv()">
+          <img *ngIf="imageContainer" [src]="img_cctv"width="100%" (click)="cctv()">
         </div>
       </ion-col>
     </ion-row>
@@ -59,53 +72,55 @@
 
   <div class="dox1">
     <ion-row>
-      <ion-icon col><img *ngIf="img_home" [src]="img_news"width="100%" (click)="fackbook()"></ion-icon>
+      <ion-icon col><img *ngIf="imageContainer" [src]="img_news"width="100%" (click)="fackbook()"></ion-icon>
     </ion-row>
   </div>
 
   <ion-row>
     <ion-col>
       <div class="div1">
-        <img *ngIf="img_home" [src]="News_tmn"width="100%" (click)="News()">
+        <img *ngIf="imageContainer" [src]="News_tmn"width="100%" (click)="News()">
       </div>
     </ion-col>
     <ion-col>
       <div class="div1">
-        <img *ngIf="img_home" [src]="rerun_news"width="100%" (click)="OpenUrl1()">
+        <img *ngIf="imageContainer" [src]="rerun_news"width="100%" (click)="OpenUrl1()">
       </div>
     </ion-col>
   </ion-row>
 
+
   <div class="block-3">
     <ion-card>
-      <ion-slides pager="true" autoplay="3000" loop="true" speed="1000" spaceBetween="10">
+      <ion-slides pager="true" autoplay="3000" loop="true" speed="1000" spaceBetween="10" *ngIf="imageContainer">
         <ion-slide>
-          <img *ngIf="img_home" [src]="img_hot">
+          <img *ngIf="imageContainer" [src]="img_hot">
           <BR>
         </ion-slide>
         <ion-slide>
-          <img *ngIf="img_home" [src]="img_cable_net">
+          <img *ngIf="imageContainer" [src]="img_cable_net">
           <BR>
         </ion-slide>
         <ion-slide>
-          <img *ngIf="img_home" [src]="img_p_cctv" (click)="OpenUrlCctv()">
+          <img *ngIf="imageContainer" [src]="img_p_cctv" (click)="OpenUrlCctv()">
           <BR>
         </ion-slide>
       </ion-slides>
     </ion-card>
   </div>
+
   <div class="dox1">
     <ion-row>
       <ion-icon col>
-       <a href="https://line.me/ti/p/5T4UEUpv__" target="_blank"><img *ngIf="img_home" [src]="img_it"width="100%"></a> 
+       <a href="https://line.me/ti/p/5T4UEUpv__" target="_blank"><img *ngIf="imageContainer" [src]="img_it"width="100%"></a> 
      </ion-icon>
      <ion-icon col>
-      <a href="https://page.line.me/tmn.pattaya?openQrModal=true" target="_blank"><img *ngIf="img_home" [src]="img_contact"width="100%"></a>
+      <a href="https://page.line.me/tmn.pattaya?openQrModal=true" target="_blank"><img *ngIf="imageContainer" [src]="img_contact"width="100%"></a>
    </ion-icon>
     </ion-row>
     
     <ion-row>
-      <ion-icon col><img *ngIf="img_home" [src]="img_paytmn"width="100%" (click)="srevice()"/></ion-icon>
+      <ion-icon col><img *ngIf="imageContainer" [src]="img_paytmn"width="100%" (click)="srevice()"/></ion-icon>
     </ion-row>
  
   </div>

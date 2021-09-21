@@ -1,13 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
 import { SendmailPage } from '../sendmail/sendmail';
-/**
- * Generated class for the ServicePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
+import { Observable } from "rxjs/Observable";
+import { HttpClient } from "@angular/common/http";
 @IonicPage()
 @Component({
   selector: 'page-service',
@@ -25,26 +20,44 @@ export class ServicePage {
   img_QrPay:any;
   receipt_pay:any;
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, public http: HttpClient) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ServicePage');
-    this.img_service = true;
+   
     //console.log("รูป",this.img_cable);
 
-    if(this.img_service){
+    let url: string ="http://tmnoffice.dyndns.tv:8000/tmn/appdata/img_service.php";
+      
+    let postdataset = new FormData();
 
-      this.img_paytmn1 = "https://chawtaichonburi.com/appdata/img/paytmn-1.jpg";
-      this.img_pay1 = "https://chawtaichonburi.com/appdata/img/pay1.jpg";
-      this.img_pay2 = "https://chawtaichonburi.com/appdata/img/pay2.jpg";
-      this.img_pay3 = "https://chawtaichonburi.com/appdata/img/pay3.jpg";
-      this.img_pay4 = "https://chawtaichonburi.com/appdata/img/pay4.jpg";
-      this.img_pay = "https://chawtaichonburi.com/appdata/img/pay.jpg";
-      this.img_QrPay = "https://chawtaichonburi.com/appdata/img/QR Hi speed.jpg";
-      this.receipt_pay = "https://chawtaichonburi.com/appdata/img/1receipt_pay.png"
+    postdataset.append("Page","Service");
 
-    }
+    let callback: Observable<any> = this.http.post(url, postdataset);
+
+    callback.subscribe((call) => {
+     
+      if (call.status == 'Service') {
+        this.img_service = call;
+        this.img_paytmn1 = call.paytmn1;
+        this.img_pay1 = call.pay1;
+        this.img_pay2 = call.pay2;
+        this.img_pay3 = call.pay3;
+        this.img_pay4 = call.pay4;
+        this.img_pay = call.pay;
+        this.img_QrPay = call.QrPay;
+        this.receipt_pay= call.receipt_pay;
+   
+        console.log("Call", this.img_service);
+       
+      }
+      if(call.status==400){
+
+        console.log("Call=Null");
+      }
+      
+    });
   }
 
   paybill(){

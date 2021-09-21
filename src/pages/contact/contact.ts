@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController,LoadingController } from 'ionic-angular';
-
+import { HttpClient } from '@angular/common/http';
+import { Observable } from "rxjs/Observable";
 
 @Component({
   selector: 'page-contact',
@@ -13,28 +14,40 @@ export class ContactPage {
   img_cctv1 : any;
   img_cctv2 : any;
 
-  constructor(public navCtrl: NavController, public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController,public http: HttpClient, public loadingCtrl: LoadingController) {
 
   }
   
   ionViewDidLoad() {
     console.log('ionViewDidLoad CablePage');
-    const loader = this.loadingCtrl.create({
-      content: "Please wait...",
-      duration: 1500
-    });
-    loader.present()
 
-    this.img_cctv = true;
     //console.log("รูป",this.img_cable);
 
-    if(this.img_cctv == true){
+    let url: string ="http://tmnoffice.dyndns.tv:8000/tmn/appdata/img_cctv.php";
+      
+    let postdataset = new FormData();
 
-      this.img_cctv01 = "https://chawtaichonburi.com/appdata/img/cctv/cctv.png";
-      this.img_cctv1 = "https://chawtaichonburi.com/appdata/img/cctv/cctv1.png";
-      this.img_cctv2 = "https://chawtaichonburi.com/appdata/img/cctv/cctv2.png";
+    postdataset.append("Page","Cctv");
 
-    }
+    let callback: Observable<any> = this.http.post(url, postdataset);
+
+    callback.subscribe((call) => {
+     
+      if (call.status == 'Cctv') {
+        this.img_cctv = call;
+        this.img_cctv01 = call.cctv01;
+        this.img_cctv1 = call.cctv1;
+        this.img_cctv2 = call.cctv2;
+   
+        console.log("Call", this.img_cctv);
+       
+      }
+      if(call.status==400){
+
+        console.log("Call=Null");
+      }
+      
+    });
   }
 
 }

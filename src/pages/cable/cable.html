@@ -4,10 +4,10 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content  fullscreen="true" class="">
+<ion-content  fullscreen="true" *ngIf="img_cable1">
 
       <ion-card>
-        <img *ngIf="img_cable" [src]="img_cable1" width="100%">
+        <img *ngIf="img_cable1" [src]="img_cable1" width="100%">
       </ion-card>
  
     <ion-card padding>
@@ -15,31 +15,33 @@
        ส่งตรงความบันเทิงและสาระด้วยรายการทีวีน่าสนใจจากทั่วทุกมุมโลกทั้งรูปแบบ ANALOG และ DIGITAL คมชัด บริการรวดเร็วฉับไว
     </ion-card>
 
-
-
     <ion-card>
-        <img *ngIf="img_cable" [src]="img_tmn1">
+        <img *ngIf="img_cable1" [src]="img_tmn1">
     </ion-card>
   
     <ion-card>
-      <img *ngIf="img_cable" [src]="img_tmn2">
+      <img *ngIf="img_cable1" [src]="img_tmn2">
     </ion-card>
   
     <ion-card>
-      <img *ngIf="img_cable" [src]="img_tmn3">
+      <img *ngIf="img_cable1" [src]="img_tmn3">
     </ion-card>
   
     <ion-card>
-      <img *ngIf="img_cable" [src]="img_tmn4">
+      <img *ngIf="img_cable1" [src]="img_tmn4">
     </ion-card>
+    <ion-card>
+      <a href="https://page.line.me/tmn.pattaya?openQrModal=true" target="_blank"><button ion-button full ><B>สมัครบริการ เคเบิลทีวี</B></button></a>
+    </ion-card>
+ 
     <br>
-    <ion-card>
-     <img *ngIf="img_cable" [src]="img_Digita" (click)="Digital()">
+      <ion-card>
+     <img *ngIf="img_cable1" [src]="img_Digital" (click)="Digital()">
     </ion-card>
     <div align="center"><B>คลิกรูปเพื่อขยาย Digital TV</B></div>
     <br>
     <ion-card>
-     <img *ngIf="img_cable" [src]="img_Analog" (click)="Analog()">
+     <img *ngIf="img_cable1" [src]="img_Analog" (click)="Analog()">
     </ion-card>
     <div align="center"><B>คลิกรูปเพื่อขยาย Analog TV</B></div>
 

@@ -4,8 +4,9 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { Storage } from '@ionic/storage';
 import { AppVersion } from '@ionic-native/app-version';
 import { ToastController } from "ionic-angular";
-import { HomePage } from '../pages/home/home';
-
+import { Observable } from "rxjs/Observable";
+import { HttpClient } from "@angular/common/http";
+import { Market } from '@ionic-native/market';
 @Component({
   templateUrl: 'app.html'
 })
@@ -23,7 +24,10 @@ export class MyApp {
   loadingController: any;
   versionCode: string;
   versionNumber: string;
+  img_it: any;
+  chk_version:any;
 
+  tmnapp:any="https://play.google.com/store/apps/details?id=com.tmncabletv.tmnapp";
 
   constructor(
     public platform: Platform, 
@@ -32,6 +36,8 @@ export class MyApp {
     private alertCtrl: AlertController,
     private appVersion: AppVersion,
     public toastCtrl: ToastController,
+    public http: HttpClient,
+    private market: Market,
     private storage: Storage) {
 
        this.platform.ready().then(()=>{       //Push Notifi ส่งข้อความ
@@ -39,7 +45,7 @@ export class MyApp {
         // Push msg
         var notificationOpenedCallback = function(jsonData: any) {
           console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
-          //this.nav.push(CablePage);
+        
         };
       
         window["plugins"].OneSignal
@@ -47,14 +53,44 @@ export class MyApp {
           .handleNotificationOpened(notificationOpenedCallback)
           .endInit(); 
 
-          //version
-          this.appVersion.getVersionCode().then((versionCode)=>{
+        //version
+        this.appVersion.getVersionNumber().then((getVersionNumber)=>{
+          this.versionNumber = getVersionNumber.toString(); 
+          //console.log('Ver =',this.versionNumber); 
+        }) 
+           
+
+          /*  this.appVersion.getVersionCode().then((versionCode)=>{
           this.versionCode = versionCode.toString();
-          })
-          this.appVersion.getVersionNumber().then((getVersionNumber)=>{
-            this.versionNumber = getVersionNumber.toString();
-          }) 
-      }) 
+          })*/
+
+  
+
+            let url: string = "http://tmnoffice.dyndns.tv:8000/tmn/appdata/tmn_chk_version.php";
+            let datapost = new FormData();
+        
+            datapost.append("chk_version", "versionNumber");
+            //datapost.append("chk_version", "2.0");
+
+        
+            let data: Observable<any> = this.http.post(url, datapost);
+            data.subscribe(async (call) => {
+        
+              console.log(call);
+        
+             if (call.status == 200) {
+                
+                //alert(call.new_version);
+                if(this.versionNumber!=call.new_version){
+                  this.checkversion();
+                }
+
+              } 
+
+            });
+          
+      });//platform
+
 
       this.memberId;
       this.storage.get("MemberID").then((val) => {
@@ -81,7 +117,6 @@ export class MyApp {
                 text: 'ตกลง',
                 handler: () => {
                   this.platform.exitApp(); // Close this application
-                  this.nav.push(HomePage);
                 }
               }]
             });
@@ -90,7 +125,45 @@ export class MyApp {
       });
 
   }
- 
+
+  checkversion(){
+
+    const confirm = this.alertCtrl.create({
+      title: 'ตรวจพบเวอร์ชั่นใหม่',
+      message: 'กรุณากด Update เพื่อรับข้อมูลข่าวสารล่าสุด',
+      buttons: [
+        {
+          text: 'Update',
+          handler: () => {
+            
+            if (this.platform.is("android")) {
+              this.market.open('com.tmncabletv.tmnapp');
+            } else {
+              //this.openInAppStore('itms-apps://itunes.apple.com/app/310633997'); //call the openInAppStore
+            /*   this.market.open(appId).then(response => {
+                console.debug(response);
+              
+              }).catch(error => {
+                console.warn(error);
+              }); */
+            }
+          
+            console.log('Update clicked');
+          }
+        },
+        {
+          text: 'Cancel',
+          handler: () => {
+           
+            console.log('Cancle clicked');
+          }
+        }
+      ]
+    });
+    confirm.present();
+  
+  }
+
   notificationOpenedCallback() {
     throw new Error('Method not implemented.');
   }

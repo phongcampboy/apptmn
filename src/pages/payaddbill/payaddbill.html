@@ -27,10 +27,13 @@
             <b class="ion-2x ion-social-pinterest">
               ID: {{item.MemberID}}<br>
               ชื่อ: {{item.FirstName}}  {{item.LastName}}<br>
-              ที่อยู่:  เลขที่ {{item.StreetNo}}  <br>หมู่ {{item.Moo}} {{item.Mooban}} <br>
+              ที่อยู่: เลขที่ {{item.StreetNo}} หมู่ {{item.Moo}}<br>
+              {{item.Mooban}} <br>
               เบอร์โทร: {{item.Tel1}}<br>
               ประเภทบริการ: {{item.DescriptionRate}}<br>
-              ราคา: {{item.Total}} 
+              รอบใช้บริการ: {{reversedDate(item.LastPay)}} ถึง {{reversedDate(item.NextPay)}}<br>
+              รวมยอดชำระ: {{FormatNumber(item.Total)}}<br>
+              ({{ArabicNumberToText(item.Total)}})
           </b>
           </ion-item>
         <ion-col col-12>

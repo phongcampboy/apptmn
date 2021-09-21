@@ -1,0 +1,60 @@
+{
+  "_from": "cordova-plugin-market",
+  "_id": "cordova-plugin-market@1.2.0",
+  "_inBundle": false,
+  "_integrity": "sha1-YeNkKBR+lUAsZOr4bjFzeP/bJ08=",
+  "_location": "/cordova-plugin-market",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "cordova-plugin-market",
+    "name": "cordova-plugin-market",
+    "escapedName": "cordova-plugin-market",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#DEV:/",
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-market/-/cordova-plugin-market-1.2.0.tgz",
+  "_shasum": "61e36428147e95402c64eaf86e317378ffdb274f",
+  "_spec": "cordova-plugin-market",
+  "_where": "E:\\ionic_project\\Github\\tmn-service-app",
+  "author": {
+    "name": "Xmartlabs"
+  },
+  "bugs": {
+    "url": "https://github.com/xmartlabs/cordova-plugin-market/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-plugin-market",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "deprecated": false,
+  "description": "Cordova Plugin for access to Google Play and Apple Store within your app",
+  "homepage": "https://github.com/xmartlabs/cordova-plugin-market#readme",
+  "keywords": [
+    "cordova",
+    "market",
+    "store",
+    "itunes",
+    "play",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios"
+  ],
+  "license": "MIT",
+  "name": "cordova-plugin-market",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xmartlabs/cordova-plugin-market.git"
+  },
+  "version": "1.2.0"
+}

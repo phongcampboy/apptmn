@@ -85,11 +85,6 @@ export class MemberPage {
   
         if (call.status == 405) {
           //alert(call.msg);   
-          const loader = this.loadingCtrl.create({
-            content: "Please wait...",
-            duration: 1000
-          });
-          loader.present();
           this.navCtrl.setRoot(UtubePage); 
         }
       });
@@ -102,7 +97,7 @@ export class MemberPage {
     
     const loader = this.loadingCtrl.create({
       content: "Please wait....",
-      duration: 1500
+      //duration: 1000
     });
     loader.present()
 
@@ -118,6 +113,8 @@ export class MemberPage {
         (data) => {
          setTimeout(() => {
             if (data != "") {
+              
+              loader.dismiss();
               this.dataitem = data;
 
               console.log("ข้อมูลที่โหลดมา:", data);
@@ -182,21 +179,29 @@ export class MemberPage {
   }
 
   BillPage() {
-    this.navCtrl.push(BillPage, { memID: this.dataitem });
+    setTimeout(() => {
+      this.navCtrl.push(BillPage, { memID: this.dataitem });
+    }, 300);
   }
 
   sendaddbil() {
+    setTimeout(() => {
     this.navCtrl.push(AddbillPage, { memID: this.dataitem });
+  }, 300);
   }
 
   listpay() {
+    setTimeout(() => {
     this.navCtrl.push(ListpayPage, { memID: this.dataitem });
+  }, 300);
   }
   changpass() {
     this.navCtrl.push(ChangpassPage, { memID: this.dataitem });
   }
   service(){
+    setTimeout(() => {
     this.navCtrl.push(SendlinePage, { memID: this.dataitem });
+  }, 300);
   }
     Sanankaw() {
     this.iab.create("https://www.facebook.com/tmnnewscabletv/videos/?ref=page_internal", "_blank");

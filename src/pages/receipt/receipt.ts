@@ -1,10 +1,5 @@
 import { Component } from "@angular/core";
-import {
-  IonicPage,
-  NavController,
-  NavParams,
-  LoadingController,
-} from "ionic-angular";
+import {IonicPage,NavController, NavParams,LoadingController,} from "ionic-angular";
 import { HttpClient } from "@angular/common/http";
 
 @IonicPage()
@@ -161,12 +156,13 @@ export class ReceiptPage {
 
       .subscribe(
         (data) => {
+          let loading = this.loadingCtrl.create({
+            content: "Loading...",
+            spinner: "circles",
+          });
+          loading.present();
           if (data != null) {
-            let loading = this.loadingCtrl.create({
-              content: "Loading...",
-              spinner: "circles",
-            });
-            loading.present();
+            
             this.ValueVat = data[0].ValueVat;
             this.Total = data[0].Total;
             var D = data[0].DatePay;
@@ -179,6 +175,7 @@ export class ReceiptPage {
             console.log("ข้อมูลที่เคยชำระ:", this.datapay);
             this.bath = "บาท";
             loading.dismiss();
+            
           }
         },
         (error) => {

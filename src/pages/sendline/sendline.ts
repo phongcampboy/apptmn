@@ -14,6 +14,8 @@ export class SendlinePage {
   postdata: any = {};
   getdata:any;
   memberId:any;
+  data_line: any;
+  idsend:any
   public msg: FormGroup;
 
   constructor(
@@ -55,8 +57,30 @@ export class SendlinePage {
     console.log('ionViewDidLoad SendlinePage');
     this.getdata = this.navParams.get('memID');
     this.memberId = this.getdata[0].MemberID;
-   
+    //console.log("ID=",this.memberId);
     //console.log("getID",getdata);
+
+    let Datapost = JSON.stringify({
+      MemID:this.memberId,
+    });
+    //console.log(Datapost);
+
+    let url:string = "http://tmnoffice.dyndns.tv:8000/tmn/appdata/load_line.php";
+
+    this.http.post(url,Datapost)
+
+    .subscribe(
+      (data)=>{
+        if(data != null){
+          this.data_line = data;
+          console.log('DATA=',this.data_line);
+        }else{
+          console.log('Load Null');
+        }
+      
+        },(eror)=>{
+          console.log("Fail Eror.");
+        });
 
   }
 

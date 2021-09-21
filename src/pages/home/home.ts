@@ -12,9 +12,7 @@ import { UtubePage } from "../utube/utube";
 import { Observable } from "rxjs/Observable";
 import { HttpClient } from "@angular/common/http";
 import { ToastController } from "ionic-angular";
-import { SendmailPage } from "../sendmail/sendmail";
 import { NewsPage } from "../news/news";
-
 @Component({
   selector: "page-home",
   templateUrl: "home.html",
@@ -52,24 +50,11 @@ export class HomePage {
   News_tmn: any;
   rerun_news: any;
   checked: boolean = true;
-  news_version: any;
-
-  slideimg1:any
-
-   imageContainer = [
-    {
-      name: "pic1",
-      url: "https://chawtaichonburi.com/appdata/slide/Slide1.jpg",
-    },
-    {
-      name: "pic2",
-      url: "https://chawtaichonburi.com/appdata/slide/Slide2.jpg",
-    },
-    {
-      name: "pic3",
-      url: "https://chawtaichonburi.com/appdata/slide/Slide3.jpg",
-    },
-  ]; 
+  news_version: any;  
+  Slide1 :any;
+  Slide2 :any;
+  Slide3:any;
+  imageContainer:any;
   testCheckboxOpen: boolean;
   testCheckboxResult: any;
 
@@ -84,90 +69,14 @@ export class HomePage {
     public loadingCtrl: LoadingController
   ) {
     this.Pay = 1;
-    this.dataitem = "";
-    this.img_home = true; 
+    this.dataitem = ""; 
     }
 
   ionViewDidLoad() {
     console.log("ionViewDidLoad Home");
-   
-    if (this.img_home) {
-        this.img_log = "https://chawtaichonburi.com/appdata/img/home/log.png";
-        this.img_login = "https://chawtaichonburi.com/appdata/img/home/login.png";
-        this.img_member = "https://chawtaichonburi.com/appdata/img/home/member.png";
-        this.LogMember ="https://chawtaichonburi.com/appdata/img/home/LogMember.png";
-        this.img_cabletv = "https://chawtaichonburi.com/appdata/img/home/cabletv.png";
-        this.img_net = "https://chawtaichonburi.com/appdata/img/home/net.png";
-        this.img_cctv = "https://chawtaichonburi.com/appdata/img/home/cctv.png";
-        this.img_news = "https://chawtaichonburi.com/appdata/img/home/news.png";
-        this.img_it = "https://chawtaichonburi.com/appdata/img/home/it.png";
-        this.img_contact = "https://chawtaichonburi.com/appdata/img/home/contact.png";
-        this.img_paytmn = "https://chawtaichonburi.com/appdata/img/home/paytmn.jpg";
-
-        this.img_hot = "https://chawtaichonburi.com/appdata/img/net/hot.png";
-        this.img_cable_net = "https://chawtaichonburi.com/appdata/img/net/cable_net.png";
-        this.img_p_cctv = "https://chawtaichonburi.com/appdata/img/net/p_cctv.png";
-        this.receipt_pay = "https://chawtaichonburi.com/appdata/img/1receipt_pay.png";
-        this.News_tmn = "https://chawtaichonburi.com/appdata/img/News_tmn.jpg";
-        this.rerun_news = "https://chawtaichonburi.com/appdata/img/rerun_news.jpg";
-      }
- 
-     //เช็คว่า มีการอ่านโฆษณาหรือยัง และมี โฆษณาใหม่ไหม
-     this.storage.get("checked").then((val) => {
-      this.checked = val;
-      //console.log("checked=", this.checked);
-
-      if (this.checked) {
-        
-        //console.log("ไม่แสดง ข้อความนี้อีก");
-
-        let url: string = "http://tmnoffice.dyndns.tv:8000/tmn/appdata/tmn_chk_new.php";
-
-      this.storage.get("version").then((val) => {
-          this.news_version = val;
-
-          let datapost = new FormData();
-          datapost.append("checked", "true");
-          datapost.append("chk_version", this.news_version);
-
-                
-        let data: Observable<any> = this.http.post(url, datapost);
-            data.subscribe(async (call) => {
-              console.log(call);
-      
-            if (call.status == 200) {
-              //alert(call.msg);
-              this.storage.set("version", call.version); 
-              
-              this.storage.get("version").then((val) => {
-                this.news_version = val;
-              
-              });
+    this.Home_img();
      
-            }
-
-            if (call.status == 300) {
-              //alert(call.msg);
-              this.storage.remove('version');
-              this.storage.remove('checked');
-            }
-                
-          }); //data.subscribe
-        
-      });  //   this.storage.get
-      
-      } else {
-        this.checkbox(); // แสดงโฆษณา
-        console.log("500");
-      }
-    });
-
     //เช็คคอนเน็คดาต้าเบส
-    const loader = this.loadingCtrl.create({
-      content: "Please wait....",
-      duration: 5000,
-    });
-    loader.present();
 
     let url: string = "http://tmnoffice.dyndns.tv:8000/tmn/appdata/tmn_conn.php";
     let datapost = new FormData();
@@ -177,89 +86,94 @@ export class HomePage {
 
     let data: Observable<any> = this.http.post(url, datapost);
     data.subscribe(async (call) => {
+
       console.log(call);
 
       if (call.status == 200) {
         //alert(call.msg);
         this.platform.ready().then(() => {
+
           this.login();
+
         });
       }
       if (call.status == 405) {
         //alert(call.msg);
-        const loader = this.loadingCtrl.create({
-          content: "Please wait...",
-          duration: 1000,
-        });
-        loader.present();
         this.navCtrl.setRoot(UtubePage);
       }
     });
   }
 
-  checkbox() {
-    this.img_it = "https://chawtaichonburi.com/appdata/img/home/it.png";
-    let alert = this.alertCtrl.create({
-      message: `<img src="${this.img_it}" class="alert">`,
-    });
-    //alert.setTitle('Which planets have you visited?');
+   Home_img() { // เรียกรูปภาพมาแสดง
 
-    alert.addInput({
-      type: "checkbox",
-      label: "ไม่แสดง ข้อความนี้อีก!",
-      value: "value1",
-      checked: false,
-    });
-
-    alert.addButton({
-      text: "OK",
-      handler: (data) => {
-        console.log("Checkbox data:", data);
-        this.testCheckboxOpen = true;
-        this.testCheckboxResult = data;
-
-        if (data.length != 0) {
-          // user checked box
-          this.checked = true;
-          this.storage.set("checked", this.checked);
-          console.log("Yes 1");
-        }
-      },
-    });
-    alert.addButton("Cancel");
-    alert.present();
-  }
-
-/*   slide1(){
+    let url: string ="http://tmnoffice.dyndns.tv:8000/tmn/appdata/img_home.php";
     
-    let url = "http://tmnoffice.dyndns.tv:8000/tmn/appdata/home_img.php";
+    let postdataset = new FormData();
 
-   this.http
-   .post(url, null)
+    postdataset.append("Page","Home");
 
-   .subscribe(
-     (data) => {
-      setTimeout(() => {
-       this.slideimg1 = data;
-       let pic1 = data[0].pic;
-       console.log("ข้อมูลที่โหลดมา:", this.slideimg1);          
-       }, 500);
-     },
-     (error) => {
-       console.log("Load Fail.");
-     }
-   );
- } */
+    let callback: Observable<any> = this.http.post(url, postdataset);
 
-  cabletv() {
-    this.navCtrl.push(CablePage);
+    callback.subscribe((call) => {
+
+         const loader = this.loadingCtrl.create({
+          content: "Please wait...",
+          //duration: 1000,
+        });
+        loader.present(); 
+        
+      if (call.status == 'Home') {
+        loader.dismiss();
+        this.imageContainer = call;
+        this.img_log = call.log;
+        this.img_login = call.login;
+        this.Slide1 = call.Slide1;
+        this.Slide2 = call.Slide2;
+        this.Slide3 = call.Slide3; 
+        this.img_member = call.member;
+        this.LogMember = call.LogMember;
+        this.img_cabletv =call.cabletv;
+        this.img_net = call.net;
+        this.img_cctv = call.cctv;
+        this.img_news = call.news;
+        this.News_tmn = call.News_tmn;
+        this.rerun_news = call.rerun_news;
+        this.img_hot = call.hot;
+        this.img_cable_net = call.cable_net;
+        this.img_p_cctv = call.p_cctv;
+        this.img_it = call.it;
+        this.img_contact = call.contact;
+        this.img_paytmn = call.paytmn;
+
+        console.log("Call", this.imageContainer);
+   
+       
+      }
+
+      if(call.status==400){
+
+        console.log("Call=Null");
+      }
+  
+    });
+
+  } //Home_img 
+
+ cabletv() {
+    setTimeout(() => {
+      this.navCtrl.push(CablePage);
+    }, 300);
   }
 
   internet() {
+    setTimeout(() => {
     this.navCtrl.push(AboutPage);
+  }, 300);
   }
   cctv() {
+    setTimeout(() => {
     this.navCtrl.push(ContactPage);
+  }, 300);
   }
 
   //เช็คล็อกอินก่อนไปหน้าสมาชิก
@@ -275,7 +189,9 @@ export class HomePage {
 
       if (user) {
         this.isLoggedIn = true;
+        setTimeout(() => {
         this.navCtrl.push(MemberPage, { memID: this.memberId });
+      }, 300);
         console.log("Load Login=", this.isLoggedIn);
       } else {
         this.isLoggedIn = false;
@@ -365,12 +281,9 @@ export class HomePage {
   }
 
   srevice() {
-    const loader = this.loadingCtrl.create({
-      content: "Please wait...",
-      duration: 1000,
-    });
-    loader.present();
+    setTimeout(() => {
     this.navCtrl.push(ServicePage);
+  }, 300);
   }
 
   slideChanged() {
@@ -389,10 +302,6 @@ export class HomePage {
   OpenUrlCctv() {
     this.iab.create("https://chawtaichonburi.com/appdata/img/net/p_cctv1.png","_blank");
   }
-  paybill() {
-    this.navCtrl.push(SendmailPage);
-  }
-
   News() {
     this.navCtrl.push(NewsPage);
   }

@@ -70,8 +70,14 @@ export class AddbillPage {
 
       .subscribe(
         (datame) => {
-  
+          const loader = this.loadingCtrl.create({
+            content: "Please wait....",
+            //duration: 1500
+          });
+          loader.present()
             if (datame != null) {
+
+              loader.dismiss();
               console.log("ข้อมูลตัวเอง:", datame);
               this.data_me = datame;
               this.status = datame[0].MemberStatusID;
@@ -112,11 +118,6 @@ export class AddbillPage {
 
               }
 
-              const loader = this.loadingCtrl.create({
-                content: "Please wait....",
-                duration: 1500
-              });
-              loader.present()
               this.loaddata();
             }
             if(this.ispay!=0){
@@ -160,12 +161,6 @@ export class AddbillPage {
           console.log("Loaddata:", datamember);
 
           if (datamember != null) {
-           
-            const loading = this.loadingCtrl.create({
-              content: "Please wait....",
-              duration: 1000
-            });
-            loading.present()
             this.items = datamember;
             console.log('Items=',this.items);
             this.id_member = datamember[0].id_member;
@@ -350,19 +345,23 @@ export class AddbillPage {
     setTimeout(() => {
       this.add = true;
       console.log("Add=", this.add);
-    }, 500);
+    }, 300);
   }
 
   listpay(idpay) {
     this.id_save = idpay;
     console.log("memID=", this.id_save);
+    setTimeout(() => {
     this.navCtrl.push(PayOtherPage, { memID: this.id_save });
+  }, 300);
   }
 
   pay(data) {
     this.dataitem = data;
     console.log("Data-",this.dataitem);
+    setTimeout(() => {
     this.navCtrl.push(ListpayPage, { memID: this.dataitem });
+  }, 300);
   }
   billPay(id){
     //this.dataitem = id;
@@ -380,23 +379,18 @@ export class AddbillPage {
 
       .subscribe(
         (data) => {
-          
+              
           if (data != null) {
-            let loading = this.loadingCtrl.create({
-              content: "Loading...",
-              spinner: "circles",
-            });
-            loading.present();
-            
+                 
             this.dataitem = data[0].MemberID;
             this.ispay = data[0].IsPay;
             console.log('PAY=',this.ispay);
 
-            loading.dismiss();
-
             if (this.ispay == 0) {
-
+              
+              setTimeout(() => {
               this.navCtrl.push(PayaddbillPage, { memID: this.dataitem });
+            }, 300);
             
             }else{
               
