@@ -43,7 +43,7 @@ export class MyApp {
        this.platform.ready().then(()=>{       //Push Notifi ส่งข้อความ
 
         // Push msg
-        var notificationOpenedCallback = function(jsonData: any) {
+          var notificationOpenedCallback = function(jsonData: any) {
           console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
         
         };
@@ -51,20 +51,14 @@ export class MyApp {
         window["plugins"].OneSignal
           .startInit("b6010585-1ca6-45eb-bae2-7a08bcf8490d","361687411034")   //เอามาจาก onsignal
           .handleNotificationOpened(notificationOpenedCallback)
-          .endInit(); 
+          .endInit();
 
         //version
-        this.appVersion.getVersionNumber().then((getVersionNumber)=>{
+         this.appVersion.getVersionNumber().then((getVersionNumber)=>{
           this.versionNumber = getVersionNumber.toString(); 
           //console.log('Ver =',this.versionNumber); 
         }) 
-           
-
-          /*  this.appVersion.getVersionCode().then((versionCode)=>{
-          this.versionCode = versionCode.toString();
-          })*/
-
-  
+             
 
             let url: string = "http://tmnoffice.dyndns.tv:8000/tmn/appdata/tmn_chk_version.php";
             let datapost = new FormData();
@@ -133,7 +127,7 @@ export class MyApp {
       message: 'กรุณากด Update เพื่อรับข้อมูลข่าวสารล่าสุด',
       buttons: [
         {
-          text: 'Update',
+          text: 'อัพเดท',
           handler: () => {
             
             if (this.platform.is("android")) {
@@ -152,7 +146,7 @@ export class MyApp {
           }
         },
         {
-          text: 'Cancel',
+          text: 'ยกเลิก',
           handler: () => {
            
             console.log('Cancle clicked');

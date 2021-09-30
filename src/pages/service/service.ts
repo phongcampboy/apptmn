@@ -61,7 +61,10 @@ export class ServicePage {
   }
 
   paybill(){
+    setTimeout(() => {
       this.navCtrl.push(SendmailPage);
+    }, 300);
+     
   }
 
 }

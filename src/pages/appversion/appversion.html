@@ -1,31 +1,20 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>appversion</ion-title>
+  <ion-navbar color="secondary">
+    <ion-title>คู่มือการใช้งาน</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-<ion-list>
-  <ion-item>
-    <p><b>appName:</b>{{appName}}</p>
-  </ion-item>
-</ion-list>
-
-<ion-list>
-  <ion-item>
-    <p><b>packageName:</b>{{packageName}}</p>
-  </ion-item>
-</ion-list>
-
-<ion-list>
-  <ion-item>
-    <p><b>versionCode:</b>{{versionCode}}</p>
-  </ion-item>
-</ion-list>
-
-<ion-list>
-  <ion-item>
-    <p><b>versionNumber:</b>{{versionNumber}}</p>
-  </ion-item>
-</ion-list>
+ <ion-card>
+    <img *ngIf="app1" [src]="app1" class="thumb-img" imageViewer>
+ </ion-card>
+ <ion-card>
+  <img *ngIf="app2" [src]="app2" class="thumb-img" imageViewer>
+</ion-card>
+<ion-card>
+  <img *ngIf="app3" [src]="app3" class="thumb-img" imageViewer>
+</ion-card>
+<ion-card>
+  <img *ngIf="app4" [src]="app4" class="thumb-img" imageViewer>
+</ion-card>
 </ion-content>

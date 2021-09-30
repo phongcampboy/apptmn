@@ -41,7 +41,7 @@
 </div>  
  
     <ion-row>
-        <ion-col>
+        <ion-col style="border: 0px">
         <div class="div1"*ngIf="!memberId">
          <img *ngIf="imageContainer" [src]="img_member"width="100%" (click)="member()">
         </div>
@@ -49,7 +49,7 @@
           <img *ngIf="imageContainer" [src]="LogMember"width="100%" (click)="member()">
          </div>
       </ion-col>
-      <ion-col>
+      <ion-col style="border: 0px">
         <div class="div1">
            <img *ngIf="imageContainer" [src]="img_cabletv"width="100%" (click)="cabletv()"> 
         </div>
@@ -57,12 +57,12 @@
     </ion-row>
 
     <ion-row>
-      <ion-col>
+      <ion-col style="border: 0px">
         <div class="div1">
           <img *ngIf="imageContainer" [src]="img_net"width="100%" (click)="internet()">
         </div>
       </ion-col>
-      <ion-col>
+      <ion-col style="border: 0px">
         <div class="div1">
           <img *ngIf="imageContainer" [src]="img_cctv"width="100%" (click)="cctv()">
         </div>
@@ -72,17 +72,17 @@
 
   <div class="dox1">
     <ion-row>
-      <ion-icon col><img *ngIf="imageContainer" [src]="img_news"width="100%" (click)="fackbook()"></ion-icon>
+      <ion-icon col style="border: 0px"><img *ngIf="imageContainer" [src]="img_news"width="100%" (click)="fackbook()"></ion-icon>
     </ion-row>
   </div>
 
   <ion-row>
-    <ion-col>
+    <ion-col style="border: 0px">
       <div class="div1">
         <img *ngIf="imageContainer" [src]="News_tmn"width="100%" (click)="News()">
       </div>
     </ion-col>
-    <ion-col>
+    <ion-col style="border: 0px">
       <div class="div1">
         <img *ngIf="imageContainer" [src]="rerun_news"width="100%" (click)="OpenUrl1()">
       </div>

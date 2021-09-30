@@ -11,7 +11,8 @@ import { Observable } from "rxjs/Observable";
 import { HomePage } from '../home/home';
 import { SendlinePage } from '../sendline/sendline';
 import { InAppBrowser } from "@ionic-native/in-app-browser";
-
+import { AppversionPage } from '../appversion/appversion';
+import { SendmailPage } from '../sendmail/sendmail';
 @IonicPage()
 @Component({
   selector: "page-member",
@@ -32,6 +33,13 @@ export class MemberPage {
   img_sanamkaw:any;
   status:any;
   msg_status:any;
+  img_manual:any;
+  img_bth01:any;
+  img_bth02:any;
+  img_bth03:any;
+  img_bth04:any;
+  img_bth05:any;
+  img_bth06:any;
 
   constructor(
     public navCtrl: NavController,
@@ -52,17 +60,10 @@ export class MemberPage {
     this.Pay = 1;
     this.dataitem = "";
 
-    if(this.img_member){
-
-      this.img_pay = "https://chawtaichonburi.com/appdata/img/member/pay.png";
-      this.img_payhis = "https://chawtaichonburi.com/appdata/img/member/payhis.png";
-      this.img_pass = "https://chawtaichonburi.com/appdata/img/member/pass.png";
-      this.img_service = "https://chawtaichonburi.com/appdata/img/member/service.png";
-      this.img_sanamkaw = "https://chawtaichonburi.com/appdata/img/member/sanamkaw.png";
-    }
-
     let idget = this.navParams.get("memID");
     console.log("ID ที่ส่งมา=", idget);
+
+     //เช็คคอนเน็คดาต้าเบส
 
     if (idget != "") {
       let url: string ="http://tmnoffice.dyndns.tv:8000/tmn/appdata/tmn_conn.php";
@@ -91,6 +92,42 @@ export class MemberPage {
 
     }
 
+    let url: string ="http://tmnoffice.dyndns.tv:8000/tmn/appdata/img_member.php";
+      
+      let postdataset = new FormData();
+  
+      postdataset.append("Page","Member");
+  
+      let callback: Observable<any> = this.http.post(url, postdataset);
+  
+      callback.subscribe((call) => {
+       
+        if (call.status == 'Member') {
+  
+          this.img_pay = call.pay;
+          this.img_payhis = call.payhis;
+          this.img_pass = call.pass;
+          this.img_service = call.service;
+          this.img_sanamkaw = call.sanamkaw;
+          this.img_manual = call.manual;
+
+          this.img_bth01 = call.bth1;
+          this.img_bth02 = call.bth2;
+          this.img_bth03 = call.bth3;
+          this.img_bth04 = call.bth4;
+          this.img_bth05 = call.bth5;
+          this.img_bth06 = call.bth6;
+     
+          console.log("Call", call);
+         
+        }
+        if(call.status==400){
+  
+          console.log("Call=Null");
+        }
+        
+      });
+
   }
 
   loaddata(id: string) {
@@ -104,7 +141,8 @@ export class MemberPage {
     let postData = JSON.stringify({
       memberID: id,
     });
-    let url: string = "http://tmnoffice.dyndns.tv:8000/tmn/appdata/load_member.php";
+    
+    let url: string = "http://tmnoffice.dyndns.tv:8000/tmn/appdata/load_member.php";  
 
     this.http
       .post(url, postData)
@@ -206,5 +244,16 @@ export class MemberPage {
     Sanankaw() {
     this.iab.create("https://www.facebook.com/tmnnewscabletv/videos/?ref=page_internal", "_blank");
   } 
+  manual(){
+    setTimeout(() => {
+      this.navCtrl.push(AppversionPage);
+    }, 300);
+  }
+  paybill(){
+    setTimeout(() => {
+      this.navCtrl.push(SendmailPage);
+    }, 300);
+     
+  }
  
 }

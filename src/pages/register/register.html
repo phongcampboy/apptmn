@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar color="secondary">
-    <ion-title>REGISTER</ion-title>
+    <ion-title>หน้าลงทะเบียน</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -35,8 +35,16 @@
 
     </ion-list>
     <div>
-      <button type="submit" [disabled]="!reg.valid" block ion-button color="secondary">Sign Up</button>
+      <button type="submit" [disabled]="!reg.valid" block ion-button color="secondary">ลงทะเบียน</button>
     </div>
+
   </form>
+<!--   <BR>
+    <ion-slides class="image-slider" pager="true" loop="false" slidesPerView="2">
+      <ion-slide *ngFor="let img of images">
+        <img *ngIf="images" src="{{img}}" class="thumb-img" imageViewer>
+      </ion-slide>
+    </ion-slides> -->
+
   </ion-content>
 

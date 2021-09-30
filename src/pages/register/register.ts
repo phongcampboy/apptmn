@@ -1,11 +1,5 @@
 import { Component } from "@angular/core";
-import {
-  IonicPage,
-  NavController,
-  NavParams,
-  AlertController,
-  LoadingController,
-} from "ionic-angular";
+import {IonicPage,NavController,NavParams,AlertController,LoadingController} from "ionic-angular";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
 import { Validators, FormBuilder, FormGroup } from "@angular/forms";
@@ -23,7 +17,6 @@ export class RegisterPage {
   user_log:any = "root";
   pass_log:any = "wsx96300";
   memberId: any = null;
-
   constructor(
     public navCtrl: NavController,
     public http: HttpClient,
@@ -34,7 +27,6 @@ export class RegisterPage {
   ) {
     this.postdata.MemberId = "";
     this.postdata.User_app = "";
-    //this.postdata.ID_cade = "";
     this.postdata.Pass_app = "";
     this.postdata.Con_Pass_app = "";
 
@@ -80,7 +72,7 @@ export class RegisterPage {
       const alert = this.alertCtrl.create({
         title: "พาสเวิร์ดไม่ตรงกัน",
         subTitle: "กรุณาลองใหม่อีกครั้ง",
-        buttons: ["OK"],
+        buttons: ["ตกลง"],
       });
       alert.present();
     } else {
@@ -142,12 +134,10 @@ export class RegisterPage {
   
         if (call.status == 405) {
           //alert(call.msg);   
-          const loader = this.loadingCtrl.create({
-            content: "Please wait...",
-            duration: 2000
-          });
-          loader.present();
-          this.navCtrl.setRoot(UtubePage); 
+          setTimeout(() => {
+            this.navCtrl.setRoot(UtubePage); 
+          }, 300);
+          
         }
       });
     

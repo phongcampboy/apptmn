@@ -1,3 +1,20 @@
 page-register {
-    background: url(https://chawtaichonburi.com/appdata/img/sky.jpg) no-repeat 100% 100%;
+    //background: url(https://chawtaichonburi.com/appdata/img/sky.jpg) no-repeat 100% 100%;
+ /*    ion-slide.swiper-slide {
+        left: 0%;
+        //top: -150px;
+        height: 200px;
+    } */
+    
+    .slide-zoom {
+        background: #e6e6e6;
+    }
+ 
+    .thumb-img {
+        padding: 15px;
+    }
+
+    ion-slides {
+        height: 200px;
+     }
 }

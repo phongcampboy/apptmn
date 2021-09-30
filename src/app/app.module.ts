@@ -40,6 +40,7 @@ import { SocialSharing } from '@ionic-native/social-sharing';
 import { StreamingMedia } from '@ionic-native/streaming-media';
 import { AppVersion } from '@ionic-native/app-version';
 import { Market } from '@ionic-native/market';
+import { IonicImageViewerModule } from 'ionic-img-viewer';
 @NgModule({
   declarations: [
     MyApp,
@@ -72,6 +73,7 @@ import { Market } from '@ionic-native/market';
   imports: [
     BrowserModule,
     HttpClientModule,
+    IonicImageViewerModule,
     IonicStorageModule.forRoot(),
     IonicModule.forRoot(MyApp)
     //IonicModule.forRoot(MyApp,{tabsPlacement:"top"}) ////กำหนดตำแหน่งแทป ใน app.module

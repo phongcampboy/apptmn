@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar color="secondary">
-    <ion-title>LOGIN</ion-title>
+    <ion-title>หน้าล็อกอิน</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -8,7 +8,6 @@
   <ion-list>
 
     <ion-item>
-      <h5>หน้าล็อกอิน</h5>
       <ion-label floating>Username</ion-label>
       <ion-input type="text" [(ngModel)]="logindata.user"></ion-input>
     </ion-item>
@@ -19,12 +18,22 @@
     </ion-item>
   
   </ion-list>
-  <button ion-button full color="secondary" (click)="clicklogin()">Login</button>
-  <ion-item>
-    <ion-icon name="md-contact" item-start large></ion-icon>
-    <p><b>กรุณาลงทะเบียนสมาชิกเพื่อกำหนด</b><br>Username และ Password ก่อน<br>สำหรับการเข้าระบบครั้งแรก</p>
-    <button ion-button small color="secondary" (click)="register()">REGISTER</button>
-  </ion-item>
-<!--   <p><b>กรุณาลงทะเบียนสมาชิกเพื่อกำหนด Username และ Password <br> ก่อนสำหรับการเข้าระบบครั้งแรก</b></p> -->
+  <button ion-button full color="secondary" (click)="clicklogin()">ล็อกอิน</button>
 
+  <ion-card>
+
+    <ion-card-header>
+      <ion-icon name="md-contact" item-start large></ion-icon>
+      กรุณาลงทะเบียนสมาชิก
+    </ion-card-header>
+  
+    <ion-card-content>
+      <!-- Add card content here! -->
+      เพื่อกำหนด Username และ Password สำหรับการเข้าสู่ระบบครั้งแรก
+    </ion-card-content>
+    <div align ="center">
+    <button ion-button small color="secondary" (click)="register()">ลงทะเบียน</button>
+    <button ion-button small color="tertiary" (click)="manual()">คู่มือการใช้งาน</button>
+    </div>
+  </ion-card>
 </ion-content>

@@ -7,7 +7,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content class="bg">
+<ion-content class="">
   <ion-card *ngIf="data_me !==null">
 <!--     <ion-card-header>
       <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
@@ -22,19 +22,19 @@
         <div *ngIf="msg_status==02"><h6>สถานะ <button ion-button small outline color="danger">ตัดสาย</button></h6></div>
         <div *ngIf="msg_status==10"><h6>สถานะ <button ion-button small outline color="danger">บล็อกสัญญาณชั่วคราว</button></h6></div>
   
-      <ion-grid>
+    <!--   <ion-grid>
         <ion-row>
-          <ion-col>
+          <ion-col style="border: 0px">
             <div>
               <button ion-button small color="danger" *ngIf="item.IsPay==0" (click)="loadIsPay(item.MemberID)">ค้างชำระ</button>
               <button ion-button small color="" *ngIf="item.IsPay!=0">ไม่ค้างชำระ</button>
             </div>
           </ion-col>
-          <ion-col>
+          <ion-col style="border: 0px">
             <div><button ion-button small (click)="pay(data_me)">ประวัติการชำระ</button></div>
           </ion-col>
         </ion-row>
-      </ion-grid>
+      </ion-grid> -->
       </ion-item>
     </ion-card-content>
   </ion-card>
@@ -55,18 +55,18 @@
 
       <ion-row>
 
-        <ion-col class="ion-align-self-start">
+        <ion-col class="ion-align-self-start" style="border: 0px">
           <div>
             <button ion-button small color="danger" *ngIf="item.Pay==0" (click)="billPay(item.id_save)">ค้างชำระ</button>
             <button ion-button small color="" *ngIf="item.Pay!=0">ไม่ค้างชำระ</button>
           </div>
         </ion-col>
         
-        <ion-col class="ion-align-self-start">
-          <div><button ion-button small (click)="listpay(item.id_save)">ประวัติการชำระ</button></div>
+        <ion-col class="ion-align-self-start" style="border: 0px">
+          <!-- <div><button ion-button small (click)="listpay(item.id_save)">ประวัติการชำระ</button></div> -->
         </ion-col>
 
-        <ion-col class="ion-align-self-start">
+        <ion-col class="ion-align-self-start" style="border: 0px">
           <div>  
             <button ion-button icon-star small color="danger"(click)="deletmember(item.id_save)">
             <ion-icon name="ios-trash"></ion-icon>ลบ

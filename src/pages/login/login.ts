@@ -6,6 +6,7 @@ import { Storage } from "@ionic/storage";
 import { RegisterPage } from "../register/register";
 import { HomePage } from '../home/home';
 import { MemberPage } from "../member/member";
+import { AppversionPage } from '../appversion/appversion';
 @IonicPage()
 @Component({
   selector: "page-login",
@@ -95,7 +96,7 @@ export class LoginPage {
           const alert = this.alertCtrl.create({
             title: "แจ้งเตือน!",
             subTitle: "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง!",
-            buttons: ["OK"],
+            buttons: ["ตกลง"],
           });
           alert.present();
           console.log("Login failed");
@@ -105,12 +106,17 @@ export class LoginPage {
       const alert = this.alertCtrl.create({
         title: "แจ้งเตือน!",
         subTitle: "กรุณากรอกข้อมูลให้ครบทุกช่อง!",
-        buttons: ["OK"],
+        buttons: ["ตกลง"],
       });
       alert.present();
     }
   }
   register() {
     this.navCtrl.push(RegisterPage);
+  }
+  manual(){
+    setTimeout(() => {
+      this.navCtrl.push(AppversionPage);
+    }, 300);
   }
 }

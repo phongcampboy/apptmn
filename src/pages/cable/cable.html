@@ -1,10 +1,10 @@
 <ion-header>
   <ion-navbar color="secondary">
-    <ion-title>TMN CABLE TV</ion-title>
+    <ion-title>เคเบิลทีวี</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content  fullscreen="true" *ngIf="img_cable1">
+<ion-content  fullscreen="true">
 
       <ion-card>
         <img *ngIf="img_cable1" [src]="img_cable1" width="100%">
@@ -30,21 +30,20 @@
     <ion-card>
       <img *ngIf="img_cable1" [src]="img_tmn4">
     </ion-card>
-    <ion-card>
-      <a href="https://page.line.me/tmn.pattaya?openQrModal=true" target="_blank"><button ion-button full ><B>สมัครบริการ เคเบิลทีวี</B></button></a>
-    </ion-card>
- 
-    <br>
-      <ion-card>
-     <img *ngIf="img_cable1" [src]="img_Digital" (click)="Digital()">
-    </ion-card>
-    <div align="center"><B>คลิกรูปเพื่อขยาย Digital TV</B></div>
-    <br>
-    <ion-card>
-     <img *ngIf="img_cable1" [src]="img_Analog" (click)="Analog()">
-    </ion-card>
-    <div align="center"><B>คลิกรูปเพื่อขยาย Analog TV</B></div>
 
+    <ion-item>
+      <a href="https://page.line.me/tmn.pattaya?openQrModal=true" target="_blank"><img *ngIf="img_conn" [src]="img_conn" width="350" height="70"></a>
+    </ion-item>
+ 
+    <ion-card padding>
+      <img *ngIf="img_Digital" [src]="img_Digital" (click)="Digital()">
+      <p>คลิกรูปเพื่อขยาย (Digital TV)</p>
+    </ion-card>
+
+    <ion-card padding>
+      <img *ngIf="img_Analog" [src]="img_Analog" (click)="Analog()">
+      <p>คลิกรูปเพื่อขยาย (Analog TV)</p>
+    </ion-card>
 
 </ion-content>
 

@@ -5,6 +5,10 @@
 // roboto, and noto sans fonts
 $font-path: "../assets/fonts";
 
+@font-face {   
+  font-family: 'Kanit';    //This is what we are going to call
+  src: url('../assets/fonts/Kanit-Medium.ttf');
+}
 
 // The app direction is used to include
 // rtl styles in your app. For more info, please see:
@@ -42,7 +46,6 @@ $colors: (
   pink:       #FF6600,
   orange:     #F9C606
 );
-
 
 // App iOS Variables
 // --------------------------------------------------

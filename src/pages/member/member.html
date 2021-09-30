@@ -5,43 +5,66 @@
         <ion-icon name="menu"></ion-icon>
         </button>
       </ion-buttons>
-    <ion-title>MEMBER</ion-title>
+    <ion-title>ระบบสมาชิก</ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content padding fullscreen="true" class="">
-  
+<ion-content padding fullscreen="true">
+
   <div class="boxmember" *ngFor="let item of dataitem">
-    <p></p><div class="dox1" *ngIf="Pay==0"><button *ngIf="msg_status==01" ion-button full color="secondary">สถานะปกติ</button></div> <p></p>
-    <p></p><div class="dox1" *ngIf="Pay==-1"><button *ngIf="msg_status==01" ion-button full color="secondary">สถานะปกติ</button></div> <p></p>
-    <p></p><div class="dox1" *ngIf="Pay==0"><button *ngIf="msg_status==10" ion-button full color="pink">สถานะบล็อกสัญญาณชั่วคราว</button></div> <p></p>
-    <p></p><div class="dox1" *ngIf="Pay==0"><button *ngIf="msg_status==02" ion-button full color="danger">สถานะตัดสาย</button></div> <p></p>
+    <p></p><div *ngIf="Pay==0"><button *ngIf="msg_status==01" ion-button full color="secondary">สถานะปกติ</button></div> <p></p>
+    <p></p><div *ngIf="Pay==-1"><button *ngIf="msg_status==01" ion-button full color="secondary">สถานะปกติ</button></div> <p></p>
+    <p></p><div *ngIf="Pay==0"><button *ngIf="msg_status==10" ion-button full color="pink">สถานะบล็อกสัญญาณชั่วคราว</button></div> <p></p>
+    <p></p><div *ngIf="Pay==0"><button *ngIf="msg_status==02" ion-button full color="danger">สถานะตัดสาย</button></div> <p></p>
         <p></p>
-        <b>ID: {{item.MemberID}}</b><br>
-        <b>ชื่อ:  {{item.FirstName}}  {{item.LastName}}</b><br>
+        <b class="ion-2x ion-social-pinterest">ID: {{item.MemberID}}</b><br>
+        <b class="ion-2x ion-social-pinterest">ชื่อ:  {{item.FirstName}}  {{item.LastName}}</b><br>
         <b class="ion-2x ion-social-pinterest"> ที่อยู่:  เลขที่ {{item.StreetNo}}  <br> หมู่ {{item.Moo}}{{item.Mooban}}</b><br>
         <b class="ion-2x ion-social-pinterest">เบอร์โทร: {{item.Tel1}}</b><br>
         <b class="ion-2x ion-social-pinterest">ประเภทบริการ: {{item.DescriptionRate}}</b>
-  </div>
-  
-  <p></p><div class="dox1"*ngIf="Pay==0"><button *ngIf="msg_status==01" ion-button full color="danger" (click)="BillPage()">!!คุณมียอดค่าบริการค้างชำระ คลิกดูบิล</button></div> <p></p>
-  <p></p><div class="dox1" ><button *ngIf="msg_status==02" ion-button full color="danger">!!กรุณาติดต่อเจ้าหน้าที่</button></div> <p></p>
-  <p></p><div class="dox1" ><button *ngIf="msg_status==10" ion-button full color="danger" (click)="BillPage()">!!คุณมียอดค่าบริการค้างชำระ คลิกดูบิล</button></div> <p></p>
 
-  <div class="dox1">
+  <p></p><div *ngIf="Pay==-1"><button *ngIf="msg_status==01" ion-button full color="danger">ยอดที่ต้องชำระ : 0.-</button></div> <p></p>
+  <p></p><div *ngIf="Pay==0"><button *ngIf="msg_status==01" ion-button full color="danger" (click)="BillPage()">ยอดที่ต้องชำระ : {{item.Total}}.-</button></div> <p></p>
+  <p></p><div><button *ngIf="msg_status==02" ion-button full color="danger">!!กรุณาติดต่อเจ้าหน้าที่</button></div> <p></p>
+  <p></p><div><button *ngIf="msg_status==10" ion-button full color="danger" (click)="BillPage()">ยอดที่ต้องชำระ : {{item.Total}}.-</button></div> <p></p>
+
+  </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6 style="border: 0px"><img *ngIf="img_bth01" [src]="img_bth01" (click)="sendaddbil()"></ion-col>
+      <ion-col col-6 style="border: 0px"><img *ngIf="img_bth02" [src]="img_bth02" (click)="paybill()"></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6 style="border: 0px"><img *ngIf="img_bth05" [src]="img_bth05" (click)="service()"></ion-col>
+      <ion-col col-6 style="border: 0px"><img *ngIf="img_bth04" [src]="img_bth04" (click)="changpass()"></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6 style="border: 0px"><img *ngIf="img_bth03" [src]="img_bth03" (click)="manual()"></ion-col>
+      <ion-col col-6 style="border: 0px"><img *ngIf="img_bth06" [src]="img_bth06" (click)="Sanankaw()"></ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+
+<!--   <div class="dox1">
   <ion-icon (click)="sendaddbil()" *ngIf="dataitem">
-    <img *ngIf="img_member" [src]="img_pay">
+    <img *ngIf="img_pay" [src]="img_pay">
   </ion-icon>
   <ion-icon (click)="listpay()" *ngIf="dataitem">
-    <img *ngIf="img_member" [src]="img_payhis">
+    <img *ngIf="img_payhis" [src]="img_payhis">
   </ion-icon>
   <ion-icon *ngIf="dataitem">
-    <img *ngIf="img_member" [src]="img_service" (click)="service()">
+    <img *ngIf="img_service" [src]="img_service" (click)="service()">
   </ion-icon>
   <ion-icon *ngIf="dataitem">
-    <img *ngIf="img_member" [src]="img_pass" (click)="changpass()">
+    <img *ngIf="img_pass" [src]="img_pass" (click)="changpass()">
   </ion-icon>
   <ion-icon *ngIf="dataitem">
-    <img *ngIf="img_member" [src]="img_sanamkaw" (click)="Sanankaw()">
+    <img *ngIf="img_sanamkaw" [src]="img_sanamkaw" (click)="Sanankaw()">
   </ion-icon>
-  </div>
+  <ion-icon *ngIf="dataitem">
+    <img *ngIf="img_manual" [src]="img_manual" (click)="manual()">
+  </ion-icon>
+  </div> -->
+
 </ion-content>

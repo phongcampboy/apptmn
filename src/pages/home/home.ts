@@ -62,8 +62,8 @@ export class HomePage {
     public navCtrl: NavController,
     private storage: Storage,
     private iab: InAppBrowser,
-    private platform: Platform,
     public http: HttpClient,
+    public platform: Platform,
     public toastCtrl: ToastController,
     public alertCtrl: AlertController,
     public loadingCtrl: LoadingController
@@ -75,8 +75,9 @@ export class HomePage {
   ionViewDidLoad() {
     console.log("ionViewDidLoad Home");
     this.Home_img();
+    //this.login();
      
-    //เช็คคอนเน็คดาต้าเบส
+     //เช็คคอนเน็คดาต้าเบส
 
     let url: string = "http://tmnoffice.dyndns.tv:8000/tmn/appdata/tmn_conn.php";
     let datapost = new FormData();
@@ -118,12 +119,12 @@ export class HomePage {
 
          const loader = this.loadingCtrl.create({
           content: "Please wait...",
-          //duration: 1000,
+          duration: 1000,
         });
         loader.present(); 
         
       if (call.status == 'Home') {
-        loader.dismiss();
+       
         this.imageContainer = call;
         this.img_log = call.log;
         this.img_login = call.login;
@@ -144,7 +145,7 @@ export class HomePage {
         this.img_it = call.it;
         this.img_contact = call.contact;
         this.img_paytmn = call.paytmn;
-
+        loader.dismiss();
         console.log("Call", this.imageContainer);
    
        

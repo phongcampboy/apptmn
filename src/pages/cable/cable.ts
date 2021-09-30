@@ -18,6 +18,7 @@ export class CablePage {
   img_cable1: any;
   img_Analog : any;
   img_Digital : any;
+  img_conn : any;
 
   constructor(
     public navCtrl: NavController, 
@@ -51,6 +52,7 @@ export class CablePage {
           this.img_tmn4 = call.tmn4;
           this.img_Digital = call.Digital;
           this.img_Analog = call.Analog;
+          this.img_conn = call.conn;
      
           console.log("Call", call);
          

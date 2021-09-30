@@ -40,6 +40,9 @@
       "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+",
       "PACKAGE_NAME": "com.tmncabletv.tmnapp"
     },
+    "cordova-plugin-market": {
+      "PACKAGE_NAME": "com.tmncabletv.tmnapp"
+    },
     "cordova-plugin-splashscreen": {
       "PACKAGE_NAME": "com.tmncabletv.tmnapp"
     },
@@ -60,9 +63,6 @@
     },
     "phonegap-plugin-barcodescanner": {
       "ANDROID_SUPPORT_V4_VERSION": "27.+",
-      "PACKAGE_NAME": "com.tmncabletv.tmnapp"
-    },
-    "cordova-plugin-market": {
       "PACKAGE_NAME": "com.tmncabletv.tmnapp"
     }
   },
