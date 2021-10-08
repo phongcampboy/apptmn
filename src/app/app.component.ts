@@ -2,7 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav, LoadingController,App,AlertController } from 'ionic-angular';
 import { TabsPage } from '../pages/tabs/tabs';
 import { Storage } from '@ionic/storage';
-import { AppVersion } from '@ionic-native/app-version';
 import { ToastController } from "ionic-angular";
 import { Observable } from "rxjs/Observable";
 import { HttpClient } from "@angular/common/http";
@@ -27,23 +26,20 @@ export class MyApp {
   img_it: any;
   chk_version:any;
 
-  tmnapp:any="https://play.google.com/store/apps/details?id=com.tmncabletv.tmnapp";
-
   constructor(
     public platform: Platform, 
     public loadingCtrl: LoadingController,
     public app:App,
     private alertCtrl: AlertController,
-    private appVersion: AppVersion,
     public toastCtrl: ToastController,
     public http: HttpClient,
     private market: Market,
     private storage: Storage) {
 
-       this.platform.ready().then(()=>{       //Push Notifi ส่งข้อความ
+       this.platform.ready().then(()=>{   
 
-        // Push msg
-          var notificationOpenedCallback = function(jsonData: any) {
+          // Push msg
+         var notificationOpenedCallback = function(jsonData: any) {
           console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
         
         };
@@ -53,25 +49,23 @@ export class MyApp {
           .handleNotificationOpened(notificationOpenedCallback)
           .endInit();
 
-        //version
-         this.appVersion.getVersionNumber().then((getVersionNumber)=>{
-          this.versionNumber = getVersionNumber.toString(); 
-          //console.log('Ver =',this.versionNumber); 
-        })  
+         
+        if (this.platform.is("android")) {
+            
+            this.versionNumber = '2.4';
 
             let url: string = "http://tmnoffice.dyndns.tv:8000/tmn/appdata/tmn_chk_version.php";
             let datapost = new FormData();
         
-            datapost.append("chk_version", "versionNumber");
+            datapost.append("chk_version", null);
             //datapost.append("chk_version", "2.0");
 
-        
             let data: Observable<any> = this.http.post(url, datapost);
             data.subscribe(async (call) => {
         
               //console.log(call);
               this.chk_version = call.new_version; //ตัวแปรนี้ this.chk_version รับค่าเวอร์ชั่นล่าสุด
-              console.log('V',this.chk_version);
+              console.log('Version = ',this.chk_version);
         
              if (call.status == 200) {
                 
@@ -85,6 +79,35 @@ export class MyApp {
               } 
  
             });
+
+        } else if(this.platform.is("ios")) {
+
+          this.versionNumber = '1.0.1';
+          let url: string = "http://tmnoffice.dyndns.tv:8000/tmn/appdata/tmn_chk_ios.php";
+            let datapost = new FormData();
+        
+            datapost.append("chk_version", null);
+        
+            let data: Observable<any> = this.http.post(url, datapost);
+            data.subscribe(async (call) => {
+        
+              //console.log(call);
+              this.chk_version = call.new_version; //ตัวแปรนี้ this.chk_version รับค่าเวอร์ชั่นล่าสุด
+              //console.log('Version = ',this.chk_version);
+        
+             if (call.status == 200) {
+                
+                //alert(call.new_version);
+              if(this.versionNumber == this.chk_version){
+                  console.log("Version= ",this.chk_version);
+                }else{
+                  this.checkversion();
+                }
+
+              } 
+ 
+            });
+        }
           
       });//platform
 
@@ -135,14 +158,15 @@ export class MyApp {
             
             if (this.platform.is("android")) {
               this.market.open('com.tmncabletv.tmnapp');
-            } else {
+
+            } else if(this.platform.is("ios")) {
               //this.openInAppStore('itms-apps://itunes.apple.com/app/310633997'); //call the openInAppStore
-            /*   this.market.open(appId).then(response => {
+              this.market.open('id1550152353').then(response => {
                 console.debug(response);
               
               }).catch(error => {
                 console.warn(error);
-              }); */
+              });
             }
           
             console.log('Update clicked');
@@ -245,3 +269,5 @@ export class MyApp {
 }
 
 }
+
+
