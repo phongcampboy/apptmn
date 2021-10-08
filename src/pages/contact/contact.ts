@@ -13,6 +13,7 @@ export class ContactPage {
   img_cctv01 : any;
   img_cctv1 : any;
   img_cctv2 : any;
+  img_conn : any;
 
   constructor(public navCtrl: NavController,public http: HttpClient, public loadingCtrl: LoadingController) {
 
@@ -38,6 +39,7 @@ export class ContactPage {
         this.img_cctv01 = call.cctv01;
         this.img_cctv1 = call.cctv1;
         this.img_cctv2 = call.cctv2;
+        this.img_conn = call.conn;
    
         console.log("Call", this.img_cctv);
        

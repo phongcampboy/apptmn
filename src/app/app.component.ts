@@ -57,8 +57,7 @@ export class MyApp {
          this.appVersion.getVersionNumber().then((getVersionNumber)=>{
           this.versionNumber = getVersionNumber.toString(); 
           //console.log('Ver =',this.versionNumber); 
-        }) 
-             
+        })  
 
             let url: string = "http://tmnoffice.dyndns.tv:8000/tmn/appdata/tmn_chk_version.php";
             let datapost = new FormData();
@@ -70,17 +69,21 @@ export class MyApp {
             let data: Observable<any> = this.http.post(url, datapost);
             data.subscribe(async (call) => {
         
-              console.log(call);
+              //console.log(call);
+              this.chk_version = call.new_version; //ตัวแปรนี้ this.chk_version รับค่าเวอร์ชั่นล่าสุด
+              console.log('V',this.chk_version);
         
              if (call.status == 200) {
                 
                 //alert(call.new_version);
-                if(this.versionNumber!=call.new_version){
+              if(this.versionNumber == this.chk_version){
+                  console.log("Version= ",this.chk_version);
+                }else{
                   this.checkversion();
                 }
 
               } 
-
+ 
             });
           
       });//platform

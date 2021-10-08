@@ -17,18 +17,23 @@
     <p></p><div *ngIf="Pay==0"><button *ngIf="msg_status==02" ion-button full color="danger">สถานะตัดสาย</button></div> <p></p>
         <p></p>
         <b class="ion-2x ion-social-pinterest">ID: {{item.MemberID}}</b><br>
-        <b class="ion-2x ion-social-pinterest">ชื่อ:  {{item.FirstName}}  {{item.LastName}}</b><br>
-        <b class="ion-2x ion-social-pinterest"> ที่อยู่:  เลขที่ {{item.StreetNo}}  <br> หมู่ {{item.Moo}}{{item.Mooban}}</b><br>
-        <b class="ion-2x ion-social-pinterest">เบอร์โทร: {{item.Tel1}}</b><br>
-        <b class="ion-2x ion-social-pinterest">ประเภทบริการ: {{item.DescriptionRate}}</b>
+        <div>ชื่อ:  {{item.FirstName}}  {{item.LastName}}</div>
+        <div> ที่อยู่:  เลขที่ {{item.StreetNo}}  <br> หมู่ {{item.Moo}}{{item.Mooban}}</div>
+        <div>เบอร์โทร: {{item.Tel1}}</div>
+        <div>ประเภทบริการ: {{item.DescriptionRate}}</div>
 
-  <p></p><div *ngIf="Pay==-1"><button *ngIf="msg_status==01" ion-button full color="danger">ยอดที่ต้องชำระ : 0.-</button></div> <p></p>
-  <p></p><div *ngIf="Pay==0"><button *ngIf="msg_status==01" ion-button full color="danger" (click)="BillPage()">ยอดที่ต้องชำระ : {{item.Total}}.-</button></div> <p></p>
-  <p></p><div><button *ngIf="msg_status==02" ion-button full color="danger">!!กรุณาติดต่อเจ้าหน้าที่</button></div> <p></p>
-  <p></p><div><button *ngIf="msg_status==10" ion-button full color="danger" (click)="BillPage()">ยอดที่ต้องชำระ : {{item.Total}}.-</button></div> <p></p>
-
+ <div *ngIf="Pay==-1"><button *ngIf="msg_status==01" ion-button full color="danger">ยอดที่ต้องชำระ : 0.-</button></div>
+ <div *ngIf="Pay==0"><button *ngIf="msg_status==01" ion-button full color="danger" (click)="BillPage()">ยอดที่ต้องชำระ : {{item.Total}}.-</button></div>
+ <div><button *ngIf="msg_status==02" ion-button full color="danger">!!กรุณาติดต่อเจ้าหน้าที่</button></div> <p></p>
+ <div><button *ngIf="msg_status==10" ion-button full color="danger" (click)="BillPage()">ยอดที่ต้องชำระ : {{item.Total}}.-</button></div>
   </div>
-
+  <p></p>
+  <div>
+    <ion-icon (click)="listpay()" *ngIf="dataitem">
+      <img *ngIf="img_payhis" [src]="img_payhis">
+    </ion-icon>
+  </div>
+  <hr align= "center" size= "2" width= "100%" > 
   <ion-grid>
     <ion-row>
       <ion-col col-6 style="border: 0px"><img *ngIf="img_bth01" [src]="img_bth01" (click)="sendaddbil()"></ion-col>
@@ -40,11 +45,9 @@
     </ion-row>
     <ion-row>
       <ion-col col-6 style="border: 0px"><img *ngIf="img_bth03" [src]="img_bth03" (click)="manual()"></ion-col>
-      <ion-col col-6 style="border: 0px"><img *ngIf="img_bth06" [src]="img_bth06" (click)="Sanankaw()"></ion-col>
+     <ion-col col-6 style="border: 0px"><img *ngIf="img_bth06" [src]="img_bth06" (click)="Sanankaw()"></ion-col>
     </ion-row>
-
   </ion-grid>
-
 
 <!--   <div class="dox1">
   <ion-icon (click)="sendaddbil()" *ngIf="dataitem">

@@ -4,14 +4,15 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding> 
+<ion-content padding>
+  <h5 align="center"><u>ประวัติการชำระเงิน</u></h5> 
     <ion-card-content>
           <ion-item *ngFor="let item of datapay"  class="text_size">
-            <b>InvoiceID: {{item.InvoiceID}}</b> <br>
+            <b>รหัสสมาชิก: {{item.MemberID}}</b> <br>
             <b>ราคา: {{item.Total}}</b><br>
             <b>รอบใช้บริการ: {{item.LastPay}} <br>ถึง {{item.NextPay}}</b><br>
             <b class="text_red">ชำระเงินเรียบร้อยแล้ว</b><BR>
-            <button ion-button outline (click)="Open(item.InvoiceID)">Open</button>
+           <!--  <button ion-button outline (click)="Open(item.InvoiceID)">Open</button> -->
           </ion-item>
     </ion-card-content>
 </ion-content>

@@ -8,7 +8,7 @@
 <p></p>
       <b>ID: {{item.MemberID}}</b><br>
       <b>ชื่อ:  {{item.FirstName}}  {{item.LastName}}</b><br>
-      <b class="ion-2x ion-social-pinterest"> ที่อยู่:  เลขที่ {{item.StreetNo}}  <br> หมู่ {{item.Moo}}{{item.Mooban}}</b><br>
+<!--       <b class="ion-2x ion-social-pinterest"> ที่อยู่:  เลขที่ {{item.StreetNo}}  <br> หมู่ {{item.Moo}}{{item.Mooban}}</b><br> -->
       <b class="ion-2x ion-social-pinterest">เบอร์โทร: {{item.Tel1}}</b><br>
       <b class="ion-2x ion-social-pinterest">ประเภทบริการ: {{item.DescriptionRate}}</b>
 <p></p>
@@ -16,11 +16,11 @@
 
 <ion-card-content>
       <ion-item *ngFor="let item of datapay"  class="text_size">
-        <b>InvoiceID: {{item.InvoiceID}}</b> <br>
+        <b>รหัสสมาชิก: {{item.MemberID}}</b> <br>
         <b>ราคา: {{item.Total}}</b><br>
         <b>รอบใช้บริการ: {{item.LastPay}} <br>ถึง {{item.NextPay}}</b><br>
         <b class="text_red">ชำระเงินเรียบร้อยแล้ว</b><br>
-        <button ion-button outline (click)="Open(item.InvoiceID)">Open</button>
+       <!--  <button ion-button outline (click)="Open(item.InvoiceID)">Open</button> -->
       </ion-item>
 </ion-card-content>
 

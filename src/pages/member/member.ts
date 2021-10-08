@@ -10,7 +10,7 @@ import { UtubePage } from '../utube/utube';
 import { Observable } from "rxjs/Observable";
 import { HomePage } from '../home/home';
 import { SendlinePage } from '../sendline/sendline';
-import { InAppBrowser } from "@ionic-native/in-app-browser";
+//import { InAppBrowser } from "@ionic-native/in-app-browser";
 import { AppversionPage } from '../appversion/appversion';
 import { SendmailPage } from '../sendmail/sendmail';
 @IonicPage()
@@ -48,7 +48,7 @@ export class MemberPage {
     public loadingCtrl: LoadingController,
     private platform: Platform,
     public toastCtrl: ToastController,
-    private iab: InAppBrowser,
+    //private iab: InAppBrowser,
     public navParams: NavParams
   ) 
   {
@@ -80,6 +80,7 @@ export class MemberPage {
           //alert(call.msg);
           this.platform.ready().then(() => {
             this.loaddata(idget);
+            this.img(); 
           });
   
         }
@@ -91,6 +92,10 @@ export class MemberPage {
       });
 
     }
+
+  }
+
+  img(){
 
     let url: string ="http://tmnoffice.dyndns.tv:8000/tmn/appdata/img_member.php";
       
@@ -127,9 +132,7 @@ export class MemberPage {
         }
         
       });
-
   }
-
   loaddata(id: string) {
     
     const loader = this.loadingCtrl.create({
@@ -242,7 +245,8 @@ export class MemberPage {
   }, 300);
   }
     Sanankaw() {
-    this.iab.create("https://www.facebook.com/tmnnewscabletv/videos/?ref=page_internal", "_blank");
+      window.open("https://www.facebook.com/tmnnewscabletv/videos/?ref=page_internal",'_system', 'location=yes');
+    //this.iab.create("https://www.facebook.com/tmnnewscabletv/videos/?ref=page_internal", "_blank");
   } 
   manual(){
     setTimeout(() => {

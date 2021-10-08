@@ -36,12 +36,14 @@
     </ion-item>
  
     <ion-card padding>
-      <img *ngIf="img_Digital" [src]="img_Digital" (click)="Digital()">
+      <img *ngIf="img_Digital" [src]="img_Digital" class="thumb-img" imageViewer>
+   <!--    <img *ngIf="img_Digital" [src]="img_Digital" (click)="Digital()"> -->
       <p>คลิกรูปเพื่อขยาย (Digital TV)</p>
     </ion-card>
 
     <ion-card padding>
-      <img *ngIf="img_Analog" [src]="img_Analog" (click)="Analog()">
+      <img *ngIf="img_Analog" [src]="img_Analog" class="thumb-img" imageViewer>
+      <!-- <img *ngIf="img_Analog" [src]="img_Analog" (click)="Analog()"> -->
       <p>คลิกรูปเพื่อขยาย (Analog TV)</p>
     </ion-card>
 

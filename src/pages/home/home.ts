@@ -57,7 +57,8 @@ export class HomePage {
   imageContainer:any;
   testCheckboxOpen: boolean;
   testCheckboxResult: any;
-
+  items: any;
+ 
   constructor(
     public navCtrl: NavController,
     private storage: Storage,
@@ -117,9 +118,9 @@ export class HomePage {
 
     callback.subscribe((call) => {
 
-         const loader = this.loadingCtrl.create({
+       const loader = this.loadingCtrl.create({
           content: "Please wait...",
-          duration: 1000,
+          //duration: 1000,
         });
         loader.present(); 
         
@@ -293,7 +294,7 @@ export class HomePage {
   }
 
   fackbook() {
-    this.iab.create("https://www.facebook.com/tmnnewscabletv/", "_blank");
+    this.iab.create("https://www.facebook.com/tmnnewscabletv/videos/?ref=page_internal", "_blank");
   }
 
   OpenUrl1() {
@@ -306,7 +307,6 @@ export class HomePage {
   News() {
     this.navCtrl.push(NewsPage);
   }
-
   /*   Test(){
     this.storage.get("MemberID").then((val) => {
       this.memberId = val;
