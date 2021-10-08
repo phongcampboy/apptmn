@@ -37,19 +37,17 @@ export class MyApp {
     private storage: Storage) {
 
        this.platform.ready().then(()=>{   
-
-          // Push msg
-         var notificationOpenedCallback = function(jsonData: any) {
-          console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+           // Push msg
+           var notificationOpenedCallback = function(jsonData: any) {
+            console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+          
+          };
         
-        };
-      
-        window["plugins"].OneSignal
-          .startInit("b6010585-1ca6-45eb-bae2-7a08bcf8490d","361687411034")   //เอามาจาก onsignal
-          .handleNotificationOpened(notificationOpenedCallback)
-          .endInit();
-
-         
+          window["plugins"].OneSignal
+            .startInit("b6010585-1ca6-45eb-bae2-7a08bcf8490d","361687411034")   //เอามาจาก onsignal
+            .handleNotificationOpened(notificationOpenedCallback)
+            .endInit();
+    
         if (this.platform.is("android")) {
             
             this.versionNumber = '2.4';
