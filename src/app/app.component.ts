@@ -36,9 +36,20 @@ export class MyApp {
     private market: Market,
     private storage: Storage) {
 
-       this.platform.ready().then(()=>{   
+       this.platform.ready().then(()=>{ 
+  
+        let loading = this.loadingCtrl.create({
+          content: 'Loading Please Wait...'
+        });
+      
+        loading.present();
+      
+        setTimeout(() => {
+          loading.dismiss();
+        }, 1200);
+
            // Push msg
-           var notificationOpenedCallback = function(jsonData: any) {
+             var notificationOpenedCallback = function(jsonData: any) {
             console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
           
           };
@@ -50,7 +61,7 @@ export class MyApp {
     
         if (this.platform.is("android")) {
             
-            this.versionNumber = '2.4';
+            this.versionNumber = '2.5';
 
             let url: string = "http://tmnoffice.dyndns.tv:8000/tmn/appdata/tmn_chk_version.php";
             let datapost = new FormData();

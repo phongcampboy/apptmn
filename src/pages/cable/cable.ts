@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,LoadingController } from 'ionic-angular';
-import { InAppBrowser } from '@ionic-native/in-app-browser';
+//import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { Observable } from "rxjs/Observable";
 import { HttpClient } from "@angular/common/http";
 @IonicPage()
@@ -23,7 +23,7 @@ export class CablePage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    private iab: InAppBrowser,
+    //private iab: InAppBrowser,
     public http: HttpClient, 
     public loadingCtrl: LoadingController) 
   {
@@ -32,6 +32,16 @@ export class CablePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CablePage');
+    let loading = this.loadingCtrl.create({
+
+      content: 'Loading Please Wait...'
+    });
+  
+    loading.present();
+  
+    setTimeout(() => {
+      loading.dismiss();
+    }, 1000);
 
       let url: string ="http://tmnoffice.dyndns.tv:8000/tmn/appdata/img_cable.php";
       
@@ -64,13 +74,13 @@ export class CablePage {
         
       });
     }
-
-  Analog(){
+ 
+/*   Analog(){
     this.iab.create('https://chawtaichonburi.com/appdata/img/analog.php', '_blank');
   }
 
   Digital(){
     this.iab.create('https://chawtaichonburi.com/appdata/img/digital.php', '_blank');
-  }
+  } */
 
 }

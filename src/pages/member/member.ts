@@ -57,6 +57,17 @@ export class MemberPage {
 
   ionViewDidLoad() {
     console.log("ionViewDidLoad MemberPage");
+    let loading = this.loadingCtrl.create({
+      //spinner: 'hide',
+      content: 'Loading Please Wait...'
+    });
+  
+    loading.present();
+  
+    setTimeout(() => {
+      loading.dismiss();
+    }, 800);
+
     this.Pay = 1;
     this.dataitem = "";
 
@@ -135,11 +146,7 @@ export class MemberPage {
   }
   loaddata(id: string) {
     
-    const loader = this.loadingCtrl.create({
-      content: "Please wait....",
-      //duration: 1000
-    });
-    loader.present()
+
 
     let postData = JSON.stringify({
       memberID: id,
@@ -155,7 +162,6 @@ export class MemberPage {
          setTimeout(() => {
             if (data != "") {
               
-              loader.dismiss();
               this.dataitem = data;
 
               console.log("ข้อมูลที่โหลดมา:", data);

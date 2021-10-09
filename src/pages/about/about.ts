@@ -24,6 +24,16 @@ export class AboutPage {
     }
   ionViewDidLoad() {
 
+    let loading = this.loadingCtrl.create({
+      content: 'Loading Please Wait...'
+    });
+  
+    loading.present();
+  
+    setTimeout(() => {
+      loading.dismiss();
+    }, 1000);
+
     //console.log("รูป",this.img_cable);
 
     let url: string ="http://tmnoffice.dyndns.tv:8000/tmn/appdata/img_net.php";
@@ -54,5 +64,4 @@ export class AboutPage {
       
     });
   }
-
 }

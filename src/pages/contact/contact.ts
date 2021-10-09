@@ -21,6 +21,15 @@ export class ContactPage {
   
   ionViewDidLoad() {
     console.log('ionViewDidLoad CablePage');
+    let loading = this.loadingCtrl.create({
+      content: 'Loading Please Wait...'
+    });
+  
+    loading.present();
+  
+    setTimeout(() => {
+      loading.dismiss();
+    }, 800);
 
     //console.log("รูป",this.img_cable);
 

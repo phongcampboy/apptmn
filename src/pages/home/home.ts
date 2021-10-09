@@ -117,12 +117,6 @@ export class HomePage {
     let callback: Observable<any> = this.http.post(url, postdataset);
 
     callback.subscribe((call) => {
-
-       const loader = this.loadingCtrl.create({
-          content: "Please wait...",
-          //duration: 1000,
-        });
-        loader.present(); 
         
       if (call.status == 'Home') {
        
@@ -146,7 +140,6 @@ export class HomePage {
         this.img_it = call.it;
         this.img_contact = call.contact;
         this.img_paytmn = call.paytmn;
-        loader.dismiss();
         console.log("Call", this.imageContainer);
    
        
@@ -307,30 +300,4 @@ export class HomePage {
   News() {
     this.navCtrl.push(NewsPage);
   }
-  /*   Test(){
-    this.storage.get("MemberID").then((val) => {
-      this.memberId = val;
-      console.log("Your IDLog", this.memberId);
-      let postData = JSON.stringify({
-        memberID: this.memberId,
-      });
-      //console.log("ID ที่ล็อกอิน:", postData);
-      
-       let url: string =
-        "http://tmnoffice.dyndns.tv:8000/tmn/appdata/tmn_receipt.php"; 
-
-      this.http
-        .post(url, postData)
-
-        .subscribe(
-          (data) => {
-            console.log("Load DATA.",data);
-          },
-          (error) => {
-            console.log("Load Fail.");
-          }
-        );
-    });
-
-} */
 }

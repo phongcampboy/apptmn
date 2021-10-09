@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ModalController,LoadingController } from 'ionic-angular';
 import { HttpClient } from "@angular/common/http";
 import { ShownewsPage } from "../shownews/shownews";
 
@@ -16,6 +16,7 @@ export class NewsPage {
     public navCtrl: NavController,
     public http: HttpClient, 
     public modalCtrl: ModalController,
+    public loadingCtrl: LoadingController,
     public navParams: NavParams
     ) 
     {
@@ -24,6 +25,16 @@ export class NewsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad NewsPage');
+    let loading = this.loadingCtrl.create({
+      content: 'Loading Please Wait...'
+    });
+  
+    loading.present();
+  
+    setTimeout(() => {
+      loading.dismiss();
+    }, 400);
+
     this.loaddata();
   }
   tapEvent(number) {

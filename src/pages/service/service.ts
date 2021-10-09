@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, NavController,LoadingController } from 'ionic-angular';
 import { SendmailPage } from '../sendmail/sendmail';
 import { Observable } from "rxjs/Observable";
 import { HttpClient } from "@angular/common/http";
@@ -20,11 +20,21 @@ export class ServicePage {
   img_QrPay:any;
   receipt_pay:any;
 
-  constructor(public navCtrl: NavController, public http: HttpClient) {
+  constructor(public navCtrl: NavController, public http: HttpClient,public loadingCtrl: LoadingController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ServicePage');
+
+    let loading = this.loadingCtrl.create({
+      content: 'Loading Please Wait...'
+    });
+  
+    loading.present();
+  
+    setTimeout(() => {
+      loading.dismiss();
+    }, 1000);
    
     //console.log("รูป",this.img_cable);
 

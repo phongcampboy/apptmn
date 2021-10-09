@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,LoadingController } from 'ionic-angular';
 import { HttpClient } from "@angular/common/http";
 
 @IonicPage()
@@ -15,12 +15,22 @@ export class ShownewsPage {
   constructor(
     public navCtrl: NavController, 
     public http: HttpClient, 
+    public loadingCtrl: LoadingController,
     public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
 
     console.log('ionViewDidLoad ShownewsPage');
+    let loading = this.loadingCtrl.create({
+      content: 'Loading Please Wait...'
+    });
+  
+    loading.present();
+  
+    setTimeout(() => {
+      loading.dismiss();
+    }, 400);
 
     let getdata = this.navParams.get('numpress');
     console.log("Get=",getdata);
