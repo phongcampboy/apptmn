@@ -91,7 +91,7 @@ export class MyApp {
 
         } else if(this.platform.is("ios")) {
 
-          this.versionNumber = '1.0.1';
+          this.versionNumber = '2.5';
           let url: string = "http://tmnoffice.dyndns.tv:8000/tmn/appdata/tmn_chk_ios.php";
             let datapost = new FormData();
         
