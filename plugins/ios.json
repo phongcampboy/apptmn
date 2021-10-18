@@ -19,6 +19,9 @@
     "cordova-plugin-androidx-adapter": {
       "PACKAGE_NAME": "com.tmncabletv.tmnapp-service"
     },
+    "cordova-plugin-app-version": {
+      "PACKAGE_NAME": "com.tmncabletv.tmnapp-service"
+    },
     "cordova-plugin-camera": {
       "PACKAGE_NAME": "com.tmncabletv.tmnapp-service"
     },
@@ -35,6 +38,9 @@
       "PACKAGE_NAME": "com.tmncabletv.tmnapp-service"
     },
     "cordova-plugin-ionic-webview": {
+      "PACKAGE_NAME": "com.tmncabletv.tmnapp-service"
+    },
+    "cordova-plugin-market": {
       "PACKAGE_NAME": "com.tmncabletv.tmnapp-service"
     },
     "cordova-plugin-splashscreen": {
@@ -54,7 +60,10 @@
       "PHOTO_LIBRARY_USAGE_DESCRIPTION": "This app requires photo library access to function properly.",
       "PACKAGE_NAME": "com.tmncabletv.tmnapp-service"
     },
-    "cordova-plugin-app-version": {
+    "onesignal-cordova-plugin": {
+      "PACKAGE_NAME": "com.tmncabletv.tmnapp-service"
+    },
+    "phonegap-plugin-barcodescanner": {
       "PACKAGE_NAME": "com.tmncabletv.tmnapp-service"
     }
   },
