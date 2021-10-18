@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="15" id="com.tmncabletv.tmnapp" ios-CFBundleIdentifier="com.tmncabletv.tmnapp-service" ios-CFBundleVersion="1" version="2.4" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget android-versionCode="17" id="com.tmncabletv.tmnapp" ios-CFBundleIdentifier="com.tmncabletv.tmnapp-service" ios-CFBundleVersion="1" version="2.5" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>TMN</name>
     <description>TMN</description>
     <author>TMN Services</author>

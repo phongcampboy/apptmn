@@ -140,7 +140,7 @@ export class HomePage {
         this.img_it = call.it;
         this.img_contact = call.contact;
         this.img_paytmn = call.paytmn;
-        console.log("Call", this.imageContainer);
+        //console.log("Call", this.imageContainer);
    
        
       }
@@ -287,17 +287,23 @@ export class HomePage {
   }
 
   fackbook() {
-    this.iab.create("https://www.facebook.com/tmnnewscabletv/videos/?ref=page_internal", "_blank");
+    this.iab.create("https://www.facebook.com/tmnnewscabletv/videos/?ref=page_internal", '_system');
   }
 
-  OpenUrl1() {
-    this.iab.create("https://www.youtube.com/playlist?list=PLFKoyQAndwNjC4C7LlW4vHQ8IkcckGcF6","_blank");
+  rerunnews() {
+    this.iab.create("https://www.youtube.com/playlist?list=PLFKoyQAndwNjC4C7LlW4vHQ8IkcckGcF6",'_system');
   }
-
+  it() {
+    this.iab.create('http://line.me/ti/p/~ittmn','_system');
+  }
+  contact() {
+    this.iab.create('http://line.me/ti/p/~@tmn.pattaya','_system');
+  }
   OpenUrlCctv() {
-    this.iab.create("https://chawtaichonburi.com/appdata/img/net/p_cctv1.png","_blank");
+    this.iab.create('https://chawtaichonburi.com/appdata/img/net/p_cctv1.png','_system');
   }
   News() {
     this.navCtrl.push(NewsPage);
   }
+ 
 }

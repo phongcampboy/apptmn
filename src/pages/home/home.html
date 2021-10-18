@@ -39,7 +39,7 @@
 
  </ion-slides> 
 </div>  
- 
+
     <ion-row>
         <ion-col style="border: 0px">
         <div class="div1"*ngIf="!memberId">
@@ -84,7 +84,7 @@
     </ion-col>
     <ion-col style="border: 0px">
       <div class="div1">
-        <img *ngIf="imageContainer" [src]="rerun_news"width="100%" (click)="OpenUrl1()">
+        <img *ngIf="imageContainer" [src]="rerun_news"width="100%" (click)="rerunnews()">
       </div>
     </ion-col>
   </ion-row>
@@ -111,11 +111,11 @@
 
   <div class="dox1">
     <ion-row>
-      <ion-icon col>
-       <a href="https://line.me/ti/p/5T4UEUpv__" target="_blank"><img *ngIf="imageContainer" [src]="img_it"width="100%"></a> 
+      <ion-icon col (click)="it()">
+       <img *ngIf="imageContainer" [src]="img_it"width="100%"> 
      </ion-icon>
-     <ion-icon col>
-      <a href="https://page.line.me/tmn.pattaya?openQrModal=true" target="_blank"><img *ngIf="imageContainer" [src]="img_contact"width="100%"></a>
+     <ion-icon col (click)="contact()">
+    <img *ngIf="imageContainer" [src]="img_contact"width="100%">
    </ion-icon>
     </ion-row>
     

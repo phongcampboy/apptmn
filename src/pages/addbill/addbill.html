@@ -39,28 +39,28 @@
     </ion-card-content>
   </ion-card>
 
-
+  <ion-grid>
+    <ion-row>
+     <button ion-fab color="secondary" mini (click)="addmember()"><ion-icon name="add"></ion-icon></button>
+   <!--  <button ion-button small outline mini (click)="addmember()">เพิ่มรหัส</button> -->
+    <div *ngIf="this.add">
+    <ion-item>
+      <ion-label floating>กรอกรหัสสมาชิก</ion-label>
+      <ion-input type="text"[(ngModel)]="postdata.id_save"></ion-input>
+    </ion-item>
+      <!--  <button ion-button small (click)="addbill()">ยืนยัน</button> -->
+       <button ion-button small outline item-end icon-start (click)="addbill()">
+        <ion-icon name="md-person-add"></ion-icon>
+        ยืนยัน
+      </button>
+    </div>
+  </ion-row>
+  </ion-grid>
+  
   <ion-list *ngIf="items !==null">
 
     <h5 align="center"><u>รหัสสมาชิกที่เพิ่มเข้ามา</u></h5>
-    <ion-grid>
-      <ion-row>
-       <button ion-fab color="secondary" mini (click)="addmember()"><ion-icon name="add"></ion-icon></button>
-     <!--  <button ion-button small outline mini (click)="addmember()">เพิ่มรหัส</button> -->
-      <div *ngIf="this.add">
-      <ion-item>
-        <ion-label floating>กรอกรหัสสมาชิก</ion-label>
-        <ion-input type="text"[(ngModel)]="postdata.id_save"></ion-input>
-      </ion-item>
-        <!--  <button ion-button small (click)="addbill()">ยืนยัน</button> -->
-         <button ion-button small outline item-end icon-start (click)="addbill()">
-          <ion-icon name="md-person-add"></ion-icon>
-          ยืนยัน
-        </button>
-      </div>
-    </ion-row>
-    </ion-grid>
-
+   
     <ion-item *ngFor="let item of items">
       <h2>รหัส {{item.id_save}} </h2>
       <h5>ชื่อ {{item.FirstName}} {{item.LastName}}</h5>

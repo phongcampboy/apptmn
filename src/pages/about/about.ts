@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController,LoadingController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from "rxjs/Observable";
-
+import { InAppBrowser } from "@ionic-native/in-app-browser";
 @Component({
   selector: 'page-about',
   templateUrl: 'about.html'
@@ -17,6 +17,7 @@ export class AboutPage {
 
   constructor(public navCtrl: NavController,
     public http: HttpClient,
+    private iab: InAppBrowser,
     public loadingCtrl: LoadingController
     ) 
     {
@@ -63,5 +64,8 @@ export class AboutPage {
       }
       
     });
+  }
+  contact() {
+    this.iab.create('http://line.me/ti/p/~@tmn.pattaya','_system');
   }
 }

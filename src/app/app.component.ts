@@ -49,7 +49,7 @@ export class MyApp {
         }, 1200);
 
            // Push msg
-             var notificationOpenedCallback = function(jsonData: any) {
+          /*     var notificationOpenedCallback = function(jsonData: any) {
             console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
           
           };
@@ -57,8 +57,8 @@ export class MyApp {
           window["plugins"].OneSignal
             .startInit("b6010585-1ca6-45eb-bae2-7a08bcf8490d","361687411034")   //เอามาจาก onsignal
             .handleNotificationOpened(notificationOpenedCallback)
-            .endInit();
-    
+            .endInit(); */
+     
         if (this.platform.is("android")) {
             
             this.versionNumber = '2.5';
@@ -91,7 +91,7 @@ export class MyApp {
 
         } else if(this.platform.is("ios")) {
 
-          this.versionNumber = '1.0.1';
+          this.versionNumber = '2.5';
           let url: string = "http://tmnoffice.dyndns.tv:8000/tmn/appdata/tmn_chk_ios.php";
             let datapost = new FormData();
         
@@ -134,7 +134,7 @@ export class MyApp {
             nav.pop();
           } else {
             const alert = this.alertCtrl.create({
-              title: '!ออกจากแอป',
+              title: '!ยืนยันการออกจากแอป',
               message: 'คุณต้องการออกจากแอปนี้หรือไม่?',
               buttons: [{
                 text: 'ยกเลิก',
@@ -143,7 +143,7 @@ export class MyApp {
                   console.log('Application exit prevented!');
                 }
               },{
-                text: 'ตกลง',
+                text: 'ยืนยัน',
                 handler: () => {
                   this.platform.exitApp(); // Close this application
                 }
@@ -219,7 +219,7 @@ export class MyApp {
           
           const alert = this.alertCtrl.create({
             title: '!ออกจากระบบสมาชิก',
-            message: 'คุณต้องการออกจากระบบนี้หรือไม่?',
+            message: 'คุณต้องการออกจากระบบสมาชิกหรือไม่?',
             buttons: [{
               text: 'ยกเลิก',
               role: 'cancel',
@@ -228,7 +228,7 @@ export class MyApp {
               
               }
             },{
-              text: 'ตกลง',
+              text: 'ออกจากระบบ',
               handler: () => {
                 this.storage.remove('user');
                 this.storage.remove('MemberID');
@@ -267,7 +267,7 @@ export class MyApp {
             console.log('Application exit prevented!');
           }
         },{
-          text: 'ตกลง',
+          text: 'ยืนยัน',
           handler: () => {
             this.platform.exitApp(); // Close this application
           }

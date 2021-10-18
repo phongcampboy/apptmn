@@ -10,9 +10,9 @@ import { UtubePage } from '../utube/utube';
 import { Observable } from "rxjs/Observable";
 import { HomePage } from '../home/home';
 import { SendlinePage } from '../sendline/sendline';
-//import { InAppBrowser } from "@ionic-native/in-app-browser";
 import { AppversionPage } from '../appversion/appversion';
 import { SendmailPage } from '../sendmail/sendmail';
+import { InAppBrowser } from "@ionic-native/in-app-browser";
 @IonicPage()
 @Component({
   selector: "page-member",
@@ -48,7 +48,7 @@ export class MemberPage {
     public loadingCtrl: LoadingController,
     private platform: Platform,
     public toastCtrl: ToastController,
-    //private iab: InAppBrowser,
+    private iab: InAppBrowser,
     public navParams: NavParams
   ) 
   {
@@ -134,7 +134,7 @@ export class MemberPage {
           this.img_bth05 = call.bth5;
           this.img_bth06 = call.bth6;
      
-          console.log("Call", call);
+          //console.log("Call", call);
          
         }
         if(call.status==400){
@@ -251,8 +251,7 @@ export class MemberPage {
   }, 300);
   }
     Sanankaw() {
-      window.open("https://www.facebook.com/tmnnewscabletv/videos/?ref=page_internal",'_system', 'location=yes');
-    //this.iab.create("https://www.facebook.com/tmnnewscabletv/videos/?ref=page_internal", "_blank");
+      this.iab.create('https://www.facebook.com/tmnnewscabletv/videos/?ref=page_internal','_system');
   } 
   manual(){
     setTimeout(() => {

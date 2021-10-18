@@ -14,7 +14,6 @@ import { AddbillPage } from '../pages/addbill/addbill';
 import { PayaddbillPage } from '../pages/payaddbill/payaddbill';
 import { RegisterPage } from '../pages/register/register';
 import { ListpayPage } from '../pages/listpay/listpay';
-import { MapPage } from '../pages/map/map';
 import { CablePage } from '../pages/cable/cable';
 import { ServicePage } from '../pages/service/service';
 import { ChangpassPage } from '../pages/changpass/changpass';
@@ -25,6 +24,7 @@ import { AppversionPage } from '../pages/appversion/appversion';
 import { SendlinePage } from '../pages/sendline/sendline';
 import { NewsPage } from '../pages/news/news';
 import { ShownewsPage } from "../pages/shownews/shownews";
+import { AllmapPage } from "../pages/allmap/allmap";
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -54,7 +54,6 @@ import { IonicImageViewerModule } from 'ionic-img-viewer';
     PayaddbillPage,
     RegisterPage,
     ListpayPage,
-    MapPage,
     CablePage,
     ServicePage,
     ChangpassPage,
@@ -68,6 +67,7 @@ import { IonicImageViewerModule } from 'ionic-img-viewer';
     SendlinePage,
     NewsPage,
     ShownewsPage,
+    AllmapPage,
     TabsPage
   ],
   imports: [
@@ -91,7 +91,6 @@ import { IonicImageViewerModule } from 'ionic-img-viewer';
     PayaddbillPage,
     RegisterPage,
     ListpayPage,
-    MapPage,
     CablePage,
     ServicePage,
     ChangpassPage,
@@ -105,6 +104,7 @@ import { IonicImageViewerModule } from 'ionic-img-viewer';
     SendlinePage,
     NewsPage,
     ShownewsPage,
+    AllmapPage,
     TabsPage
   ],
   providers: [
