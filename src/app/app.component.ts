@@ -25,8 +25,6 @@ export class MyApp {
   versionNumber: string;
   img_it: any;
   chk_version:any;
-  chk_call:any;
-
 
   constructor(
     public platform: Platform, 
@@ -59,8 +57,9 @@ export class MyApp {
              window["plugins"].OneSignal
             .startInit("b6010585-1ca6-45eb-bae2-7a08bcf8490d","361687411034")   //เอามาจาก onsignal
             .handleNotificationOpened(notificationOpenedCallback)
-            .endInit();  
-    
+            .endInit(); 
+
+           
 
         if (this.platform.is("android")) {
         
@@ -78,21 +77,20 @@ export class MyApp {
               this.chk_version = call.new_version; //ตัวแปรนี้ this.chk_version รับค่าเวอร์ชั่นล่าสุด
               console.log('Version = ',this.chk_version);
         
-              this.isNewerVersion(this.versionNumber,this.chk_version) // เช็ค  เวอร์ชั่น call true หรือ call false
+              var chk_update = this.isNewerVersion(this.chk_version,this.versionNumber )
+      
+   
+              console.log('chk_update=',chk_update);
 
-              if(this.chk_call=='call true'){
+              if(chk_update == true){
 
                 this.checkversion();
                 console.log("ต้องอัพเดท");
 
-              }
-
-              if('call false'){
-          
+              }else if(chk_update == false){
                 console.log("ไม่ต้องอัพเดท");
-
-              }
- 
+              } 
+          
             });
 
         } else if(this.platform.is("ios")) {
@@ -109,21 +107,22 @@ export class MyApp {
               //console.log(call);
               this.chk_version = call.new_version; //ตัวแปรนี้ this.chk_version รับค่าเวอร์ชั่นล่าสุด
               //console.log('Version = ',this.chk_version);
-        
-              this.isNewerVersion(this.versionNumber,this.chk_version) // เช็ค  เวอร์ชั่น call true หรือ call false
 
-              if(this.chk_call=='call true'){
+              var chk_update = this.isNewerVersion(this.chk_version,this.versionNumber )
+      
+   
+              //console.log('chk_update=',chk_update);
+
+              if(chk_update == true){
 
                 this.checkversion();
                 console.log("ต้องอัพเดท");
 
-              }
-
-              if('call false'){
-          
+              }else if(chk_update == false){
                 console.log("ไม่ต้องอัพเดท");
+              } 
+      
 
-              }
  
             });
         }
@@ -165,19 +164,16 @@ export class MyApp {
 
   }
 
-  isNewerVersion (oldVer, newVer) {
+ isNewerVersion (oldVer, newVer) {
     const oldParts = oldVer.split('.')
     const newParts = newVer.split('.')
     for (var i = 0; i < newParts.length; i++) {
       const a = ~~newParts[i] // parse int
       const b = ~~oldParts[i] // parse int
-      if (a < b) this.chk_call = 'call true'
-      if (a > b) this.chk_call = 'call true'
-      if (a == b) this.chk_call = 'call false'     
+      if (a > b) return true
+      if (a < b) return true
     }
-    console.log(this.chk_call);
-    //this.chk_call = 'false'
-   
+    return false
   }
 
   checkversion(){
