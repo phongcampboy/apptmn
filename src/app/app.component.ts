@@ -108,8 +108,9 @@ export class MyApp {
               this.chk_version = call.new_version; //ตัวแปรนี้ this.chk_version รับค่าเวอร์ชั่นล่าสุด
               //console.log('Version = ',this.chk_version);
 
+
               var chk_update = this.isNewerVersion(this.versionNumber,this.chk_version )
-      
+
    
               //console.log('chk_update=',chk_update);
 
