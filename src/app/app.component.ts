@@ -57,7 +57,7 @@ export class MyApp {
              window["plugins"].OneSignal
             .startInit("b6010585-1ca6-45eb-bae2-7a08bcf8490d","361687411034")   //เอามาจาก onsignal
             .handleNotificationOpened(notificationOpenedCallback)
-            .endInit(); 
+            .endInit();  
 
            
 
@@ -77,7 +77,7 @@ export class MyApp {
               this.chk_version = call.new_version; //ตัวแปรนี้ this.chk_version รับค่าเวอร์ชั่นล่าสุด
               console.log('Version = ',this.chk_version);
         
-              var chk_update = this.isNewerVersion(this.chk_version,this.versionNumber )
+              var chk_update = this.isNewerVersion(this.versionNumber,this.chk_version )
       
    
               console.log('chk_update=',chk_update);
@@ -108,7 +108,7 @@ export class MyApp {
               this.chk_version = call.new_version; //ตัวแปรนี้ this.chk_version รับค่าเวอร์ชั่นล่าสุด
               //console.log('Version = ',this.chk_version);
 
-              var chk_update = this.isNewerVersion(this.chk_version,this.versionNumber )
+              var chk_update = this.isNewerVersion(this.versionNumber,this.chk_version )
       
    
               //console.log('chk_update=',chk_update);
@@ -171,7 +171,7 @@ export class MyApp {
       const a = ~~newParts[i] // parse int
       const b = ~~oldParts[i] // parse int
       if (a > b) return true
-      if (a < b) return true
+      if (a < b) return false
     }
     return false
   }
