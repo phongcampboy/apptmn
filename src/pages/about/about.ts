@@ -26,7 +26,7 @@ export class AboutPage {
   ionViewDidLoad() {
 
     let loading = this.loadingCtrl.create({
-      content: 'Loading Please Wait...'
+      content: 'กำลังโหลดข้อมูล...'
     });
   
     loading.present();

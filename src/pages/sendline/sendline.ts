@@ -4,7 +4,6 @@ import { Validators, FormBuilder, FormGroup } from "@angular/forms";
 import { HttpClient } from "@angular/common/http";
 import { ToastController } from "ionic-angular";
 import { Observable } from "rxjs/Observable";
-
 @IonicPage()
 @Component({
   selector: 'page-sendline',
@@ -110,6 +109,13 @@ export class SendlinePage {
           this.postdata.Name = "";
           this.postdata.tel = "";
           this.postdata.message = "";
+      
+          var component = this.navCtrl.getActive().instance;
+          //รีเฟส หน้าเดิม
+          if (component.ionViewDidLoad) {
+            console.log("In component");
+             component.ionViewDidLoad();
+          }
         }
   
         if (call.status == 404) {

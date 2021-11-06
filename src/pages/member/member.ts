@@ -6,7 +6,6 @@ import { BillPage } from "../bill/bill";
 import { AddbillPage } from "../addbill/addbill";
 import { ChangpassPage } from "../changpass/changpass";
 import { ToastController } from "ionic-angular";
-import { UtubePage } from '../utube/utube';
 import { Observable } from "rxjs/Observable";
 import { HomePage } from '../home/home';
 import { SendlinePage } from '../sendline/sendline';
@@ -56,7 +55,7 @@ export class MemberPage {
   }
 
   ionViewDidLoad() {
-    console.log("ionViewDidLoad MemberPage");
+/*     console.log("ionViewDidLoad MemberPage");
     let loading = this.loadingCtrl.create({
       //spinner: 'hide',
       content: 'Loading Please Wait...'
@@ -66,43 +65,18 @@ export class MemberPage {
   
     setTimeout(() => {
       loading.dismiss();
-    }, 800);
-
+    }, 800); */
+ 
     this.Pay = 1;
     this.dataitem = "";
 
     let idget = this.navParams.get("memID");
     console.log("ID ที่ส่งมา=", idget);
 
-     //เช็คคอนเน็คดาต้าเบส
-
-    if (idget != "") {
-      let url: string ="http://tmnoffice.dyndns.tv:8000/tmn/appdata/tmn_conn.php";
-      let datapost = new FormData();
-  
-      datapost.append("user_log", this.user_log);
-      datapost.append("pass_log", this.pass_log);
-      
-      let data: Observable<any> = this.http.post(url, datapost);
-      data.subscribe((call) => {
-        console.log(call);
-  
-        if (call.status == 200) {
-          //alert(call.msg);
-          this.platform.ready().then(() => {
-            this.loaddata(idget);
-            this.img(); 
-          });
-  
-        }
-  
-        if (call.status == 405) {
-          //alert(call.msg);   
-          this.navCtrl.setRoot(UtubePage); 
-        }
-      });
-
-    }
+    this.platform.ready().then(() => {
+      this.loaddata(idget);
+      this.img(); 
+    });
 
   }
 
@@ -145,8 +119,13 @@ export class MemberPage {
       });
   }
   loaddata(id: string) {
-    
 
+    let loading = this.loadingCtrl.create({
+      //spinner: 'hide',
+      content: 'กำลังโหลดข้อมูล...'
+    });
+  
+    loading.present();
 
     let postData = JSON.stringify({
       memberID: id,
@@ -154,12 +133,11 @@ export class MemberPage {
     
     let url: string = "http://tmnoffice.dyndns.tv:8000/tmn/appdata/load_member.php";  
 
-    this.http
-      .post(url, postData)
+      this.http.post(url, postData)
 
       .subscribe(
         (data) => {
-         setTimeout(() => {
+       
             if (data != "") {
               
               this.dataitem = data;
@@ -217,11 +195,16 @@ export class MemberPage {
               toast.present(toast);
               this.navCtrl.setRoot(HomePage);      
             }
-          }, 1000);
+       
         },
         (error) => {
           console.log("Load Fail.");
-        }
+          loading.dismiss() //ให้ Loading หายไปกรณีเกิด error 
+        },
+        ()=>
+        setTimeout(() => {
+        loading.dismiss() //ให้ Loading หายไปกรณีเกิดการทำงานเสร็จสมบูรณ์
+        }, 800)
       );
   }
 
@@ -251,12 +234,12 @@ export class MemberPage {
   }, 300);
   }
     Sanankaw() {
-      this.iab.create('https://www.facebook.com/tmnnewscabletv/videos/?ref=page_internal','_system');
+      this.iab.create('https://fb.watch/8MyQ3WCpBK/','_system');
   } 
   manual(){
     setTimeout(() => {
       this.navCtrl.push(AppversionPage);
-    }, 300);
+    }, 500);
   }
   paybill(){
     setTimeout(() => {

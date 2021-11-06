@@ -13,15 +13,10 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content class="tutorial-page" scroll="true" fullscreen>
+<ion-content>
 
  <div class="div1">
 <ion-slides pager="true" autoplay="3000" loop="true" speed="1000" *ngIf="imageContainer">
-
-
-<!-- <ion-slide *ngFor="let image of imageContainer">
-    <img src="{{ image.url }}">
-</ion-slide> -->
 
  <ion-slide>
   <img *ngIf="imageContainer" [src]="Slide1">
@@ -55,7 +50,7 @@
         </div>
       </ion-col>
     </ion-row>
-
+    
     <ion-row>
       <ion-col style="border: 0px">
         <div class="div1">
@@ -69,10 +64,9 @@
       </ion-col>
     </ion-row>
 
-
   <div class="dox1">
     <ion-row>
-      <ion-icon col style="border: 0px"><img *ngIf="imageContainer" [src]="img_news"width="100%" (click)="fackbook()"></ion-icon>
+      <ion-icon col style="border: 0px"><img *ngIf="imageContainer" [src]="img_news"width="100%"></ion-icon>
     </ion-row>
   </div>
 
@@ -88,7 +82,6 @@
       </div>
     </ion-col>
   </ion-row>
-
 
   <div class="block-3">
     <ion-card>
@@ -118,11 +111,11 @@
     <img *ngIf="imageContainer" [src]="img_contact"width="100%">
    </ion-icon>
     </ion-row>
-    
+ 
     <ion-row>
       <ion-icon col><img *ngIf="imageContainer" [src]="img_paytmn"width="100%" (click)="srevice()"/></ion-icon>
     </ion-row>
- 
+  
   </div>
 
 </ion-content>

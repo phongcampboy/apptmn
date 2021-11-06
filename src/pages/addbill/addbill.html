@@ -16,8 +16,8 @@
   
     <ion-card-content>
       <ion-item *ngFor="let item of data_me">
-        <h2>รหัส {{item.MemberID}}</h2>
-        <h5>ชื่อ  {{item.FirstName}}  {{item.LastName}}</h5>
+        <h2>รหัสสมาชิก: {{item.MemberID}}</h2>
+        <h5>ชื่อ-สกุล:  {{item.FirstName}}  {{item.LastName}}</h5>
         <div *ngIf="msg_status==01"><h6>สถานะ <button ion-button small outline>ปกติ</button></h6></div>
         <div *ngIf="msg_status==02"><h6>สถานะ <button ion-button small outline color="danger">ตัดสาย</button></h6></div>
         <div *ngIf="msg_status==10"><h6>สถานะ <button ion-button small outline color="danger">บล็อกสัญญาณชั่วคราว</button></h6></div>
@@ -62,8 +62,8 @@
     <h5 align="center"><u>รหัสสมาชิกที่เพิ่มเข้ามา</u></h5>
    
     <ion-item *ngFor="let item of items">
-      <h2>รหัส {{item.id_save}} </h2>
-      <h5>ชื่อ {{item.FirstName}} {{item.LastName}}</h5>
+      <h2>รหัสสมาชิก: {{item.id_save}} </h2>
+      <h5>ชื่อ-สกุล: {{item.FirstName}} {{item.LastName}}</h5>
       <div *ngIf="item.MemberStatusID==0001"><H6>สถานะ <button ion-button small outline>ปกติ</button></H6></div>
       <div *ngIf="item.MemberStatusID==0002"><H6>สถานะ <button ion-button small outline color="danger">ตัดสาย</button></H6></div>
       <div *ngIf="item.MemberStatusID==0010"><H6>สถานะ <button ion-button small outline color="danger">บล็อกสัญญาณชั่วคราว</button></H6></div>

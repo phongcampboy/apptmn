@@ -26,7 +26,7 @@ export class NewsPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad NewsPage');
     let loading = this.loadingCtrl.create({
-      content: 'Loading Please Wait...'
+      content: 'กำลังโหลดข้อมูล...'
     });
   
     loading.present();

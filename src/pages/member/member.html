@@ -16,36 +16,42 @@
     <p></p><div *ngIf="Pay==0"><button *ngIf="msg_status==10" ion-button full color="pink">สถานะบล็อกสัญญาณชั่วคราว</button></div> <p></p>
     <p></p><div *ngIf="Pay==0"><button *ngIf="msg_status==02" ion-button full color="danger">สถานะตัดสาย</button></div> <p></p>
         <p></p>
-        <b class="ion-2x ion-social-pinterest">ID: {{item.MemberID}}</b><br>
+        <b class="ion-2x ion-social-pinterest">รหัสสมาชิก: {{item.MemberID}}</b><br>
         <div>ชื่อ:  {{item.FirstName}}  {{item.LastName}}</div>
         <div> ที่อยู่:  เลขที่ {{item.StreetNo}}  <br> หมู่ {{item.Moo}}{{item.Mooban}}</div>
         <div>เบอร์โทร: {{item.Tel1}}</div>
         <div>ประเภทบริการ: {{item.DescriptionRate}}</div>
-
+     
  <div *ngIf="Pay==-1"><button *ngIf="msg_status==01" ion-button full color="danger">ยอดที่ต้องชำระ : 0.-</button></div>
  <div *ngIf="Pay==0"><button *ngIf="msg_status==01" ion-button full color="danger" (click)="BillPage()">ยอดที่ต้องชำระ : {{item.Total}}.-</button></div>
  <div><button *ngIf="msg_status==02" ion-button full color="danger">!!กรุณาติดต่อเจ้าหน้าที่</button></div> <p></p>
  <div><button *ngIf="msg_status==10" ion-button full color="danger" (click)="BillPage()">ยอดที่ต้องชำระ : {{item.Total}}.-</button></div>
   </div>
   <p></p>
+
   <div>
     <ion-icon (click)="listpay()" *ngIf="dataitem">
       <img *ngIf="img_payhis" [src]="img_payhis">
     </ion-icon>
   </div>
-  <hr align= "center" size= "2" width= "100%" > 
+  <div *ngIf="img_payhis"><hr class="style8"></div>
+  
   <ion-grid>
     <ion-row>
       <ion-col col-6 style="border: 0px"><img *ngIf="img_bth01" [src]="img_bth01" (click)="sendaddbil()"></ion-col>
       <ion-col col-6 style="border: 0px"><img *ngIf="img_bth02" [src]="img_bth02" (click)="paybill()"></ion-col>
     </ion-row>
+    <hr class="style8" *ngIf="img_bth01">
     <ion-row>
       <ion-col col-6 style="border: 0px"><img *ngIf="img_bth05" [src]="img_bth05" (click)="service()"></ion-col>
       <ion-col col-6 style="border: 0px"><img *ngIf="img_bth04" [src]="img_bth04" (click)="changpass()"></ion-col>
     </ion-row>
+    <hr class="style8" *ngIf="img_bth05">
     <ion-row>
       <ion-col col-6 style="border: 0px"><img *ngIf="img_bth03" [src]="img_bth03" (click)="manual()"></ion-col>
      <ion-col col-6 style="border: 0px"><img *ngIf="img_bth06" [src]="img_bth06" (click)="Sanankaw()"></ion-col>
     </ion-row>
   </ion-grid>
+  <hr class="style8" *ngIf="img_bth06">
 </ion-content>
+

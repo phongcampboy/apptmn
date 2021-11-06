@@ -44,6 +44,12 @@ export class PayOtherPage {
   }
 
   loaddata(id: string) {
+    let loading = this.loadingCtrl.create({
+      content: "กำลังโหลดข้อมูล...",
+      spinner: "circles",
+    });
+    loading.present();
+
     let postData = JSON.stringify({
       memberID: id,
     });
@@ -56,18 +62,12 @@ export class PayOtherPage {
 
       .subscribe(
         (data) => {
-          let loading = this.loadingCtrl.create({
-            content: "Loading...",
-            spinner: "circles",
-          });
-          loading.present();
+       
           if (data != null) {
      
             this.datapay = data;
 
             console.log("ข้อมูลที่เคยชำระ:", this.datapay);
-
-            loading.dismiss();
           }else{
             this.datapay = data;
             console.log("ข้อมูลที่เคยชำระ",this.datapay);
@@ -86,7 +86,12 @@ export class PayOtherPage {
         },
         (error) => {
           console.log("Load Fail.");
-        }
+          loading.dismiss() //ให้ Loading หายไปกรณีเกิด error 
+        },
+        ()=>
+        setTimeout(() => {
+        loading.dismiss() //ให้ Loading หายไปกรณีเกิดการทำงานเสร็จสมบูรณ์
+        }, 800)
       );
   }
 

@@ -73,7 +73,7 @@ export class HomePage {
     this.dataitem = ""; 
     }
 
-  ionViewDidLoad() {
+   ionViewDidLoad() {
     console.log("ionViewDidLoad Home");
     this.Home_img();
     //this.login();
@@ -86,10 +86,10 @@ export class HomePage {
     datapost.append("user_log", this.user_log);
     datapost.append("pass_log", this.pass_log);
 
-    let data: Observable<any> = this.http.post(url, datapost);
+    let data: Observable<any> =  this.http.post(url, datapost);
     data.subscribe(async (call) => {
 
-      console.log(call);
+      //console.log(call);
 
       if (call.status == 200) {
         //alert(call.msg);
@@ -116,6 +116,13 @@ export class HomePage {
 
     let callback: Observable<any> = this.http.post(url, postdataset);
 
+    let loading = this.loadingCtrl.create({
+      //spinner: 'hide',
+      content: 'กำลังโหลดข้อมูล...'
+    });
+  
+    loading.present();
+
     callback.subscribe((call) => {
         
       if (call.status == 'Home') {
@@ -140,9 +147,7 @@ export class HomePage {
         this.img_it = call.it;
         this.img_contact = call.contact;
         this.img_paytmn = call.paytmn;
-        //console.log("Call", this.imageContainer);
-   
-       
+        //console.log("Call", this.imageContainer);          
       }
 
       if(call.status==400){
@@ -150,7 +155,17 @@ export class HomePage {
         console.log("Call=Null");
       }
   
-    });
+    },
+    (error)=>{
+      // console.log(error); //แสดง errors ที􀃉ได้มาจาก Backend หากเกิด errors
+      loading.dismiss() //ให้ Loading หายไปกรณีเกิด error  
+      this.navCtrl.setRoot(UtubePage);
+    },
+    ()=>
+    setTimeout(() => {
+    loading.dismiss() //ให้ Loading หายไปกรณีเกิดการทำงานเสร็จสมบูรณ์
+    }, 1000)
+    );
 
   } //Home_img 
 
@@ -182,59 +197,21 @@ export class HomePage {
       this.user = user;
       console.log("Username=", user);
 
-      if (user) {
+      if (this.user) {
         this.isLoggedIn = true;
         setTimeout(() => {
         this.navCtrl.push(MemberPage, { memID: this.memberId });
       }, 300);
-        console.log("Load Login=", this.isLoggedIn);
+        console.log("Status Login", this.isLoggedIn);
       } else {
         this.isLoggedIn = false;
         this.navCtrl.push(LoginPage);
-        console.log("Load Log=", this.isLoggedIn);
+        console.log("Status Login", this.isLoggedIn);
       }
     });
   }
 
   logined() {
-    /* this.storage.get("MemberID").then((val) => {
-      this.memberId = val;
-      //console.log("Your IDLog", this.memberId);
-      let postData = JSON.stringify({
-        memberID: this.memberId,
-      });
-      //console.log("ID ที่ล็อกอิน:", postData);
-      let url: string =
-        "http://tmnoffice.dyndns.tv:8000/tmn/appdata/load_member.php";
-
-      this.http
-        .post(url, postData)
-
-        .subscribe(
-          (data) => {
-            if (data != "") {
-              this.dataitem = data;
-              //console.log("ข้อมูลล็อกอิน:", data);
-              this.Pay = data[0].IsPay;
-              console.log("pay ", this.Pay);
-
-              if (this.Pay == 0) {
-                let toast = this.toastCtrl.create({
-                  message: "!!คุณมียอดค่าบริการค้างชำระ",
-                  duration: 5000,
-                  position: "top",
-                  showCloseButton: true,
-                });
-
-                toast.present(toast);
-              }
-            }
-          },
-          (error) => {
-            console.log("Load Fail.");
-          }
-        );
-    }); */
 
     this.storage.get("Name").then((val) => {
       this.name = val;
@@ -254,7 +231,7 @@ export class HomePage {
   login() {
     this.storage.get("MemberID").then((val) => {
       this.memberId = val;
-      console.log("Your IDLog", this.memberId);
+      console.log("Your ID Login", this.memberId);  // ถ้าได้ null คือยังไม่ได้ Login
       if (this.memberId != null) {
         this.logined();
       }
@@ -287,11 +264,11 @@ export class HomePage {
   }
 
   fackbook() {
-    this.iab.create("https://www.facebook.com/tmnnewscabletv/videos/?ref=page_internal", '_system');
+    this.iab.create("https://www.facebook.com/tmnnewscabletv", 'location=yes');
   }
 
   rerunnews() {
-    this.iab.create("https://www.youtube.com/playlist?list=PLFKoyQAndwNjC4C7LlW4vHQ8IkcckGcF6",'_system');
+    this.iab.create("https://youtube.com/playlist?list=PLFKoyQAndwNjC4C7LlW4vHQ8IkcckGcF6",'_system');
   }
   it() {
     this.iab.create('http://line.me/ti/p/~ittmn','_system');

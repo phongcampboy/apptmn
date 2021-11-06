@@ -135,7 +135,7 @@ export class BillPage {
 
   loaddata(data) {
     const loader = this.loadingCtrl.create({
-      content: "Please wait....",
+      content: "กำลังโหลดข้อมูล...",
       //duration: 500
     });
     loader.present()
@@ -143,12 +143,14 @@ export class BillPage {
       this.dataitem = data;
 
       if(this.dataitem !=""){
-          loader.dismiss();
           this.memberId = data[0].MemberID;
           this.billcode = data[0].BillingCode;
           this.createdCode = this.billcode;
           this.qrcode = this.url+this.createdCode;
           //console.log("Qrcode=", this.qrcode);
+          setTimeout(() => {
+            loader.dismiss() //ให้ Loading หายไปกรณีเกิดการทำงานเสร็จสมบูรณ์
+          }, 800)
        
       }
     

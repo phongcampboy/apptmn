@@ -27,7 +27,7 @@ export class ServicePage {
     console.log('ionViewDidLoad ServicePage');
 
     let loading = this.loadingCtrl.create({
-      content: 'Loading Please Wait...'
+      content: 'กำลังโหลดข้อมูล...'
     });
   
     loading.present();

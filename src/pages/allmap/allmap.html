@@ -5,32 +5,46 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-card>
-    <ion-card-header>
-      TMN CABLE TV PATTAYA
-    </ion-card-header>
+
+   <div align="center"><H3>ศูนย์บริการ TMN CABLE TV</H3> </div>  
+
   
-    <ion-list>
-      <button ion-item (click)="tmncenter1()">
-        <ion-icon name="arrow-dropright-circle" item-start color="primary"></ion-icon>
-      สำนักงานใหญ่ ชัยพฤกษ์ 2
-      </button>
+  <ion-list>
+    <ion-item (click)="tmncenter1()">
+      <ion-thumbnail item-start>
+        <img src="https://chawtaichonburi.com/appdata/img/tmn1.png">
+      </ion-thumbnail>
+      <h3>สนง.ใหญ่ ชัยพฤกษ์ 2</h3>
+      <p>โทร. 087-139-4499</p>
+      <button ion-button clear item-end>แผนที่</button>
+    </ion-item>
+
+    <ion-item (click)="tmncenter2()">
+      <ion-thumbnail item-start>
+        <img src="https://chawtaichonburi.com/appdata/img/tmn1.png">
+      </ion-thumbnail>
+      <h3>ศูนย์บริการ <BR> เทศบาลหนองปรือ</h3>
+      <p>โทร. 038-249-734</p>
+      <button ion-button clear item-end>แผนที่</button>
+    </ion-item>
+
+    <ion-item (click)="tmncenter3()">
+      <ion-thumbnail item-start>
+        <img src="https://chawtaichonburi.com/appdata/img/tmn1.png">
+      </ion-thumbnail>
+      <h3>ศูนย์บริการเขาตาโล</h3>
+      <p>โทร. 087-139-4488</p>
+      <button ion-button clear item-end>แผนที่</button>
+    </ion-item>
+
+    <ion-item (click)="tmncenter4()">
+      <ion-thumbnail item-start>
+        <img src="https://chawtaichonburi.com/appdata/img/tmn1.png">
+      </ion-thumbnail>
+      <h3>ศูนย์บริการหนองใหญ่</h3>
+      <p>โทร. 087-146-4449</p>
+      <button ion-button clear item-end>แผนที่</button>
+    </ion-item>
+  </ion-list>
   
-      <button ion-item (click)="tmncenter2()">
-        <ion-icon name="arrow-dropright-circle" item-start color="primary"></ion-icon>
-        ศูนย์บริการ <BR>เทศบาลเมืองหนองปรือ
-      </button>
-  
-      <button ion-item (click)="tmncenter3()">
-        <ion-icon name="arrow-dropright-circle" item-start color="primary"></ion-icon>
-        ศูนย์บริการเขาตาโล
-      </button>
-  
-      <button ion-item (click)="tmncenter4()">
-        <ion-icon name="arrow-dropright-circle" item-start color="primary"></ion-icon>
-        ศูนย์บริการหนองใหญ่
-      </button> 
-    </ion-list>
-    
-  </ion-card>
 </ion-content>

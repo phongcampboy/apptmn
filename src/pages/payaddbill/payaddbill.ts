@@ -136,6 +136,11 @@ export class PayaddbillPage {
   }
   
   loaddata(id: string) {
+    const loading = this.loadingCtrl.create({
+      content: "กำลังโหลดขอมูล...",
+      //duration: 1000
+    }); 
+    loading.present()
 
     let postData = JSON.stringify({
       memberID: id,
@@ -149,13 +154,7 @@ export class PayaddbillPage {
 
       .subscribe(
         (data) => {
-      /*     const loader = this.loadingCtrl.create({
-            content: "Please wait....",
-            //duration: 1000
-          }); */
-          //loader.present()
           if (data != null) {
-            //loader.dismiss();
             this.dataitem = data;
             this.Pay = data[0].IsPay;
             this.billcode = data[0].BillingCode;
@@ -169,7 +168,12 @@ export class PayaddbillPage {
         },
         (error) => {
           console.log("Load Fail.");
-        }
+          loading.dismiss() //ให้ Loading หายไปกรณีเกิด error 
+        },
+        ()=>
+        setTimeout(() => {
+        loading.dismiss() //ให้ Loading หายไปกรณีเกิดการทำงานเสร็จสมบูรณ์
+        }, 800)
       );
   }
 }

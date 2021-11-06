@@ -48,6 +48,13 @@ export class ListpayPage {
   }
 
   loaddata() {
+
+    let loading = this.loadingCtrl.create({
+      content: "กำลังโหลดข้อมูล...",
+      spinner: "circles",
+    });
+    loading.present();
+
     let postData = JSON.stringify({
       memberID: this.memberId,
     });
@@ -59,14 +66,8 @@ export class ListpayPage {
 
       .subscribe(
         (data) => {
-          let loading = this.loadingCtrl.create({
-            content: "Loading...",
-            spinner: "circles",
-          });
-          loading.present();
+        
           if (data != null) {
-
-            loading.dismiss();
             this.datapay = data;
             console.log("Loaddata:", this.datapay);
 
@@ -74,7 +75,12 @@ export class ListpayPage {
         },
         (error) => {
           console.log("Load Fail.");
-        }
+          loading.dismiss() //ให้ Loading หายไปกรณีเกิด error 
+        },
+        ()=>
+        setTimeout(() => {
+        loading.dismiss() //ให้ Loading หายไปกรณีเกิดการทำงานเสร็จสมบูรณ์
+        }, 800)
       );
   }
 }

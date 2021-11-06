@@ -18,7 +18,7 @@ export class TabsPage {
   tab3Root = ContactPage;
   tab4Root = SendmailPage;
   tab5Root = CablePage;
-  //tab5Root = AllmapPage;
+
 
   constructor(public navCtrl: NavController ) 
   {

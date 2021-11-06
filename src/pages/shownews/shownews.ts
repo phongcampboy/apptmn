@@ -23,7 +23,7 @@ export class ShownewsPage {
 
     console.log('ionViewDidLoad ShownewsPage');
     let loading = this.loadingCtrl.create({
-      content: 'Loading Please Wait...'
+      content: 'กำลังโหลดข้อมูล...'
     });
   
     loading.present();

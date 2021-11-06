@@ -58,6 +58,12 @@ export class AddbillPage {
     console.log("ข้อมูลที่ส่งมา",idget);
     this.id_me = idget[0].MemberID;
 
+    let loading = this.loadingCtrl.create({
+      content: "กำลังโหลดข้อมูล....",
+      //duration: 1500
+    });
+    loading.present();
+
     let postData = JSON.stringify({
       memberID: this.id_me,
     });
@@ -70,14 +76,8 @@ export class AddbillPage {
 
       .subscribe(
         (datame) => {
-          const loader = this.loadingCtrl.create({
-            content: "Please wait....",
-            //duration: 1500
-          });
-          loader.present()
+     
             if (datame != null) {
-
-              loader.dismiss();
               console.log("ข้อมูลตัวเอง:", datame);
               this.data_me = datame;
               this.status = datame[0].MemberStatusID;
@@ -132,7 +132,12 @@ export class AddbillPage {
         },
         (error) => {
           console.log("Load Fail.");
-        }
+          loading.dismiss();
+        },
+        ()=>
+        setTimeout(() => {
+        loading.dismiss() //ให้ Loading หายไปกรณีเกิดการทำงานเสร็จสมบูรณ์
+        }, 800)
       );
      
   }
@@ -172,11 +177,6 @@ export class AddbillPage {
           }else{
             
             this.add = true;
-            const loading = this.loadingCtrl.create({
-              content: "Please wait....",
-              duration: 1000
-            });
-            loading.present()
             this.items = datamember;
             console.log("NO:DATA");
             
@@ -295,8 +295,8 @@ export class AddbillPage {
 
   deletmember(id) { //ลบข้อมลูที่เพิ่มเข้ามา
     const confirm = this.alertCtrl.create({
-      title: "กรุณากดยืนยัน",
-      message: "ถ้าต้องการลบข้อมูลสมาชิกออกจากลิสนี้",
+      title: "!ลบสมาชิก",
+      message: "ยืนยันลบสมาชิกออกจากลิสนี้",
       buttons: [
         {
           text: "ยกเลิก",

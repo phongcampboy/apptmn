@@ -30,10 +30,9 @@ export class LoginPage {
   {
     this.logindata.user ="";
     this.logindata.pass ="";
-    //this.logined();
   }
 
-  logined() {
+  logined() {  // เช็คว่า ล็อกอิน หรือยัง
     this.storage.get("MemberID").then((val) => {
       this.memberId = val;
       console.log("Your ID", this.memberId);
@@ -46,10 +45,10 @@ export class LoginPage {
       if (user) {
         this.isLoggedIn = true;
         this.navCtrl.push(HomePage, { memID: this.memberId });
-        console.log("Load Login=", this.isLoggedIn);
+        //console.log("สถานะการล็อกอิน", this.isLoggedIn);
       } else {
         this.isLoggedIn = false;
-        console.log("Load Log=", this.isLoggedIn);
+        console.log("สถานะการล็อกอิน", this.isLoggedIn);
       }
     });
   }
@@ -75,7 +74,7 @@ export class LoginPage {
       let data: Observable<any> = this.http.post(url, datapost);
       
       data.subscribe(async (datasend) => {
-        console.log(datasend);
+       // console.log(datasend);
   
         if (datasend != null) {
           this.memberId = datasend[0].MemberID;
@@ -83,7 +82,7 @@ export class LoginPage {
           this.name = datasend[0].FirstName;
           this.lastname = datasend[0].LastName;
 
-          return this.storage.set("user", this.user).then(() => {
+          return await this.storage.set("user", this.user).then(() => {
             this.storage.set("MemberID", this.memberId);
             this.storage.set("Name", this.name);
             this.storage.set("LastName", this.lastname);

@@ -34,7 +34,7 @@ export class CablePage {
     console.log('ionViewDidLoad CablePage');
     let loading = this.loadingCtrl.create({
 
-      content: 'Loading Please Wait...'
+      content: 'กำลังโหลดข้อมูล...'
     });
   
     loading.present();
