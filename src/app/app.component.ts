@@ -39,7 +39,7 @@ export class MyApp {
        this.platform.ready().then(()=>{ 
   
           // Push msg
-              var notificationOpenedCallback = function(jsonData: any) {
+         /*      var notificationOpenedCallback = function(jsonData: any) {
             console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
           
           };
@@ -48,7 +48,7 @@ export class MyApp {
             .startInit("b6010585-1ca6-45eb-bae2-7a08bcf8490d","361687411034")   //เอามาจาก onsignal
             .handleNotificationOpened(notificationOpenedCallback)
             .endInit();
-
+ */
            
 
         if (this.platform.is("android")) {
