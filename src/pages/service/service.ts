@@ -38,7 +38,7 @@ export class ServicePage {
    
     //console.log("รูป",this.img_cable);
 
-    let url: string ="http://tmnoffice.dyndns.tv:8000/tmn/appdata/img_service.php";
+    let url: string ="http://tmnoffice.dyndns.tv:8000/tmn/Api_App/img_service.php";
       
     let postdataset = new FormData();
 
@@ -46,9 +46,9 @@ export class ServicePage {
 
     let callback: Observable<any> = this.http.post(url, postdataset);
 
-    callback.subscribe((call) => {
+    callback.subscribe(async(call) => {
      
-      if (call.status == 'Service') {
+      if (await call.status == 'Service') {
         this.img_service = call;
         this.img_paytmn1 = call.paytmn1;
         this.img_pay1 = call.pay1;
@@ -62,7 +62,7 @@ export class ServicePage {
         console.log("Call", this.img_service);
        
       }
-      if(call.status==400){
+      else if(call.status==400){
 
         console.log("Call=Null");
       }

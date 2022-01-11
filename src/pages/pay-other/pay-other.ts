@@ -3,7 +3,7 @@ import {IonicPage,NavController, NavParams,LoadingController} from "ionic-angula
 import { HttpClient } from "@angular/common/http";
 import { ToastController } from 'ionic-angular';
 import { ReceiptPage } from '../receipt/receipt';
-
+import { ApiProvider } from '../../providers/api/api';
 @IonicPage()
 @Component({
   selector: "page-pay-other",
@@ -19,9 +19,15 @@ export class PayOtherPage {
     public loadingCtrl: LoadingController,
     public http: HttpClient,
     public toastCtrl: ToastController,
+    public api: ApiProvider,
     public navParams: NavParams
   ) {
-    this.dataid = this.navParams.get("memID");
+  
+  }
+
+async ionViewDidLoad() {
+    console.log("ionViewDidLoad PayOtherPage");
+    this.dataid = await this.navParams.get("memID");
     console.log("ID ที่ส่งมา=", this.dataid);
 
     if (this.dataid != null) {
@@ -29,10 +35,6 @@ export class PayOtherPage {
     }else{
       console.log("No ID");
     }
-  }
-
-  ionViewDidLoad() {
-    console.log("ionViewDidLoad PayOtherPage");
   }
 
   Open(idvoice){
@@ -43,19 +45,37 @@ export class PayOtherPage {
 
   }
 
-  loaddata(id: string) {
-    let loading = this.loadingCtrl.create({
+ async loaddata(id: string) {
+/*     let loading = this.loadingCtrl.create({
       content: "กำลังโหลดข้อมูล...",
       spinner: "circles",
     });
-    loading.present();
+    loading.present(); */
 
     let postData = JSON.stringify({
       memberID: id,
     });
 
+    let result = await this.api.postdata(this.api.route_listpay,postData,'กำลังโหลดข้อมูล..');
+    //console.log(result);
 
-    let url: string ="http://tmnoffice.dyndns.tv:8000/tmn/appdata/listpay.php";
+    if (result != "") {
+
+      this.datapay = result;
+      console.log("Loaddatapay:", this.datapay);
+    }else{
+      this.datapay = result;
+      let toast = this.toastCtrl.create({
+        message: 'ยินดีด้วย คุณไม่มีบิลค้างชำระ',
+        duration: 3500,
+        position: 'top',
+        showCloseButton: true,
+      });
+      toast.present(toast);
+    } 
+
+
+    /* let url: string ="http://tmnoffice.dyndns.tv:8000/tmn/Api_App/listpay.php";
 
     this.http
       .post(url, postData)
@@ -78,10 +98,6 @@ export class PayOtherPage {
               showCloseButton: true,
             });
             toast.present(toast);
-   /*          if(this.datapay==null){
-              console.log("Mem",this.dataid);
-              this.navCtrl.push(AddbillPage, { memID: this.dataid });
-            } */
           }
         },
         (error) => {
@@ -92,7 +108,7 @@ export class PayOtherPage {
         setTimeout(() => {
         loading.dismiss() //ให้ Loading หายไปกรณีเกิดการทำงานเสร็จสมบูรณ์
         }, 800)
-      );
+      ); */
   }
 
 }

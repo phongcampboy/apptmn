@@ -24,9 +24,9 @@ export class BillPage {
 
   }
 
-  ionViewDidLoad() {
+ async ionViewDidLoad() {
     console.log('ionViewDidLoad BillPage');
-    let getdata = this.navParams.get('memID');
+    let getdata =await this.navParams.get('memID');
     this.loaddata(getdata);
   }
 

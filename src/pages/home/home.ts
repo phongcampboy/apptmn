@@ -1,5 +1,5 @@
 import { Component, ViewChild } from "@angular/core";
-import { NavController, Slides,LoadingController, Platform,AlertController,} from "ionic-angular";
+import { NavController, Slides, LoadingController, Platform, AlertController, } from "ionic-angular";
 import { ServicePage } from "../service/service";
 import { CablePage } from "../cable/cable";
 import { AboutPage } from "../about/about";
@@ -13,6 +13,7 @@ import { Observable } from "rxjs/Observable";
 import { HttpClient } from "@angular/common/http";
 import { ToastController } from "ionic-angular";
 import { NewsPage } from "../news/news";
+import { ApiProvider } from '../../providers/api/api';
 @Component({
   selector: "page-home",
   templateUrl: "home.html",
@@ -50,15 +51,17 @@ export class HomePage {
   News_tmn: any;
   rerun_news: any;
   checked: boolean = true;
-  news_version: any;  
-  Slide1 :any;
-  Slide2 :any;
-  Slide3:any;
-  imageContainer:any;
+  news_version: any;
+  Slide1: any;
+  Slide2: any;
+  Slide3: any;
+  imageContainer: any;
   testCheckboxOpen: boolean;
   testCheckboxResult: any;
   items: any;
- 
+  results: Object;
+  data: any;
+  conn: any;
   constructor(
     public navCtrl: NavController,
     private storage: Storage,
@@ -67,75 +70,81 @@ export class HomePage {
     public platform: Platform,
     public toastCtrl: ToastController,
     public alertCtrl: AlertController,
+    public api: ApiProvider,
     public loadingCtrl: LoadingController
   ) {
     this.Pay = 1;
-    this.dataitem = ""; 
-    }
-
-   ionViewDidLoad() {
+    this.dataitem = "";
+  }
+  ionViewDidLoad() {
     console.log("ionViewDidLoad Home");
-    this.Home_img();
-    //this.login();
-     
-     //เช็คคอนเน็คดาต้าเบส
 
-    let url: string = "http://tmnoffice.dyndns.tv:8000/tmn/appdata/tmn_conn.php";
+    //เช็คคอนเน็คดาต้าเบส
+
+    //let url: string = "http://tmnoffice.dyndns.tv:8000/tmn/appdata/tmn_conn.php";
+    let url: string = "http://tmnoffice.dyndns.tv:8000/tmn/Api_App/tmn_conn.php";
     let datapost = new FormData();
 
     datapost.append("user_log", this.user_log);
     datapost.append("pass_log", this.pass_log);
 
-    let data: Observable<any> =  this.http.post(url, datapost);
-    data.subscribe(async (call) => {
+    let data: Observable<any> = this.http.post(url, datapost);
 
-      //console.log(call);
+    data.subscribe(async (call) => {
 
       if (call.status == 200) {
         //alert(call.msg);
-        this.platform.ready().then(() => {
+        await this.platform.ready().then(() => {
 
+          //console.log(call.msg);
+          this.Home_img(); 
           this.login();
 
         });
-      }
-      if (call.status == 405) {
-        //alert(call.msg);
+
+      } else {
+
         this.navCtrl.setRoot(UtubePage);
       }
+
+    }, error => {
+
+      this.navCtrl.setRoot(UtubePage);
+
     });
+
   }
 
-   Home_img() { // เรียกรูปภาพมาแสดง
+  Home_img() { // เรียกรูปภาพมาแสดง
 
-    let url: string ="http://tmnoffice.dyndns.tv:8000/tmn/appdata/img_home.php";
-    
+    //let url: string ="http://tmnoffice.dyndns.tv:8000/tmn/appdata/img_home.php";
+
     let postdataset = new FormData();
 
-    postdataset.append("Page","Home");
+    postdataset.append("Page", "Home");
 
-    let callback: Observable<any> = this.http.post(url, postdataset);
+    let callback: Observable<any> = this.http.post(this.api.rounte_img_home, postdataset);
 
     let loading = this.loadingCtrl.create({
       //spinner: 'hide',
       content: 'กำลังโหลดข้อมูล...'
     });
-  
+
     loading.present();
 
-    callback.subscribe((call) => {
-        
-      if (call.status == 'Home') {
-       
+    callback.subscribe(async (call) => {
+
+      if (await call.status == 'Home') {
+
         this.imageContainer = call;
         this.img_log = call.log;
         this.img_login = call.login;
         this.Slide1 = call.Slide1;
         this.Slide2 = call.Slide2;
-        this.Slide3 = call.Slide3; 
+        this.Slide3 = call.Slide3;
         this.img_member = call.member;
         this.LogMember = call.LogMember;
-        this.img_cabletv =call.cabletv;
+        this.img_cabletv = call.cabletv;
         this.img_net = call.net;
         this.img_cctv = call.cctv;
         this.img_news = call.news;
@@ -150,26 +159,26 @@ export class HomePage {
         //console.log("Call", this.imageContainer);          
       }
 
-      if(call.status==400){
+      else if (call.status == 400) {
 
         console.log("Call=Null");
       }
-  
+
     },
-    (error)=>{
-      // console.log(error); //แสดง errors ที􀃉ได้มาจาก Backend หากเกิด errors
-      loading.dismiss() //ให้ Loading หายไปกรณีเกิด error  
-      this.navCtrl.setRoot(UtubePage);
-    },
-    ()=>
-    setTimeout(() => {
-    loading.dismiss() //ให้ Loading หายไปกรณีเกิดการทำงานเสร็จสมบูรณ์
-    }, 1000)
+      (error) => {
+        // console.log(error); //แสดง errors  หากเกิด errors
+        loading.dismiss() //ให้ Loading หายไปกรณีเกิด error  
+        this.navCtrl.setRoot(UtubePage);
+      },
+      () =>
+        setTimeout(() => {
+          loading.dismiss() //ให้ Loading หายไปกรณีเกิดการทำงานเสร็จสมบูรณ์
+        }, 1000)
     );
 
-  } //Home_img 
+  } //Home_img  */
 
- cabletv() {
+  cabletv() {
     setTimeout(() => {
       this.navCtrl.push(CablePage);
     }, 300);
@@ -177,13 +186,13 @@ export class HomePage {
 
   internet() {
     setTimeout(() => {
-    this.navCtrl.push(AboutPage);
-  }, 300);
+      this.navCtrl.push(AboutPage);
+    }, 300);
   }
   cctv() {
     setTimeout(() => {
-    this.navCtrl.push(ContactPage);
-  }, 300);
+      this.navCtrl.push(ContactPage);
+    }, 300);
   }
 
   //เช็คล็อกอินก่อนไปหน้าสมาชิก
@@ -191,72 +200,58 @@ export class HomePage {
     this.storage.get("MemberID").then((val) => {
       this.memberId = val;
       console.log("Your IDmem", this.memberId);
-    });
-
-    this.storage.get("user").then((user) => {
-      this.user = user;
-      console.log("Username=", user);
-
-      if (this.user) {
+      if (this.memberId) {
         this.isLoggedIn = true;
         setTimeout(() => {
-        this.navCtrl.push(MemberPage, { memID: this.memberId });
-      }, 300);
+          this.navCtrl.push(MemberPage, { memID: this.memberId });
+        }, 300);
         console.log("Status Login", this.isLoggedIn);
       } else {
         this.isLoggedIn = false;
         this.navCtrl.push(LoginPage);
         console.log("Status Login", this.isLoggedIn);
       }
+
     });
+
   }
 
-  logined() {
-
-    this.storage.get("Name").then((val) => {
-      this.name = val;
-      console.log("Your Name", this.name);
-    });
-    this.storage.get("LastName").then((val) => {
-      this.lastname = val;
-      console.log("LastName", this.lastname);
-    });
-
-    this.storage.get("user").then((user) => {
-      this.user = user;
-      console.log("Username=", user);
-    });
-  }
 
   login() {
     this.storage.get("MemberID").then((val) => {
+
       this.memberId = val;
       console.log("Your ID Login", this.memberId);  // ถ้าได้ null คือยังไม่ได้ Login
+
       if (this.memberId != null) {
-        this.logined();
+   
+        this.storage.get("Name").then((val) => {
+          this.name = val;
+          console.log("Your Name", this.name);
+        });
+        this.storage.get("LastName").then((val) => {
+          this.lastname = val;
+          console.log("LastName", this.lastname);
+        });
+
+        this.storage.get("user").then((user) => {
+          this.user = user;
+          console.log("Username=", user);
+        });
       }
     });
 
-    this.storage.get("Name").then((val) => {
-      this.name = val;
-      //console.log("Your Name", this.name);
-    });
-    this.storage.get("LastName").then((val) => {
-      this.lastname = val;
-      //console.log("LastName", this.lastname);
-    });
-
-    this.storage.get("user").then((user) => {
-      this.user = user;
-      //console.log("Username=", user);
-    });
   }
 
-  srevice() {
+   srevice() {
     setTimeout(() => {
-    this.navCtrl.push(ServicePage);
-  }, 300);
-  }
+      this.navCtrl.push(ServicePage);
+    }, 300);
+  } 
+ /*  srevice() {
+
+    this.iab.create('https://chawtaichonburi.com/mypdf/index1.php', '_system');
+  } */
 
   slideChanged() {
     let currentIndex = this.slides.getActiveIndex();
@@ -268,19 +263,19 @@ export class HomePage {
   }
 
   rerunnews() {
-    this.iab.create("https://youtube.com/playlist?list=PLFKoyQAndwNjC4C7LlW4vHQ8IkcckGcF6",'_system');
+    this.iab.create("https://youtube.com/playlist?list=PLFKoyQAndwNjC4C7LlW4vHQ8IkcckGcF6", '_system');
   }
   it() {
-    this.iab.create('http://line.me/ti/p/~ittmn','_system');
+    this.iab.create('http://line.me/ti/p/~ittmn', '_system');
   }
   contact() {
-    this.iab.create('http://line.me/ti/p/~@tmn.pattaya','_system');
+    this.iab.create('http://line.me/ti/p/~@tmn.pattaya', '_system');
   }
   OpenUrlCctv() {
-    this.iab.create('https://chawtaichonburi.com/appdata/img/net/p_cctv1.png','_system');
+    this.iab.create('https://chawtaichonburi.com/appdata/img/net/p_cctv1.png', '_system');
   }
   News() {
     this.navCtrl.push(NewsPage);
   }
- 
+
 }

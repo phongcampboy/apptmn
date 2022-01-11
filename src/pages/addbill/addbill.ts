@@ -6,7 +6,7 @@ import { PayOtherPage } from "../pay-other/pay-other";
 import { ToastController } from 'ionic-angular';
 import { PayaddbillPage } from "../payaddbill/payaddbill";
 import { ListpayPage } from "../listpay/listpay";
-
+import { ApiProvider } from '../../providers/api/api';
 @IonicPage()
 @Component({
   selector: "page-addbill",
@@ -42,6 +42,7 @@ export class AddbillPage {
     public alertCtrl: AlertController,
     public loadingCtrl: LoadingController,
     public toastCtrl: ToastController,
+    public api: ApiProvider,
     public navParams: NavParams,
 
   ) 
@@ -49,7 +50,7 @@ export class AddbillPage {
     this.ispay = null;
   }
 
-  ionViewDidLoad() {//รับข้อมูลเจ้าของเครื่องที่ส่งมาจากหน้า member
+ async ionViewDidLoad() {//รับข้อมูลเจ้าของเครื่องที่ส่งมาจากหน้า member
     
     console.log("ionViewDidLoad AddbillPage");
     this.add = false;
@@ -58,20 +59,59 @@ export class AddbillPage {
     console.log("ข้อมูลที่ส่งมา",idget);
     this.id_me = idget[0].MemberID;
 
-    let loading = this.loadingCtrl.create({
-      content: "กำลังโหลดข้อมูล....",
-      //duration: 1500
-    });
-    loading.present();
-
     let postData = JSON.stringify({
       memberID: this.id_me,
     });
- 
-    let url: string =
-      "http://tmnoffice.dyndns.tv:8000/tmn/appdata/load_member.php";
+    let result = await this.api.postdata(this.api.route_load_member,postData,'กำลังโหลดข้อมูล..');
+    if (result) {
+      this.data_me = result;
+              this.status = result[0].MemberStatusID;
+              this.ispay = result[0].IsPay;
+            
+              console.log('Pay=',this.ispay);
+              console.log('status',this.status);
+    
+              if(this.status == "00001"){
 
-    this.http
+                this.msg_status = "01";
+                //this.msg_status = "สถานะปกติ";
+
+              }
+              else if(this.status == "00002"){
+
+                this.msg_status = "02";
+                //this.msg_status = "สถานะตัดสาย";
+
+              }
+
+              else if(this.status == "00010"){
+
+                this.msg_status = "10";
+                //this.msg_status = "สถานะบล็อกสัญญาณชั่วคราว";
+
+              }else{
+
+                this.api.errorAlert('!!ไม่พบข้อมูล กรุณาติดต่อเจ้าหน้าที่');
+                //this.navCtrl.setRoot(HomePage);
+
+              }
+
+              this.loaddata();
+            }
+            if(this.ispay!=0){
+              this.check_pay = false;
+              return false;
+            }
+            else {
+              this.check_pay = true;
+              return true;
+            }
+    
+    }
+    /* let url: string =
+      "http://tmnoffice.dyndns.tv:8000/tmn/appdata/load_member.php"; */
+
+    /*this.http
       .post(url, postData)
 
       .subscribe(
@@ -138,10 +178,8 @@ export class AddbillPage {
         setTimeout(() => {
         loading.dismiss() //ให้ Loading หายไปกรณีเกิดการทำงานเสร็จสมบูรณ์
         }, 800)
-      );
+      ); */
      
-  }
-  
   loaddata() { //โหลดข้อมูล ที่เพิ่มรหัสอื่นเข้ามา
     this.postdata.id_save = "";
     let id = this.navParams.get("memID");
@@ -150,13 +188,12 @@ export class AddbillPage {
     //let memberID = this.IDmem;
     console.log("รหัสที่ส่งมา:", this.IDmem);
 
-    let DataPost = JSON.stringify({
+     let DataPost = JSON.stringify({
       memberID: this.IDmem,
     });
 
-
-    let url: string =
-    "http://tmnoffice.dyndns.tv:8000/tmn/appdata/tmn_receipt.php"; 
+ 
+     let url: string = "http://tmnoffice.dyndns.tv:8000/tmn/Api_App/tmn_receipt.php";  
 
     this.http
       .post(url, DataPost)
@@ -185,7 +222,7 @@ export class AddbillPage {
         (error) => {
           console.log("เพิ่มรหัสโหลด Fail.");
         }
-      );
+      ); 
   }
 
   loadIsPay(id) { // คลิกจ่ายบิลที่เพิ่มเข้ามา
@@ -258,7 +295,7 @@ export class AddbillPage {
 
   addbill() { // เพิ่มรหัสมาชิกอื่นๆ
   
-    let url: string ="http://tmnoffice.dyndns.tv:8000/tmn/appdata/tmn_addbill.php";
+    let url: string ="http://tmnoffice.dyndns.tv:8000/tmn/Api_App/tmn_addbill.php";
     
     let postdataset = new FormData();
 
@@ -311,7 +348,7 @@ export class AddbillPage {
             this.id_del = id;
             //console.log("del=",this.id_del);
            
-            let url: string ="http://tmnoffice.dyndns.tv:8000/tmn/appdata/tmndel.php";
+            let url: string ="http://tmnoffice.dyndns.tv:8000/tmn/Api_App/tmndel.php";
 
             let postdataset = new FormData();
 
@@ -372,7 +409,7 @@ export class AddbillPage {
     });
  
     //console.log('Pos=',postData);
-    let url: string ="http://tmnoffice.dyndns.tv:8000/tmn/appdata/load_member.php";
+    let url: string ="http://tmnoffice.dyndns.tv:8000/tmn/Api_App/load_member.php";
 
     this.http
       .post(url, postData)

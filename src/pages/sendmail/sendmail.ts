@@ -72,8 +72,6 @@ export class SendmailPage {
     this.camera.getPicture(options).then(
       
       (imgData) => {
-        //console.log("image data =>  ", imgData);
-        //let base64pic = "data:image/jpeg;base64," + imgData;
         this.base64Img = "data:image/jpeg;base64," + imgData;
       },
       (err) => {
@@ -108,9 +106,9 @@ export class SendmailPage {
 
             let callback: Observable<any> = this.http.post(url, datapost);
       
-            callback.subscribe((call) => {
+            callback.subscribe(async(call) => {
                    
-               if (call.status == 200) {
+               if (await call.status == 200) {
                 //alert(call.msg);
                 let toast = this.toastCtrl.create({
                   message: "ส่งอีเมล สำเร็จ",
@@ -128,7 +126,7 @@ export class SendmailPage {
                 this.base64Img = "";
               }
       
-              if (call.status == 404) {
+              else if (call.status == 404) {
                 //alert(call.msg);
                 let toast = this.toastCtrl.create({
                   message: "!!ส่งอีเมล ไม่สำเร็จ",

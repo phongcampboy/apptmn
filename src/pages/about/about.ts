@@ -45,9 +45,9 @@ export class AboutPage {
 
     let callback: Observable<any> = this.http.post(url, postdataset);
 
-    callback.subscribe((call) => {
+    callback.subscribe(async(call) => {
      
-      if (call.status == 'Net') {
+      if (await call.status == 'Net') {
 
         this.img_net_tmn = call.net_tmn;
         this.img_s01 = call.s01;
@@ -58,7 +58,7 @@ export class AboutPage {
         console.log("Call", call);
        
       }
-      if(call.status==400){
+      else if(call.status==400){
 
         console.log("Call=Null");
       }

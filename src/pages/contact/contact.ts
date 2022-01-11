@@ -31,8 +31,6 @@ export class ContactPage {
       loading.dismiss();
     }, 800);
 
-    //console.log("รูป",this.img_cable);
-
     let url: string ="http://tmnoffice.dyndns.tv:8000/tmn/appdata/img_cctv.php";
       
     let postdataset = new FormData();
@@ -41,9 +39,9 @@ export class ContactPage {
 
     let callback: Observable<any> = this.http.post(url, postdataset);
 
-    callback.subscribe((call) => {
+    callback.subscribe(async(call) => {
      
-      if (call.status == 'Cctv') {
+      if (await call.status == 'Cctv') {
         this.img_cctv = call;
         this.img_cctv01 = call.cctv01;
         this.img_cctv1 = call.cctv1;
@@ -53,7 +51,7 @@ export class ContactPage {
         console.log("Call", this.img_cctv);
        
       }
-      if(call.status==400){
+      else if(call.status==400){
 
         console.log("Call=Null");
       }

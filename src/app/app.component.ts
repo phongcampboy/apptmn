@@ -6,6 +6,7 @@ import { ToastController } from "ionic-angular";
 import { Observable } from "rxjs/Observable";
 import { HttpClient } from "@angular/common/http";
 import { Market } from '@ionic-native/market';
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -39,7 +40,7 @@ export class MyApp {
        this.platform.ready().then(()=>{ 
   
           // Push msg
-           var notificationOpenedCallback = function(jsonData: any) {
+        /*    var notificationOpenedCallback = function(jsonData: any) {
             console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
           
           };
@@ -47,14 +48,14 @@ export class MyApp {
              window["plugins"].OneSignal
             .startInit("b6010585-1ca6-45eb-bae2-7a08bcf8490d","361687411034")   //เอามาจาก onsignal
             .handleNotificationOpened(notificationOpenedCallback)
-            .endInit();
+            .endInit(); */
             
 
         if (this.platform.is("android")) {
         
             this.versionNumber = '2.7';
 
-            let url: string = "http://tmnoffice.dyndns.tv:8000/tmn/appdata/tmn_chk_version.php";
+            let url: string = "http://tmnoffice.dyndns.tv:8000/tmn/Api_App/tmn_chk_version.php";
             let datapost = new FormData();
         
             datapost.append("chk_version", null);
@@ -69,7 +70,7 @@ export class MyApp {
               var chk_update = this.isNewerVersion(this.versionNumber,this.chk_version )
       
    
-              console.log('chk_update=',chk_update);
+             // console.log('chk_update=',chk_update);
 
               if(chk_update == true){
 
@@ -85,7 +86,7 @@ export class MyApp {
         } else if(this.platform.is("ios")) {
 
           this.versionNumber = '2.7';
-          let url: string = "http://tmnoffice.dyndns.tv:8000/tmn/appdata/tmn_chk_ios.php";
+          let url: string = "http://tmnoffice.dyndns.tv:8000/tmn/Api_App/tmn_chk_ios.php";
             let datapost = new FormData();
         
             datapost.append("chk_version", null);

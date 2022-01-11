@@ -12,6 +12,7 @@ import { SendlinePage } from '../sendline/sendline';
 import { AppversionPage } from '../appversion/appversion';
 import { SendmailPage } from '../sendmail/sendmail';
 import { InAppBrowser } from "@ionic-native/in-app-browser";
+import { ApiProvider } from '../../providers/api/api';
 @IonicPage()
 @Component({
   selector: "page-member",
@@ -39,7 +40,7 @@ export class MemberPage {
   img_bth04:any;
   img_bth05:any;
   img_bth06:any;
-
+  memberId: any = null;
   constructor(
     public navCtrl: NavController,
     public http: HttpClient,
@@ -48,51 +49,39 @@ export class MemberPage {
     private platform: Platform,
     public toastCtrl: ToastController,
     private iab: InAppBrowser,
+    public api: ApiProvider,
     public navParams: NavParams
   ) 
   {
     this.img_member = true;
   }
 
-  ionViewDidLoad() {
-/*     console.log("ionViewDidLoad MemberPage");
-    let loading = this.loadingCtrl.create({
-      //spinner: 'hide',
-      content: 'Loading Please Wait...'
-    });
-  
-    loading.present();
-  
-    setTimeout(() => {
-      loading.dismiss();
-    }, 800); */
- 
+ async ionViewDidLoad() {
     this.Pay = 1;
     this.dataitem = "";
 
     let idget = this.navParams.get("memID");
     console.log("ID ที่ส่งมา=", idget);
 
-    this.platform.ready().then(() => {
+   await this.platform.ready().then(() => {
       this.loaddata(idget);
-      this.img(); 
+      this.img();    
     });
-
   }
 
   img(){
 
-    let url: string ="http://tmnoffice.dyndns.tv:8000/tmn/appdata/img_member.php";
+    //let url: string ="http://tmnoffice.dyndns.tv:8000/tmn/appdata/img_member.php";
       
       let postdataset = new FormData();
   
       postdataset.append("Page","Member");
   
-      let callback: Observable<any> = this.http.post(url, postdataset);
+      let callback: Observable<any> = this.http.post(this.api.rounte_img_member, postdataset);
   
-      callback.subscribe((call) => {
+      callback.subscribe(async(call) => {
        
-        if (call.status == 'Member') {
+        if (await call.status == 'Member') {
   
           this.img_pay = call.pay;
           this.img_payhis = call.payhis;
@@ -118,14 +107,60 @@ export class MemberPage {
         
       });
   }
-  loaddata(id: string) {
-
-    let loading = this.loadingCtrl.create({
-      //spinner: 'hide',
-      content: 'กำลังโหลดข้อมูล...'
-    });
   
-    loading.present();
+ async loaddata(id: string) {
+    let postData = JSON.stringify({
+      memberID: id,
+    });
+    let result = await this.api.postdata(this.api.route_load_member,postData,'กำลังโหลดข้อมูล..');
+    if (result) {
+              
+          this.dataitem = result;
+
+          console.log("ข้อมูลที่โหลดมา:", result);
+
+          this.Pay = result[0].IsPay;
+          console.log("pay ",result[0].IsPay);
+          this.billcode = result[0].BillingCode;
+          this.createdCode = this.billcode;
+          this.memberId = result[0].MemberID;
+
+          this.status = result[0].MemberStatusID;
+          console.log("status",this.status);
+
+          if(this.status == "00001"){
+
+            this.msg_status = "01";
+            //this.msg_status = "สถานะปกติ";
+
+          }
+          else if(this.status == "00002"){
+
+            this.msg_status = "02";
+            //this.msg_status = "สถานะตัดสาย";
+
+          }
+
+          else if(this.status == "00010"){
+
+            this.msg_status = "10";
+            //this.msg_status = "สถานะบล็อกสัญญาณชั่วคราว";
+
+          }else{
+
+            this.api.errorAlert('!!กรุณาติดต่อเจ้าหน้าที่');
+            this.navCtrl.setRoot(HomePage);
+
+          }
+
+    }else{
+      this.api.errorAlert('!!ไม่พบข้อมูล กรุณาติดต่อเจ้าหน้าที่');
+      this.navCtrl.setRoot(HomePage);      
+    }     
+
+
+  }
+ /* loaddata(id: string) {
 
     let postData = JSON.stringify({
       memberID: id,
@@ -199,14 +234,14 @@ export class MemberPage {
         },
         (error) => {
           console.log("Load Fail.");
-          loading.dismiss() //ให้ Loading หายไปกรณีเกิด error 
+          //loading.dismiss() //ให้ Loading หายไปกรณีเกิด error 
         },
         ()=>
         setTimeout(() => {
-        loading.dismiss() //ให้ Loading หายไปกรณีเกิดการทำงานเสร็จสมบูรณ์
+       // loading.dismiss() //ให้ Loading หายไปกรณีเกิดการทำงานเสร็จสมบูรณ์
         }, 800)
       );
-  }
+  } */
 
   BillPage() {
     setTimeout(() => {
@@ -246,6 +281,5 @@ export class MemberPage {
       this.navCtrl.push(SendmailPage);
     }, 300);
      
-  }
- 
+  } 
 }

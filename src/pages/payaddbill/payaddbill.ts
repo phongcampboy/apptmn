@@ -26,10 +26,10 @@ export class PayaddbillPage {
  
   }
 
-  ionViewDidLoad() {
+ async ionViewDidLoad() {
     console.log("ionViewDidLoad PayaddbillPage");
     this.logobill;
-    let idpay = this.navParams.get("memID");
+    let idpay = await this.navParams.get("memID");
     this.loaddata(idpay);
   }
   ArabicNumberToText(Number) {

@@ -5,8 +5,9 @@
 </ion-header>
 
 <ion-content padding>
+ 
   <ion-list>
-
+  
     <ion-item>
       <ion-label floating>Username</ion-label>
       <ion-input type="text" [(ngModel)]="logindata.user"></ion-input>
@@ -32,8 +33,9 @@
       เพื่อกำหนด Username และ Password สำหรับการเข้าสู่ระบบครั้งแรก
     </ion-card-content>
     <div align ="center">
-    <button ion-button small color="secondary" (click)="register()">ลงทะเบียน</button>
+    <button ion-button small color="secondary" (click)="register()" >ลงทะเบียน</button>
     <button ion-button small color="tertiary" (click)="manual()">คู่มือการใช้งาน</button>
     </div>
   </ion-card>
+
 </ion-content>

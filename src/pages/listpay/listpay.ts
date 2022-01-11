@@ -1,14 +1,8 @@
 import { Component } from "@angular/core";
-import {
-  IonicPage,
-  NavController,
-  NavParams,
-  LoadingController
-
-} from "ionic-angular";
+import {IonicPage,NavController,NavParams,LoadingController} from "ionic-angular";
 import { HttpClient } from "@angular/common/http";
-import { ReceiptPage } from '../receipt/receipt';
-//import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { ApiProvider } from '../../providers/api/api';
+
 
 @IonicPage()
 @Component({
@@ -25,29 +19,40 @@ export class ListpayPage {
     public navCtrl: NavController,
     public loadingCtrl: LoadingController,
     public http: HttpClient,
+    public api: ApiProvider,
     public navParams: NavParams
-  ) {
+  )
+  {
+   
+  }
+
+  async ionViewDidLoad() {
+    console.log("ionViewDidLoad ListpayPage");
     let data = this.navParams.get("memID");
-    console.log("Data=", data);
+    //console.log("Data=", data);
     this.memberId = data[0].MemberID;
     this.dataitem = data;
-    console.log("Id=", this.memberId);
-    this.loaddata();
+    //console.log("Id=", this.memberId);
+
+    let postData = JSON.stringify({
+      memberID: this.memberId,
+    });
+      let result = await this.api.postdata(this.api.route_listpay,postData,'กำลังโหลดข้อมูล..');
+      //console.log(result);
+
+      if (result != "") {
+
+        this.datapay = result;
+        console.log("Loaddatapay:", this.datapay);
+      }else{
+
+        this.api.errorAlert('result.error');
+      } 
+      
   }
 
-  ionViewDidLoad() {
-    console.log("ionViewDidLoad ListpayPage");
-  }
-  Open(id){
 
-    this.getmemID = id;
-  
-    console.log("Voice =",this.getmemID);
-    this.navCtrl.push(ReceiptPage, { idvoiceID :this.getmemID });
-
-  }
-
-  loaddata() {
+/*   loaddata() {
 
     let loading = this.loadingCtrl.create({
       content: "กำลังโหลดข้อมูล...",
@@ -63,7 +68,6 @@ export class ListpayPage {
 
     this.http
       .post(url, postData)
-
       .subscribe(
         (data) => {
         
@@ -82,5 +86,5 @@ export class ListpayPage {
         loading.dismiss() //ให้ Loading หายไปกรณีเกิดการทำงานเสร็จสมบูรณ์
         }, 800)
       );
-  }
+  } */
 }

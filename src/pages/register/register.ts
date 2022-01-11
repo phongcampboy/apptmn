@@ -3,7 +3,6 @@ import {IonicPage,NavController,NavParams,AlertController,LoadingController} fro
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
 import { Validators, FormBuilder, FormGroup } from "@angular/forms";
-import { UtubePage } from '../utube/utube';
 import { LoginPage } from '../login/login';
 @IonicPage()
 @Component({
@@ -14,8 +13,6 @@ export class RegisterPage {
   postdata: any = {};
   Chk_pass: any;
   public reg: FormGroup;
-  user_log:any = "root";
-  pass_log:any = "wsx96300";
   memberId: any = null;
   constructor(
     public navCtrl: NavController,
@@ -80,66 +77,43 @@ export class RegisterPage {
     }
   }
 
-  save() {
+save() {
+
     console.log("value", this.reg.value);
     console.log(this.reg.valid);
-    let chk_conn: string ="http://tmnoffice.dyndns.tv:8000/tmn/appdata/tmn_conn.php";
-      let datapost = new FormData();
   
-      datapost.append("user_log", this.user_log);
-      datapost.append("pass_log", this.pass_log);
-      
-      let data: Observable<any> = this.http.post(chk_conn, datapost);
-      data.subscribe((call) => {
-        console.log(call);
-  
-    if (call.status == 200) {
-          //alert(call.msg);
 
-    let url: string = "http://tmnoffice.dyndns.tv:8000/tmn/appdata/tmn_reg.php";
+    //let url: string = "http://tmnoffice.dyndns.tv:8000/tmn/appdata/tmn_reg.php";
+    let url: string = "http://tmnoffice.dyndns.tv:8000/tmn/Api_App/tmn_reg.php";
 
     let postdataset = new FormData();
 
     postdataset.append("MemberID", this.postdata.MemberID);
     postdataset.append("User_app", this.postdata.User_app);
     postdataset.append("Pass_app", this.postdata.Pass_app);
-    //postdataset.append("ID_card", this.postdata.ID_card);
-
-    console.log("MemberId:", this.postdata.MemberID);
-    console.log("User_app:", this.postdata.User_app);
-    console.log("Pass_app:", this.postdata.Pass_app);
-    //console.log("ID_card", this.postdata.ID_card);
 
     let callback: Observable<any> = this.http.post(url, postdataset);
 
-    callback.subscribe((call) => {
+    callback.subscribe(async(call) => {
       console.log(call);
-      if (call.status == 200) {
+      if (await call.status == 200) {
         alert(call.msg);
         this.navCtrl.setRoot(LoginPage);
       }
-
-      if (call.status == 404) {
+      else if (call.status == 404) {
         alert(call.msg);
       }
-      if (call.status == 405) {
+      else if (call.status == 405) {
         alert(call.msg);
       }
-      if (call.status == 406) {
+      else if (call.status == 406) {
         alert(call.msg);
       }
-    });
+    },(error) => {
+      console.log("สถานะ",error.message);
+    }
+    );
   
-        }
-  
-        if (call.status == 405) {
-          //alert(call.msg);   
-          setTimeout(() => {
-            this.navCtrl.setRoot(UtubePage); 
-          }, 300);
-          
-        }
-      });
-    
+   
   }
 }

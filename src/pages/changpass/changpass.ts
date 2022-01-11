@@ -1,16 +1,11 @@
 import { Component } from "@angular/core";
-import {
-  IonicPage,
-  NavController,
-  NavParams,
-  AlertController,
-  LoadingController,
-} from "ionic-angular";
+import {IonicPage,NavController,NavParams,AlertController,LoadingController,} from "ionic-angular";
 import { Validators, FormBuilder, FormGroup } from "@angular/forms";
 import { Observable } from "rxjs/Observable";
 import { HttpClient } from "@angular/common/http";
 import { LoginPage } from "../login/login";
 import { Storage } from "@ionic/storage";
+import { ApiProvider } from '../../providers/api/api';
 
 @IonicPage()
 @Component({
@@ -34,6 +29,7 @@ export class ChangpassPage {
     public http: HttpClient,
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
+    public api: ApiProvider,
     private storage: Storage
   ) {
     this.postdata.User_app = "";
@@ -89,12 +85,11 @@ export class ChangpassPage {
     }
   }
 
-  async changpass() {
+  changpass() {
     console.log("value", this.reg.value);
     console.log(this.reg.valid);
 
-    //let url = "https://chawtaichonburi.com/appdata/tmn_chang_pass.php";
-    let url = "http://tmnoffice.dyndns.tv:8000/tmn/appdata/tmn_chang_pass.php";
+    //let url = "http://tmnoffice.dyndns.tv:8000/tmn/Api_App/tmn_chang_pass.php";
 
     let postdataset = new FormData();
 
@@ -106,11 +101,11 @@ export class ChangpassPage {
     console.log("User_app:", this.postdata.User_app);
     console.log("Pass_app:", this.postdata.Pass_app);
 
-    let callback: Observable<any> = this.http.post(url, postdataset);
+    let callback: Observable<any> = this.http.post(this.api.rounte_tmn_chang_pass, postdataset);
 
     callback.subscribe(async (call) => {
       console.log(call);
-      if (call.status == 200) {
+      if (await call.status == 200) {
         alert(call.msg);
         let loading = this.loadingCtrl.create({
           content: "Loading...",
@@ -126,10 +121,10 @@ export class ChangpassPage {
         this.navCtrl.setRoot(LoginPage);
         loading.dismiss();
       }
-      if (call.status == 400) {
+      else if (call.status == 400) {
         alert(call.msg);
       }
-      if (call.status == 405) {
+      else if (call.status == 405) {
         alert(call.msg);
       }
     });

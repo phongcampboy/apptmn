@@ -41,6 +41,8 @@ import { StreamingMedia } from '@ionic-native/streaming-media';
 import { AppVersion } from '@ionic-native/app-version';
 import { Market } from '@ionic-native/market';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
+import { ApiProvider } from '../providers/api/api';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -114,7 +116,9 @@ import { IonicImageViewerModule } from 'ionic-img-viewer';
   
         
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    InAppBrowser,EmailComposer,Camera,SocialSharing,StreamingMedia,AppVersion,Market
+    InAppBrowser,EmailComposer,Camera,SocialSharing,StreamingMedia,AppVersion,Market,
+    ApiProvider
+  
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
