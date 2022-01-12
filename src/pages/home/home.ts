@@ -248,10 +248,6 @@ export class HomePage {
       this.navCtrl.push(ServicePage);
     }, 300);
   } 
- /*  srevice() {
-
-    this.iab.create('https://chawtaichonburi.com/mypdf/index1.php', '_system');
-  } */
 
   slideChanged() {
     let currentIndex = this.slides.getActiveIndex();
